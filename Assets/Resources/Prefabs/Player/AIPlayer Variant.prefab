@@ -41,7 +41,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4732090660291791345, guid: f8f7e39066e98584c9b688fa7623c92e, type: 3}
       propertyPath: m_Name
-      value: AIPlayer
+      value: AIPlayer Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4732090660291791345, guid: f8f7e39066e98584c9b688fa7623c92e, type: 3}
       propertyPath: m_TagString
@@ -95,9 +95,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6533385032936810532, guid: f8f7e39066e98584c9b688fa7623c92e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1c453a2fe97a4744da09e30f8596fd3e, type: 2}
     - target: {fileID: 9029656073738231022, guid: f8f7e39066e98584c9b688fa7623c92e, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4020950083693944630, guid: cc6c5e9b76407384787a238abe20160c, type: 3}
+      objectReference: {fileID: 9051814759605945688, guid: b6e2bf337134abf46b8f1269c4393cbf, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f7e39066e98584c9b688fa7623c92e, type: 3}
