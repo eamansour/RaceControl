@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &597281803809944888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 597281803809944890}
+  - component: {fileID: 597281803809944891}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &597281803809944890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597281803809944888}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &597281803809944891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597281803809944888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f681a65974daf40aab433c49048776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - <Name>k__BackingField: Music
+    _clip: {fileID: 8300000, guid: 8433443eccaf6554aa4dc461544b84c8, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 1
+  - <Name>k__BackingField: ButtonHover
+    _clip: {fileID: 8300000, guid: 65fac7e11d5e0614cbdaa2510dfc9c7d, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0
+  - <Name>k__BackingField: ButtonClick
+    _clip: {fileID: 8300000, guid: 6770410afcc6b0f4cb5ad6c726f252a6, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0
+  - <Name>k__BackingField: LevelClick
+    _clip: {fileID: 8300000, guid: bc016af58042cf94685234cc2428caad, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0
+  - <Name>k__BackingField: LevelHover
+    _clip: {fileID: 8300000, guid: dfe1cd65113d78c43ad5b1845d09d62e, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0
+  - <Name>k__BackingField: Typing
+    _clip: {fileID: 8300000, guid: e314b3287812de04c8a88b8ccf0395c9, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0
