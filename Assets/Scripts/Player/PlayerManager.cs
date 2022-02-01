@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
     public GameObject AttachedGameObject { get; private set; }
     public Checkpoint TargetCheckpoint { get; private set; }
     public Checkpoint LastCheckpoint { get; private set; }
+    public Checkpoint RecentCheckpoint { get; private set; }
     public int CurrentLap { get; private set; } = 0;
     public ControlMethod CurrentControl { get; set; }
     public ICar PlayerCar { get; private set; }
@@ -50,6 +51,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
         }
         TargetCheckpoint = _startCheckpoint;
         LastCheckpoint = _startCheckpoint;
+        RecentCheckpoint = _startCheckpoint;
 
         _checkpointsLayer = LayerMask.NameToLayer("Checkpoints");
         _carAI = GetComponent<ICarAI>();
@@ -79,6 +81,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
         if (other.gameObject.layer != _checkpointsLayer) return;
 
         Checkpoint collidedCheckpoint = other.GetComponent<Checkpoint>();
+        RecentCheckpoint = collidedCheckpoint;
 
         // Transfer control to AI to drive to a pit stop
         if (collidedCheckpoint.name == "PitEntry"
@@ -134,6 +137,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
         CurrentLap = 0;
         TargetCheckpoint = _startCheckpoint;
         LastCheckpoint = _startCheckpoint;
+        RecentCheckpoint = _startCheckpoint;
         CurrentControl = _levelControl;
 
         _carAI.SetTarget(_startCheckpoint);
@@ -168,6 +172,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
         CurrentControl = currentControl;
         TargetCheckpoint = targetCheckpoint;
         LastCheckpoint = targetCheckpoint;
+        RecentCheckpoint = targetCheckpoint;
         _carAI.SetTarget(TargetCheckpoint);
     }
 }

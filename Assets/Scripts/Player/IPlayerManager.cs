@@ -5,6 +5,7 @@ public interface IPlayerManager
     GameObject AttachedGameObject { get; }
     Checkpoint TargetCheckpoint { get; }
     Checkpoint LastCheckpoint { get; }
+    Checkpoint RecentCheckpoint { get; }
     int CurrentLap { get; }
     PlayerManager.ControlMethod CurrentControl { get; set; }
     ICar PlayerCar { get; }

@@ -21,6 +21,9 @@ public class PlayerHud : MonoBehaviour
     private TMP_Text _lapText;
 
     [SerializeField]
+    private TMP_Text _wrongWayText;
+
+    [SerializeField]
     private Transform _checkpointParticles;
 
     [SerializeField]
@@ -55,6 +58,7 @@ public class PlayerHud : MonoBehaviour
             _player = _mainCamera.Target.GetComponent<IPlayerManager>();
         }
 
+        // Optional UI text components
         if (_mphText)
         {
             _mphText.text = $"{_player.PlayerCar.GetSpeedInMPH()} MPH";
@@ -73,6 +77,16 @@ public class PlayerHud : MonoBehaviour
         if (_lapText)
         {
             _lapText.text = $"{_player.CurrentLap}";
+        }
+
+        // Ensure the player is travelling in the correct direction
+        if (_player.LastCheckpoint != _player.RecentCheckpoint && _player.RecentCheckpoint.name != "PitEntry")
+        {
+            _wrongWayText.gameObject.SetActive(true);
+        }
+        else
+        {
+            _wrongWayText.gameObject.SetActive(false);
         }
 
         // Update the checkpoint particles' position/rotation as the player moves
