@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     private float _zLimit = 70f;
 
     private Vector3 _initialPosition;
+    private Quaternion _initialRotation;
 
     private IInputController _inputController;
 
@@ -19,6 +20,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
 
         if (_inputController == null || _inputController.Equals(null))
         {
@@ -68,5 +70,6 @@ public class CameraController : MonoBehaviour
     public void ResetCamera()
     {
         transform.position = _initialPosition;
+        transform.rotation = _initialRotation;
     }
 }

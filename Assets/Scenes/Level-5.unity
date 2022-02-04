@@ -621,6 +621,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227780497}
     m_Modifications:
+    - target: {fileID: 8794074963556699715, guid: 7292b022f25a63a44b7737ad0da56028, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794074963556699715, guid: 7292b022f25a63a44b7737ad0da56028, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8794074964372099040, guid: 7292b022f25a63a44b7737ad0da56028, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1606,20 +1614,17 @@ PrefabInstance:
       value: 'The future is here!
 
 
-
-        When you need to do things multiple
-        times, loops are perfect tools for the job.
-
+        When you need to do things multiple times,
+        loops are perfect tools for the job.
 
 
-        Using loops saves
-        you from having to write the same block of code multiple times, which leads
-        to far shorter programs.
+        Using loops saves you from
+        having to write the same block of code multiple times, which leads to far
+        shorter programs.
 
 
-
-        You''ve just seen a "while" loop, which
-        executes as long as a condition is true. Neat right?'
+        You''ve just seen a "while" loop, which executes
+        as long as a condition is true. Neat right?'
       objectReference: {fileID: 0}
     - target: {fileID: 6323098885287100767, guid: d0e550d4baed33945b9dd6c15e8aa74d, type: 3}
       propertyPath: loseMessage
@@ -1638,10 +1643,8 @@ PrefabInstance:
       value: 'That''s not quite right!
 
 
-
         Have a think about how you could
         identify even and odd lap numbers, then throw some conditions at the problem!
-
 
 
         (P.S.

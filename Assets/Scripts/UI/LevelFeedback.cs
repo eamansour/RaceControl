@@ -66,8 +66,7 @@ public class LevelFeedback : MonoBehaviour, ILevelFeedback
         // Each compound statement increases cyclomatic complexity by 1
         cyclomaticComplexity += compoundStatements.Length;
 
-        string statistics = "Your program statistics:\n\n" +
-                            $"Number of statements: {numberOfStatements}\n" +
+        string statistics = $"Number of statements: {numberOfStatements}\n" +
                             $"Complexity: {cyclomaticComplexity}";
 
         _statisticsText.text = statistics;

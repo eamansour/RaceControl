@@ -15,15 +15,42 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     private float _offsetSmoothing;
 
+    private bool _followBehind = false;
+
     private void Start()
     {
         transform.eulerAngles = _eulerRotation;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ToggleFollowBehind();
+        }
+    }
+
     // Continuously move the camera over time based on the target's position
     private void FixedUpdate()
     {
-        transform.position =
-            Vector3.Lerp(transform.position, Target.transform.position + _offset, _offsetSmoothing * Time.deltaTime);
+        if (_followBehind)
+        {
+            Vector3 followOffset = Target.transform.up * 3f + Target.transform.forward * 3f;
+            transform.position =
+                Vector3.Lerp(transform.position, Target.transform.position + followOffset, _offsetSmoothing * Time.deltaTime);
+            transform.LookAt(Target.transform.position + Vector3.up);
+        }
+        else
+        {
+            transform.eulerAngles = _eulerRotation;
+            transform.position =
+                Vector3.Lerp(transform.position, Target.transform.position + _offset, _offsetSmoothing * Time.deltaTime);
+        }
+    }
+
+    // Toggles the camera follow mode to follow behind a target
+    public void ToggleFollowBehind()
+    {
+        _followBehind = !_followBehind;
     }
 }
