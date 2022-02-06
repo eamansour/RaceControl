@@ -89,13 +89,14 @@ public class LoopTests
         return testDropdown;
     }
 
-    [Test]
-    public void WhileLoop_DoesNotRunBlockIfFalse()
+    [UnityTest]
+    public IEnumerator WhileLoop_DoesNotRunBlockIfFalse()
     {
         _expression.EvaluateExpression().Returns(false);
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_whileLoop.Run());
+        yield return null;
 
         _player.DidNotReceive().RetirePlayer();
     }
@@ -107,6 +108,7 @@ public class LoopTests
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_whileLoop.Run());
+        yield return null;
 
         // Test three iterations
         _player.Received(1).RetirePlayer();
@@ -126,21 +128,21 @@ public class LoopTests
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_whileLoop.Run());
-
-        _player.Received(1).RetirePlayer();
         yield return null;
 
-        // Expression changed to false
-        _player.Received(2).RetirePlayer();
+        _player.Received(1).RetirePlayer();
         _expression.EvaluateExpression().Returns(false);
+        yield return null;
+
+        _player.Received(2).RetirePlayer();
         yield return null;
 
         // While loop should have stopped
         _player.Received(2).RetirePlayer();
     }
 
-    [Test]
-    public void ForLoop_DoesNotRunBlockIfEnded()
+    [UnityTest]
+    public IEnumerator ForLoop_DoesNotRunBlockIfEnded()
     {
         _rangeStartDropdown.value = 0;
         _rangeEndDropdown.value = 0;
@@ -149,6 +151,7 @@ public class LoopTests
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_forLoop.Run());
+        yield return null;
 
         _player.DidNotReceive().RetirePlayer();
     }
@@ -163,6 +166,7 @@ public class LoopTests
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_forLoop.Run());
+        yield return null;
 
         // Test two iterations
         _player.Received(1).RetirePlayer();
@@ -181,6 +185,7 @@ public class LoopTests
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_forLoop.Run());
+        yield return null;
 
         // Test two iterations
         _player.Received(1).RetirePlayer();

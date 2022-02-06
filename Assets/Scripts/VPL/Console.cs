@@ -70,4 +70,17 @@ public class Console : MonoBehaviour
         GameManager.Instance.ResetLevel();
         _mainCamera.ResetCamera();
     }
+
+    // Play an appropriate sound when clicking a start/stop program button
+    public void OnClick(bool start)
+    {
+        if (start)
+        {
+            SoundManager.Instance.PlaySound("StartProgram");
+        }
+        else
+        {
+            SoundManager.Instance.PlaySound("StopProgram");
+        }
+    }
 }

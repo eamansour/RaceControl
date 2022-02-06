@@ -13,6 +13,7 @@ public class LapObjectiveTests
     {
         _lapObjective = new GameObject().AddComponent<LapObjective>();
         _player = Substitute.For<IPlayerManager>();
+        _lapObjective.Construct(_player);
     }
 
     [TearDown]

@@ -68,3 +68,11 @@ MonoBehaviour:
     _clip: {fileID: 8300000, guid: e314b3287812de04c8a88b8ccf0395c9, type: 3}
     _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
     _loop: 0
+  - <Name>k__BackingField: StartProgram
+    _clip: {fileID: 8300000, guid: 748d33d89c1eb8e48944b4e1134d3fd6, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0
+  - <Name>k__BackingField: StopProgram
+    _clip: {fileID: 8300000, guid: 2387ccfc7a5807c4a97a0ff35c2994a9, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0

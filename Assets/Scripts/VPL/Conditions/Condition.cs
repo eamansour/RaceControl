@@ -26,7 +26,7 @@ public abstract class Condition : CompoundStatement
     // Evaluates a conditional statement
     protected IEnumerator EvaluateCondition()
     {
-        bool expressionResult = Convert.ToBoolean(_expression.EvaluateExpression());
+        bool expressionResult = _expression.EvaluateExpression();
 
         // Only run the contained statements if the condition evaluates to true
         if (expressionResult)

@@ -2,6 +2,8 @@ using NUnit.Framework;
 using UnityEngine;
 using NSubstitute;
 using UnityEngine.UI;
+using UnityEngine.TestTools;
+using System.Collections;
 
 [Category("VPLTests")]
 public class ConditionTests
@@ -48,7 +50,11 @@ public class ConditionTests
     [TearDown]
     public void TearDown()
     {
-        Object.Destroy(_testObject);
+        foreach (GameObject go in GameObject.FindObjectsOfType<GameObject>())
+        {
+            go.SetActive(true);
+            Object.Destroy(go);
+        }
     }
 
     // Helper method to set an object's parent in the Unity hierarchy
@@ -58,84 +64,91 @@ public class ConditionTests
         toChild.transform.SetAsLastSibling();
     }
 
-    [Test]
-    public void IfCondition_RunsBlockIfTrue()
+    [UnityTest]
+    public IEnumerator IfCondition_RunsBlockIfTrue()
     {
         _ifCondition.Construct(_expression, false, -1);
         _expression.EvaluateExpression().Returns(true);
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_ifCondition.Run());
+        yield return null;
         
         _player.Received(1).RetirePlayer();
     }
 
-    [Test]
-    public void IfCondition_DoesNotRunBlockIfFalse()
+    [UnityTest]
+    public IEnumerator IfCondition_DoesNotRunBlockIfFalse()
     {
         _ifCondition.Construct(_expression, false, -1);
         _expression.EvaluateExpression().Returns(false);
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_ifCondition.Run());
+        yield return null;
         
         _player.DidNotReceive().RetirePlayer();
     }
 
-    [Test]
-    public void ElifCondition_RunsBlockIfTrueAndPreviousConditionDidNotRun()
+    [UnityTest]
+    public IEnumerator ElifCondition_RunsBlockIfTrueAndPreviousConditionDidNotRun()
     {
         _elifCondition.Construct(_expression, false, 0);
         _expression.EvaluateExpression().Returns(true);
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_elifCondition.Run());
+        yield return null;
         
         _player.Received(1).RetirePlayer();
     }
 
-    [Test]
-    public void ElifCondition_DoesNotRunBlockIfPreviousRuns()
+    [UnityTest]
+    public IEnumerator ElifCondition_DoesNotRunBlockIfPreviousRuns()
     {
         _elifCondition.Construct(_expression, true, 0);
         _expression.EvaluateExpression().Returns(false);
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_elifCondition.Run());
+        yield return null;
         
         _player.DidNotReceive().RetirePlayer();
     }
 
-    [Test]
-    public void ElifCondition_DoesNotRunBlockIfFalse()
+    [UnityTest]
+    public IEnumerator ElifCondition_DoesNotRunBlockIfFalse()
     {
         _elifCondition.Construct(_expression, true, 0);
         _expression.EvaluateExpression().Returns(true);
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_elifCondition.Run());
+        yield return null;
         
         _player.DidNotReceive().RetirePlayer();
     }
 
-    [Test]
-    public void ElseCondition_RunsBlockIfPreviousDidNotRun()
+    [UnityTest]
+    public IEnumerator ElseCondition_RunsBlockIfPreviousDidNotRun()
     {
         _elseCondition.Construct(_expression, false, 0);
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_elseCondition.Run());
+        yield return null;
         
         _player.Received().RetirePlayer();
     }
 
-    [Test]
-    public void ElseCondition_DoesNotRunBlockIfPreviousRuns()
+    [UnityTest]
+    public IEnumerator ElseCondition_DoesNotRunBlockIfPreviousRuns()
     {
         _elseCondition.Construct(_expression, true, 0);
         _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_elseCondition.Run());
+        yield return null;
         
         _player.DidNotReceive().RetirePlayer();
     }

@@ -3,6 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+[Category("EnvironmentTests")]
 public class PitStopTests
 {
     private PitStop _pitStop;
@@ -24,7 +25,6 @@ public class PitStopTests
         _playerManager = _testPlayer.GetComponent<IPlayerManager>();
         _playerManager.Construct(_car, _testPlayer.GetComponent<ICarAI>(), exitCheckpoint);
 
-        
         _testPlayer.SetActive(false);
     }
 
@@ -38,7 +38,6 @@ public class PitStopTests
     [UnityTest]
     public IEnumerator OnTriggerEnter_DoesNotServicePlayerIfNotAIControlled()
     {
-        yield return null;
         _testPlayer.SetActive(true);
         yield return null;
 
@@ -49,7 +48,6 @@ public class PitStopTests
     [UnityTest]
     public IEnumerator OnTriggerEnter_DoesNotServiceObjectIfNotAPlayer()
     {
-        yield return null;
         BoxCollider testCollider = new GameObject().AddComponent<BoxCollider>();
         yield return null;
 
@@ -62,11 +60,10 @@ public class PitStopTests
     [UnityTest]
     public IEnumerator OnTriggerEnter_PitsCarWhenAIControlled()
     {
-        yield return null;
         _playerManager.CurrentControl = PlayerManager.ControlMethod.AI;
         _car.Fuel = 50f;
         _testPlayer.SetActive(true);
-        yield return null;
+        yield return new WaitForSeconds(0.2f);
 
         Assert.IsFalse(_pitStop.IsFree);
         Assert.IsTrue(_car.InPit);
@@ -75,11 +72,10 @@ public class PitStopTests
     [UnityTest]
     public IEnumerator ServiceCar_RefuelsCarWhenBelowOneHundred()
     {
-        yield return null;
         _playerManager.CurrentControl = PlayerManager.ControlMethod.AI;
         _car.Fuel = 50f;
         _testPlayer.SetActive(true);
-        yield return null;
+        yield return new WaitForSeconds(0.2f);
 
         Assert.IsTrue(_car.Fuel > 50f);
     }
@@ -87,11 +83,10 @@ public class PitStopTests
     [UnityTest]
     public IEnumerator ServiceCar_DoesNotRefuelAboveOneHundred()
     {
-        yield return null;
         _playerManager.CurrentControl = PlayerManager.ControlMethod.AI;
         _car.Fuel = 95f;
         _testPlayer.SetActive(true);
-        yield return null;
+        yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(100f, _car.Fuel);
     }

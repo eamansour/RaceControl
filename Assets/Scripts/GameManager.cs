@@ -129,7 +129,12 @@ public class GameManager : MonoBehaviour, IGameManager
     public void LevelWin()
     {
         IsSuccess = true;
-        PlayerPrefs.SetInt(LevelSelect.UnlockedSceneKey, MenuManager.GetActiveSceneIndex() + 1);
+        int furthestUnlockedScene = PlayerPrefs.GetInt(LevelSelect.UnlockedSceneKey, -1);
+        int nextSceneIndex = MenuManager.GetActiveSceneIndex() + 1;
+        if (furthestUnlockedScene < nextSceneIndex)
+        {
+            PlayerPrefs.SetInt(LevelSelect.UnlockedSceneKey, MenuManager.GetActiveSceneIndex() + 1);
+        }
         _levelMenu.DisplayLevelSuccess();
     }
 

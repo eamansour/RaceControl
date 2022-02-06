@@ -748,6 +748,7 @@ GameObject:
   - component: {fileID: 7006204648184963752}
   - component: {fileID: 1891378236562933707}
   - component: {fileID: 1112222050014895976}
+  - component: {fileID: 24620227849918099}
   m_Layer: 0
   m_Name: Misc
   m_TagString: Untagged
@@ -811,6 +812,21 @@ MonoBehaviour:
   _offset: {x: 0, y: 0, z: 0}
   _eulerRotation: {x: 0, y: 0, z: 0}
   _offsetSmoothing: 0
+--- !u!114 &24620227849918099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2451558209125407023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a939d1bc3b29ac34381738927eaec7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxSpeed>k__BackingField: 0
+  <Next>k__BackingField: {fileID: 0}
+  <IsStartFinish>k__BackingField: 0
 --- !u!1 &4732090660291791345
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,7 +979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelControl: 1
-  _startCheckpoint: {fileID: 0}
+  _startCheckpoint: {fileID: 24620227849918099}
 --- !u!114 &8350049832497466904
 MonoBehaviour:
   m_ObjectHideFlags: 0

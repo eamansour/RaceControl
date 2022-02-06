@@ -1,0 +1,124 @@
+{
+    "questions": [
+        {
+            "title": "What operator is used to compare two values?",
+            "options": [
+                "==",
+                "=",
+                "<>",
+                "=!"
+            ],
+            "correctIndex": 0
+        },
+        {
+            "title": "How do you insert a comment in Python?",
+            "options": [
+                "// This is a comment",
+                "# This is a comment",
+                "/* This is a comment */",
+                "?! This is a comment ?!"
+            ],
+            "correctIndex": 1
+        },
+        {
+            "title": "How do you define a function in Python?",
+            "options": [
+                "def function() {",
+                "void function() {",
+                "def function():",
+                "def function"
+            ],
+            "correctIndex": 2
+        },
+        {
+            "title": "Which of the following is a correct if statement in Python?",
+            "options": [
+                "if x = y:",
+                "if x == y {",
+                "if x => y:",
+                "if x >= y:"
+            ],
+            "correctIndex": 3
+        },
+        {
+            "title": "Which of the following is a correct while loop in Python?",
+            "options": [
+                "x == y while:",
+                "while (x > y)",
+                "while x != y:",
+                "while x > y {"
+            ],
+            "correctIndex": 2
+        },
+        {
+            "title": "How do you write a for loop in Python?",
+            "options": [
+                "for i in range(5):",
+                "for car in cars:",
+                "for x > y:",
+                "Both A and B"
+            ],
+            "correctIndex": 3
+        },
+        {
+            "title": "In Python, a control structure:",
+            "options": [
+                "Determines the order of execution of the statements in a program",
+                "Controls file input and output operations",
+                "Defines a program's data structures",
+                "Stops a program"
+            ],
+            "correctIndex": 0
+        },
+        {
+            "title": "What signifies the end of a statement block in Python?",
+            "options": [
+                "A line that is indented less than the previous line",
+                "end",
+                "A comment",
+                ":"
+            ],
+            "correctIndex": 0
+        },
+        {
+            "title": "In the statement x = a + 5 - b, what are a and b?",
+            "options": [
+                "Operators",
+                "Operands",
+                "Expressions",
+                "Groups"
+            ],
+            "correctIndex": 1
+        },
+        {
+            "title": "Which of the following statements about lists are true?",
+            "options": [
+                "A list can contain any type of object except another list",
+                "['a', 'b', 'c'] and ['c', 'a', 'b'] represent the same list",
+                "A list can have duplicate elements",
+                "The size of a list can't be changed"
+            ],
+            "correctIndex": 2
+        },
+        {
+            "title": "How can you replace the first element in the tuple\nt = ('a', 'b')?",
+            "options": [
+                "t(1) = 'c'",
+                "t(0) = 'c'",
+                "t[0] = 'c'",
+                "Tuples can't be modified"
+            ],
+            "correctIndex": 3
+        },
+        {
+            "title": "Which of the following is not a valid variable name in Python?",
+            "options": [
+                "temp-var",
+                "_TEMPVAR",
+                "temp_var",
+                "tempvar"
+            ],
+            "correctIndex": 0
+        }
+    ]
+}

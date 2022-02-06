@@ -7,18 +7,19 @@ using UnityEngine.SceneManagement;
 [Category("UITests")]
 public class MenuManagerTests
 {
-    [OneTimeSetUp]
-    public void LoadMainMenu()
+    MenuManager _menuManager;
+
+    [SetUp]
+    public void SetUp()
     {
+        _menuManager = new GameObject().AddComponent<MenuManager>();    
         SceneManager.LoadScene(0);
     }
 
     [UnityTest]
     public IEnumerator NextScene_ShouldIncrementSceneIndex()
     {
-        MenuManager menuManager = new GameObject().AddComponent<MenuManager>();
-
-        menuManager.NextScene();
+        _menuManager.NextScene();
         yield return new WaitForSeconds(0.1f);
 
         Scene newScene = SceneManager.GetActiveScene();
@@ -28,9 +29,7 @@ public class MenuManagerTests
     [UnityTest]
     public IEnumerator LoadLevel_ShouldLoadSpecifiedScene()
     {
-        MenuManager menuManager = new GameObject().AddComponent<MenuManager>();
-
-        menuManager.LoadLevel("Level-1");
+        _menuManager.LoadLevel("Level-1");
         yield return new WaitForSeconds(0.1f);
 
         Scene newScene = SceneManager.GetActiveScene();
