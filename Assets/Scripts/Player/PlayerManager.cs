@@ -62,7 +62,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
 
     private void Start()
     {
-        _inputController = GameManager.Instance.InputController;
+        _inputController = GameManager.InputController;
     }
 
     private void Update()
@@ -161,7 +161,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
     // Returns the player's position in the race
     public int GetRacePosition()
     {
-        List<IPlayerManager> players = GameManager.Instance.Players;
+        List<IPlayerManager> players = GameManager.Players;
         return players.IndexOf(this) + 1;
     }
 

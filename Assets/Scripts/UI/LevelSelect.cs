@@ -24,11 +24,11 @@ public class LevelSelect : MonoBehaviour
 
     public void OnClick()
     {
-        SoundManager.Instance.PlaySound("LevelClick");
+        SoundManager.PlaySound("LevelClick");
     }
 
     public void OnMouseOver()
     {
-        SoundManager.Instance.PlaySound("LevelHover");
+        SoundManager.PlaySound("LevelHover");
     }
 }

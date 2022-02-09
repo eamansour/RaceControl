@@ -13,7 +13,7 @@ public class CarListStatement : CarStatement
 
     public override IEnumerator Run()
     {
-        List<IPlayerManager> players = GameManager.Instance.Players;
+        List<IPlayerManager> players = GameManager.Players;
         IPlayerManager player = players[0];
 
         string selected = GetSelectedDropdownText(_indexDropdown);

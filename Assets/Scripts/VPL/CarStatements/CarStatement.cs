@@ -20,6 +20,7 @@ public abstract class CarStatement : Statement
         }
     }
 
+    // Construct methods for manual initialisation
     public void Construct(ICar playerCar, IPlayerManager player)
     {
         PlayerCar = playerCar;

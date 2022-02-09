@@ -29,7 +29,7 @@ public class NewCar : CarStatement
         base.Update();
 
         // Reset the current player to the level's original player and delete any new players
-        if (!GameManager.Instance.LevelStarted && _carObjects.Count > 0)
+        if (!GameManager.LevelStarted && _carObjects.Count > 0)
         {
             foreach (GameObject car in _carObjects)
             {
@@ -54,7 +54,7 @@ public class NewCar : CarStatement
         // Update the current player
         SetPlayer(newPlayer);
 
-        GameManager.Instance.Players.Add(newPlayer);
+        GameManager.Players.Add(newPlayer);
         newCar.SetCarLock(false);
     }
 }

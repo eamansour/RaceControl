@@ -36,9 +36,9 @@ public class Console : MonoBehaviour
         if (_waitAndFail)
         {
             yield return new WaitForSeconds(10f);
-            if (!GameManager.Instance.IsSuccess)
+            if (!GameManager.LevelEnded)
             {
-                GameManager.Instance.LevelFail();
+                GameManager.LevelFail();
             }
         }
     }
@@ -48,7 +48,7 @@ public class Console : MonoBehaviour
     {
         _waitAndFail = failAfterDelay;
         Statement.SetUpEnvironment();
-        GameManager.Instance.StartLevel();
+        GameManager.StartLevel();
         StartCoroutine(RunProgram());
     }
 
@@ -67,7 +67,7 @@ public class Console : MonoBehaviour
             _currentStatement.StopAllCoroutines();
         }
 
-        GameManager.Instance.ResetLevel();
+        GameManager.ResetLevel();
         _mainCamera.ResetCamera();
     }
 
@@ -76,11 +76,11 @@ public class Console : MonoBehaviour
     {
         if (start)
         {
-            SoundManager.Instance.PlaySound("StartProgram");
+            SoundManager.PlaySound("StartProgram");
         }
         else
         {
-            SoundManager.Instance.PlaySound("StopProgram");
+            SoundManager.PlaySound("StopProgram");
         }
     }
 }

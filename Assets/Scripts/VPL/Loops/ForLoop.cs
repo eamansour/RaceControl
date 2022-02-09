@@ -68,7 +68,7 @@ public class ForLoop : CompoundStatement
     // Returns the integer representation of a selected text
     private int ParseSelectedRange(string selectedText)
     {
-        int playerCount = GameManager.Instance ? GameManager.Instance.Players.Count : 0;
+        int playerCount = GameManager.Players.Count;
         switch (selectedText)
         {
             case "len(cars) - 1":

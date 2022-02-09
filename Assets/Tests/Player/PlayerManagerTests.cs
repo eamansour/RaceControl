@@ -58,7 +58,7 @@ public class PlayerManagerTests
     public void GetRacePosition_ReturnsPlayerPositionInLevel()
     {
         IPlayerManager otherPlayer = Substitute.For<IPlayerManager>();
-        GameManager.Instance.Players.Insert(0, otherPlayer);
+        GameManager.Players.Insert(0, otherPlayer);
 
         int position = _playerManager.GetRacePosition();
 

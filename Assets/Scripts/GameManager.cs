@@ -1,31 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public interface IGameManager
+public class GameManager : MonoBehaviour
 {
-    List<IPlayerManager> Players { get; }
-    IInputController InputController { get; }
-    bool IsSuccess { get; }
-    bool IsFail { get; }
-    bool LevelStarted { get; set; }
+    public static List<IPlayerManager> Players { get; private set; } = new List<IPlayerManager>();
+    public static IInputController InputController { get; private set; }
 
-    void LevelFail();
-    void LevelWin();
-    void ResetLevel();
-    void StartLevel();
-}
+    public static bool LevelEnded { get; private set; } = false;
+    public static bool LevelStarted { get; private set; } = false;
 
-public class GameManager : MonoBehaviour, IGameManager
-{
-    public static GameManager Instance { get; private set; }
-    public static PitStop[] PitStops { get; private set; }
-
-    public List<IPlayerManager> Players { get; private set; } = new List<IPlayerManager>();
-    public IInputController InputController { get; private set; }
-
-    public bool IsSuccess { get; private set; }
-    public bool IsFail { get; private set; }
-    public bool LevelStarted { get; set; } = false;
+    private static LevelMenu s_levelMenu;
+    private static IPlayerManager[] s_startPlayers;
+    private static Objective[] s_objectives;
+    private static int s_remainingObjectives = 0;
 
     [SerializeField]
     private LevelMenu _levelMenu;
@@ -33,43 +20,35 @@ public class GameManager : MonoBehaviour, IGameManager
     [SerializeField]
     private bool _sortPlayers = true;
 
-    private Objective[] _objectives;
-    private int _remainingObjectives = 0;
-
-    private IPlayerManager[] _startPlayers;
-
     private float _updateTimer = 0.5f;
 
     private void Awake()
     {
-        Instance = this;
-        InputController = GetComponent<IInputController>();
-
         Time.timeScale = 1f;
 
-        _objectives = GetComponents<Objective>();
-        _remainingObjectives = _objectives.Length;
-        IsSuccess = false;
-        IsFail = false;
+        Players = new List<IPlayerManager>();
+        InputController = GetComponent<IInputController>();
 
-        GameObject pitStopsParent = GameObject.Find("PitStops");
-        if (pitStopsParent)
-        {
-            PitStops = pitStopsParent.GetComponentsInChildren<PitStop>();
-        }
+        LevelStarted = false;
+        LevelEnded = false;
 
-        _startPlayers = FindObjectsOfType<PlayerManager>();
-        Players.AddRange(_startPlayers);
+        s_levelMenu = _levelMenu;
+
+        s_objectives = GetComponents<Objective>();
+        s_remainingObjectives = s_objectives.Length;
+
+        s_startPlayers = FindObjectsOfType<PlayerManager>();
+        Players.AddRange(s_startPlayers);
     }
 
     // Runs every frame, checks if the objectives have been met once the level has been started
     private void Update()
     {
-        if (LevelStarted && !IsSuccess && !IsFail)
+        if (LevelStarted && !LevelEnded)
         {
             _updateTimer -= Time.deltaTime;
 
-            if (_objectives.Length > 0 && _remainingObjectives <= 0)
+            if (s_objectives.Length > 0 && s_remainingObjectives <= 0)
             {
                 LevelWin();
                 return;
@@ -82,24 +61,74 @@ public class GameManager : MonoBehaviour, IGameManager
                     UpdatePlayerPositions();
                 }
 
-                foreach (Objective obj in _objectives)
+                foreach (Objective objective in s_objectives)
                 {
-                    if (obj.Failed)
+                    if (objective.Failed)
                     {
                         LevelFail();
                         break;
                     }
 
-                    if (!obj.Passed && obj.IsComplete())
+                    if (!objective.Passed && objective.IsComplete())
                     {
-                        obj.Passed = true;
-                        obj.UpdateUI(true);
-                        _remainingObjectives--;
+                        objective.Passed = true;
+                        objective.UpdateUI(true);
+                        s_remainingObjectives--;
                     }
                 }
                 _updateTimer = 0.5f;
             }
         }
+    }
+
+    // Starts the level
+    public static void StartLevel()
+    {
+        LevelStarted = true;
+        foreach (IPlayerManager player in Players)
+        {
+            player.StartPlayer();
+        }
+    }
+
+    // Resets the level to its initial state
+    public static void ResetLevel()
+    {
+        LevelStarted = false;
+        s_remainingObjectives = s_objectives.Length;
+
+        foreach (IPlayerManager player in Players)
+        {
+            player.ResetPlayer();
+        }
+
+        Players.Clear();
+        Players.AddRange(s_startPlayers);
+
+        foreach (Objective objective in s_objectives)
+        {
+            objective.Reset();
+        }
+    }
+
+    // Ends the level as a fail
+    public static void LevelFail()
+    {
+        LevelEnded = true;
+        s_levelMenu.DisplayLevelFail();
+    }
+
+    // Ends the level as a success and unlocks the next level
+    private void LevelWin()
+    {
+        LevelEnded = true;
+        int furthestUnlockedScene = PlayerPrefs.GetInt(LevelSelect.UnlockedSceneKey, -1);
+        int nextSceneIndex = MenuManager.GetActiveSceneIndex() + 1;
+        if (furthestUnlockedScene < nextSceneIndex)
+        {
+            PlayerPrefs.SetInt(LevelSelect.UnlockedSceneKey, MenuManager.GetActiveSceneIndex() + 1);
+        }
+        s_levelMenu.DisplayLevelSuccess();
     }
 
     // Updates player race positions
@@ -123,55 +152,5 @@ public class GameManager : MonoBehaviour, IGameManager
             // Players on the same lap travelling to the same checkpoint are positioned by distance
             return left.DistanceToTarget().CompareTo(right.DistanceToTarget());
         });
-    }
-
-    // Ends the level as a success and unlocks the next level
-    public void LevelWin()
-    {
-        IsSuccess = true;
-        int furthestUnlockedScene = PlayerPrefs.GetInt(LevelSelect.UnlockedSceneKey, -1);
-        int nextSceneIndex = MenuManager.GetActiveSceneIndex() + 1;
-        if (furthestUnlockedScene < nextSceneIndex)
-        {
-            PlayerPrefs.SetInt(LevelSelect.UnlockedSceneKey, MenuManager.GetActiveSceneIndex() + 1);
-        }
-        _levelMenu.DisplayLevelSuccess();
-    }
-
-    // Ends the level as a fail
-    public void LevelFail()
-    {
-        IsFail = true;
-        _levelMenu.DisplayLevelFail();
-    }
-
-    // Starts the level
-    public void StartLevel()
-    {
-        LevelStarted = true;
-        foreach (IPlayerManager player in Players)
-        {
-            player.StartPlayer();
-        }
-    }
-
-    // Resets the level to its initial state
-    public void ResetLevel()
-    {
-        LevelStarted = false;
-        _remainingObjectives = _objectives.Length;
-
-        foreach (IPlayerManager player in Players)
-        {
-            player.ResetPlayer();
-        }
-
-        Players.Clear();
-        Players.AddRange(_startPlayers);
-
-        foreach (Objective objective in _objectives)
-        {
-            objective.Reset();
-        }
     }
 }

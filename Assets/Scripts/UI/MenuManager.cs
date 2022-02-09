@@ -31,12 +31,12 @@ public class MenuManager : MonoBehaviour
     // Plays a button click sound when a menu button is clicked
     public void OnClick()
     {
-        SoundManager.Instance.PlaySound("ButtonClick");
+        SoundManager.PlaySound("ButtonClick");
     }
 
     // Plays a button hover sound when the cursor hovers over a button
     public void OnMouseOver()
     {
-        SoundManager.Instance.PlaySound("ButtonHover");
+        SoundManager.PlaySound("ButtonHover");
     }
 }

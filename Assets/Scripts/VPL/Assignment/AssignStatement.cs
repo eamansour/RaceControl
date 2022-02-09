@@ -43,7 +43,7 @@ public abstract class AssignStatement<T> : Statement
     public override IEnumerator Run()
     {
         string variable = "";
-        if (_variableDropdown) 
+        if (_variableDropdown)
         {
             variable = _variableDropdown.options[_variableDropdown.value].text;
         }
@@ -54,19 +54,11 @@ public abstract class AssignStatement<T> : Statement
 
         if (variable == "lap") yield break;
         T result = _expression.EvaluateExpression();
-        
+
         // Update the player's fuel level, assign a new variable, or update an existing variable
         if (variable.ToLower() == "fuel" && Environment.ContainsKey("fuel"))
         {
-            float fuelResult = Convert.ToSingle(result);
-
-            // Allow the fuel to be decreased using assign statements 
-            if (fuelResult < _car.Fuel)
-            {
-                _car.Fuel = fuelResult;
-                _spawner.SpawnObstacle();
-                Environment["fuel"] = result;
-            }
+            UpdatePlayerFuel(result);
         }
         else if (Environment.ContainsKey(variable))
         {
@@ -76,6 +68,18 @@ public abstract class AssignStatement<T> : Statement
         {
             Environment.Add(variable, result);
         }
-        yield break;
+    }
+
+    // Handles assignment referencing the "fuel" variable, only allowing it to be decreased
+    private void UpdatePlayerFuel(T result)
+    {
+        float fuelResult = Convert.ToSingle(result);
+
+        if (fuelResult < _car.Fuel)
+        {
+            _car.Fuel = fuelResult;
+            _spawner.SpawnObstacle();
+            Environment["fuel"] = result;
+        }
     }
 }

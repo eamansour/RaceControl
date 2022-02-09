@@ -42,7 +42,7 @@ public class RaceFlag : MonoBehaviour, IRaceFlag
 
     private void Update()
     {
-        if (!GameManager.Instance.LevelStarted)
+        if (!GameManager.LevelStarted)
         {
             if (_randomize)
             {

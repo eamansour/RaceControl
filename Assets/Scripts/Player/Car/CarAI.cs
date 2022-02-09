@@ -12,6 +12,7 @@ public class CarAI : MonoBehaviour, ICarAI
     [SerializeField]
     private float _skillMultiplier = 1f;
 
+    private PitStop[] _pitStops;
     private ICar _car;
     private IPlayerManager _player;
     private float _maxSpeed = 100f;
@@ -28,6 +29,12 @@ public class CarAI : MonoBehaviour, ICarAI
         _collider = GetComponent<CapsuleCollider>();
         _car = _player.PlayerCar;
         _targetPosition = _player.TargetCheckpoint.GetPosition();
+
+        GameObject pitStopsParent = GameObject.Find("PitStops");
+        if (pitStopsParent)
+        {
+            _pitStops = pitStopsParent.GetComponentsInChildren<PitStop>();
+        }
 
         GameObject pitEntryObject = GameObject.Find("PitEntry");
         if (pitEntryObject)
@@ -48,7 +55,7 @@ public class CarAI : MonoBehaviour, ICarAI
         if (_player.CurrentControl != PlayerManager.ControlMethod.AI) return;
 
         // Only allow the car to move when the player has started the level
-        if (GameManager.Instance.LevelStarted)
+        if (GameManager.LevelStarted)
         {
             _car.SteerDir = GetSteerDir();
             _car.Acceleration = _car.InPit ? 0f : GetAcceleration(_car.SteerDir);
@@ -125,7 +132,7 @@ public class CarAI : MonoBehaviour, ICarAI
     // Updates the AI's target to an available pit stop
     public void GoToPit()
     {
-        foreach (PitStop pit in GameManager.PitStops)
+        foreach (PitStop pit in _pitStops)
         {
             if (pit.IsFree)
             {

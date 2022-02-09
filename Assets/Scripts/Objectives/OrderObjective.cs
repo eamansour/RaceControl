@@ -16,7 +16,7 @@ public class OrderObjective : LapObjective
     protected override void Start()
     {
         base.Start();
-        _players = GameManager.Instance.Players;
+        _players = GameManager.Players;
     }
 
     // The objective is complete when all players have completed the required number of laps

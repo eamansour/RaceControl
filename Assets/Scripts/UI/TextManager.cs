@@ -62,7 +62,7 @@ public class TextManager : MonoBehaviour
             // Add a slight delay between each typing sound
             if (i % 2 == 0)
             {
-                SoundManager.Instance.PlaySound("Typing");
+                SoundManager.PlaySound("Typing");
             }
             _messageText.text = currentMessage.Substring(0, i);
             yield return new WaitForSeconds(_textDelay);

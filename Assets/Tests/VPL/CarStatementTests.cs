@@ -155,6 +155,6 @@ public class CarStatementTests
         _testHelper.RunCoroutine(newCar.Run());
         yield return null;
         
-        Assert.IsTrue(GameManager.Instance.Players.Count > 1);
+        Assert.IsTrue(GameManager.Players.Count > 1);
     }
 }

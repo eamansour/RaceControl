@@ -4,7 +4,7 @@ public class SetUpLinkedList : Statement
 {
     public override IEnumerator Run()
     {
-        Node<IPlayerManager> players = new Node<IPlayerManager>(GameManager.Instance.Players);
+        Node<IPlayerManager> players = new Node<IPlayerManager>(GameManager.Players);
         Environment.Add("car", players);
         yield break;
     }

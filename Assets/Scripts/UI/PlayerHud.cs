@@ -48,7 +48,7 @@ public class PlayerHud : MonoBehaviour
         
         if (_initialiseIndexText)
         {
-            List<IPlayerManager> players = GameManager.Instance.Players;
+            List<IPlayerManager> players = GameManager.Players;
             for (int i = 0; i < players.Count; i++)
             {
                 GameObject player = players[i].AttachedGameObject;
@@ -60,7 +60,7 @@ public class PlayerHud : MonoBehaviour
     // Runs on every frame, disables camera control when typing
     private void Update()
     {
-        if (!GameManager.Instance.LevelStarted)
+        if (!GameManager.LevelStarted)
         {
             _cameraController.enabled = true;
             GameObject selected = _eventSystem.currentSelectedGameObject;

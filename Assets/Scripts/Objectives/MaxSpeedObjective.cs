@@ -10,7 +10,7 @@ public class MaxSpeedObjective : Objective
     {
         if (Player.PlayerCar.GetSpeedInMPH() > _maxSpeed)
         {
-            GameManager.Instance.LevelFail();
+            GameManager.LevelFail();
         }
     }
 

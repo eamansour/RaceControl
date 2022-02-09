@@ -5,7 +5,7 @@ public class BarrelObstacle : MonoBehaviour
     private void FixedUpdate()
     {
         // Destroys the barrel if the level has not started to remove clutter
-        if (!GameManager.Instance.LevelStarted)
+        if (!GameManager.LevelStarted)
         {
             Destroy(gameObject);
         }

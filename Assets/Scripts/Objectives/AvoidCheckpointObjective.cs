@@ -9,7 +9,7 @@ public class AvoidCheckpointObjective : CheckpointObjective
     {
         if (Player.LastCheckpoint == _checkpointToAvoid)
         {
-            GameManager.Instance.LevelFail();
+            GameManager.LevelFail();
         }
     }
 }

@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
 
         if (_inputController == null || _inputController.Equals(null))
         {
-            _inputController = GameManager.Instance.InputController;
+            _inputController = GameManager.InputController;
         }
     }
 
