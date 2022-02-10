@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
     {
         LevelEnded = true;
         s_levelMenu.DisplayLevelFail();
+        SoundManager.PlaySound("Fail");
     }
 
     // Ends the level as a success and unlocks the next level
@@ -129,6 +130,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt(LevelSelect.UnlockedSceneKey, MenuManager.GetActiveSceneIndex() + 1);
         }
         s_levelMenu.DisplayLevelSuccess();
+        SoundManager.PlaySound("Win");
     }
 
     // Updates player race positions

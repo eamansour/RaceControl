@@ -6,6 +6,18 @@ public class Sound
 {
     [field: SerializeField]
     public string Name { get; private set; }
+
+    public AudioSource Source
+    {
+        get => _source;
+        set
+        {
+            _source = value;
+            _source.outputAudioMixerGroup = _mixerGroup;
+            _source.clip = _clip;
+            _source.loop = _loop;            
+        }
+    }
     
     [SerializeField]
     private AudioClip _clip;
@@ -18,24 +30,15 @@ public class Sound
 
     private AudioSource _source;
 
-    // Set an audio source
-    public void SetSource(AudioSource audioSource)
-    {
-        _source = audioSource;
-        _source.outputAudioMixerGroup = _mixerGroup;
-        _source.clip = _clip;
-        _source.loop = _loop;
-    }
-
     // Play the current sound from its audio source
     public void Play()
     {
-        _source.Play();
+        Source.Play();
     }
 
     // Stops the current sound
     public void Stop()
     {
-        _source.Stop();
+        Source.Stop();
     }
 }

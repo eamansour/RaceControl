@@ -32,7 +32,7 @@ public class SoundManager : MonoBehaviour
         {
             GameObject go = new GameObject($"Sound{i}_{s_sounds[i].Name}");
             go.transform.SetParent(transform);
-            s_sounds[i].SetSource(go.AddComponent<AudioSource>());
+            s_sounds[i].Source = go.AddComponent<AudioSource>();
         }
     }
 
@@ -66,5 +66,18 @@ public class SoundManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    // Retrieve a given sound's audio source
+    public static AudioSource GetSource(string name)
+    {
+        for (int i = 0; i < s_sounds.Length; i++)
+        {
+            if (s_sounds[i].Name == name)
+            {
+                return s_sounds[i].Source;
+            }
+        }
+        return null;
     }
 }

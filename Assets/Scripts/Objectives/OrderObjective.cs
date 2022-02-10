@@ -5,6 +5,7 @@ public class OrderObjective : LapObjective
 {
     [SerializeField]
     private List<int> _requiredIndexOrder = new List<int>();
+
     private List<IPlayerManager> _players = new List<IPlayerManager>();
 
     public void Construct(List<int> requiredIndexOrder, List<IPlayerManager> players)
@@ -23,12 +24,12 @@ public class OrderObjective : LapObjective
     // in a required order, given by their player indexes
     public override bool IsComplete()
     {
-        // If an earlier car has completed fewer laps than a later car, fail the level
         for (int i = 1; i < _requiredIndexOrder.Count; i++)
         {
             int prevIndex = _requiredIndexOrder[i - 1];
             int currentIndex = _requiredIndexOrder[i];
 
+            // If an earlier car has completed fewer laps than a later car, fail the level
             if (_players[prevIndex].CurrentLap < _players[currentIndex].CurrentLap)
             {
                 Failed = true;

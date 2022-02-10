@@ -76,3 +76,19 @@ MonoBehaviour:
     _clip: {fileID: 8300000, guid: 2387ccfc7a5807c4a97a0ff35c2994a9, type: 3}
     _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
     _loop: 0
+  - <Name>k__BackingField: Fail
+    _clip: {fileID: 8300000, guid: d2282ab679b147842a197dd80f9d98d9, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0
+  - <Name>k__BackingField: Win
+    _clip: {fileID: 8300000, guid: 7d88eed8498d93b4f9f6f0266c5d198e, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0
+  - <Name>k__BackingField: Engine
+    _clip: {fileID: 8300000, guid: 123345d7f084ea64bb9cf42a9638865e, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 1
+  - <Name>k__BackingField: Pause
+    _clip: {fileID: 8300000, guid: 23391e03140dd1749a9982b21e54d3c8, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0

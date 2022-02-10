@@ -752,6 +752,7 @@ GameObject:
   - component: {fileID: 4732090660291791350}
   - component: {fileID: 1208772869}
   - component: {fileID: 1208772871}
+  - component: {fileID: 5239647521191391116}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -902,3 +903,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _randomiseSkill: 0
   _skillMultiplier: 1
+--- !u!114 &5239647521191391116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732090660291791345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a6fe9d03d243d40b4905c3776f39fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gearPitch:
+  - 10
+  - 15
+  - 18
+  - 20
+  - 25
