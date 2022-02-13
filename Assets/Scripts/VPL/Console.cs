@@ -5,6 +5,8 @@ public class Console : MonoBehaviour
 {
     public static bool Paused { get; set; } = false;
 
+    private const float FailDelay = 10f;
+
     [SerializeField]
     private CameraController _mainCamera;
 
@@ -15,9 +17,6 @@ public class Console : MonoBehaviour
     // Runs the player's inputted program
     private IEnumerator RunProgram()
     {
-        // Skip a frame to ensure all level start systems are ready
-        yield return null;
-
         foreach (Transform child in transform)
         {
             while (Paused)
@@ -35,7 +34,7 @@ public class Console : MonoBehaviour
         // Wait before declaring level failure in case the car is still moving
         if (_waitAndFail)
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(FailDelay);
             if (!GameManager.LevelEnded)
             {
                 GameManager.LevelFail();

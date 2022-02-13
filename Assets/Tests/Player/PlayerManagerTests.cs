@@ -78,10 +78,10 @@ public class PlayerManagerTests
     public void SetRaceProgress_UpdatesPlayerRaceInformation()
     {
         Checkpoint newCheckpoint = new GameObject().AddComponent<Checkpoint>();
-        _playerManager.SetRaceProgress(5, PlayerManager.ControlMethod.AI, newCheckpoint);
+        _playerManager.SetRaceProgress(5, ControlType.AI, newCheckpoint);
 
         Assert.AreEqual(5, _playerManager.CurrentLap);
-        Assert.AreEqual(PlayerManager.ControlMethod.AI, _playerManager.CurrentControl);
+        Assert.AreEqual(ControlType.AI, _playerManager.CurrentControl);
         Assert.AreEqual(newCheckpoint, _playerManager.TargetCheckpoint);
 
         Object.Destroy(newCheckpoint.gameObject);
@@ -110,7 +110,7 @@ public class PlayerManagerTests
     {
         Checkpoint newCheckpoint = new GameObject().AddComponent<Checkpoint>();
         _car.Fuel = 50f;
-        _playerManager.SetRaceProgress(10, PlayerManager.ControlMethod.AI, newCheckpoint);
+        _playerManager.SetRaceProgress(10, ControlType.AI, newCheckpoint);
 
         _playerManager.ResetPlayer();
 

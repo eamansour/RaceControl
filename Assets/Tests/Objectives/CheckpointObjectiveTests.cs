@@ -28,24 +28,24 @@ public class CheckpointObjectiveTests
     }
 
     [Test]
-    public void IsComplete_ReturnsTrueIfPlayerPassedRequiredCheckpoint()
+    public void UpdateCompletion_PassesObjectiveIfPlayerPassedRequiredCheckpoint()
     {
         _player.LastCheckpoint.Returns(_requiredCheckpoint);
 
-        bool result = _checkpointObjective.IsComplete();
+        _checkpointObjective.UpdateCompletion();
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(_checkpointObjective.Passed);
     }
 
     [Test]
-    public void IsComplete_ReturnsFalseIfPlayerHasNotPassedRequiredCheckpoint()
+    public void UpdateCompletion_DoesNotPassObjectivePlayerHasNotPassedRequiredCheckpoint()
     {
         Checkpoint otherCheckpoint = new GameObject().AddComponent<Checkpoint>();
         _player.LastCheckpoint.Returns(otherCheckpoint);
 
-        bool result = _checkpointObjective.IsComplete();
+        _checkpointObjective.UpdateCompletion();
 
-        Assert.IsFalse(result);
+        Assert.IsFalse(_checkpointObjective.Passed);
         Object.Destroy(otherCheckpoint);
     }
 }

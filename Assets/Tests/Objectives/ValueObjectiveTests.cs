@@ -20,24 +20,24 @@ public class ValueObjectiveTests
     }
 
     [Test]
-    public void IsComplete_ReturnsTrueIfVariableValueEqualsTargetValue()
+    public void UpdateCompletion_PassesObjectiveIfVariableValueEqualsTargetValue()
     {
         Statement.Environment.Add("test", 50f);
         _valueObjective.Construct("test", 50);
 
-        bool result = _valueObjective.IsComplete();
+        _valueObjective.UpdateCompletion();
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(_valueObjective.Passed);
     }
 
     [Test]
-    public void IsComplete_ReturnsFalseIfVariableValueDoesNotEqualTargetValue()
+    public void UpdateCompletion_DoesNotPassIfVariableValueDoesNotEqualTargetValue()
     {
         Statement.Environment.Add("test", 40f);
         _valueObjective.Construct("test", 50);
 
-        bool result = _valueObjective.IsComplete();
+        _valueObjective.UpdateCompletion();
 
-        Assert.IsFalse(result);
+        Assert.IsFalse(_valueObjective.Passed);
     }
 }

@@ -37,7 +37,7 @@ public abstract class Objective : MonoBehaviour
         }
     }
 
-    public abstract bool IsComplete();
+    public abstract void UpdateCompletion();
 
     public void UpdateUI(bool complete)
     {

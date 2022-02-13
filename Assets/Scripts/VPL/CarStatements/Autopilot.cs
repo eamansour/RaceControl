@@ -6,6 +6,6 @@ public class Autopilot : CarStatement
     public override IEnumerator Run()
     {
         yield return StartCoroutine(base.Run());
-        Player.CurrentControl = PlayerManager.ControlMethod.AI;
+        Player.CurrentControl = ControlType.AI;
     }
 }

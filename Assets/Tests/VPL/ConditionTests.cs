@@ -13,7 +13,6 @@ public class ConditionTests
     private ElseCondition _elseCondition;
 
     private IExpression<bool> _expression;
-    private ICar _car;
     private IPlayerManager _player;
 
     private TestHelper _testHelper;
@@ -38,11 +37,11 @@ public class ConditionTests
         temp.AddComponent<Image>();
         SetParent(temp, _testObject);
 
-        // Create dummy "retire" statement to test calls against
-        _car = Substitute.For<ICar>();
+        // Create dummy "autopilot" statement to test calls against
         _player = Substitute.For<IPlayerManager>();
-        Retire dummyStatement = temp.AddComponent<Retire>();
-        dummyStatement.Construct(_car, _player);
+        ICar car = Substitute.For<ICar>();
+        Autopilot dummyStatement = temp.AddComponent<Autopilot>();
+        dummyStatement.Construct(car, _player);
 
         _expression = Substitute.For<IExpression<bool>>();
     }
@@ -69,12 +68,11 @@ public class ConditionTests
     {
         _ifCondition.Construct(_expression, false, -1);
         _expression.EvaluateExpression().Returns(true);
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_ifCondition.Run());
         yield return null;
         
-        _player.Received(1).RetirePlayer();
+        _player.Received(1).CurrentControl = ControlType.AI;
     }
 
     [UnityTest]
@@ -82,12 +80,11 @@ public class ConditionTests
     {
         _ifCondition.Construct(_expression, false, -1);
         _expression.EvaluateExpression().Returns(false);
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_ifCondition.Run());
         yield return null;
         
-        _player.DidNotReceive().RetirePlayer();
+        _player.DidNotReceive().CurrentControl = ControlType.AI;
     }
 
     [UnityTest]
@@ -95,12 +92,11 @@ public class ConditionTests
     {
         _elifCondition.Construct(_expression, false, 0);
         _expression.EvaluateExpression().Returns(true);
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_elifCondition.Run());
         yield return null;
         
-        _player.Received(1).RetirePlayer();
+        _player.Received(1).CurrentControl = ControlType.AI;
     }
 
     [UnityTest]
@@ -108,12 +104,11 @@ public class ConditionTests
     {
         _elifCondition.Construct(_expression, true, 0);
         _expression.EvaluateExpression().Returns(false);
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_elifCondition.Run());
         yield return null;
         
-        _player.DidNotReceive().RetirePlayer();
+        _player.DidNotReceive().CurrentControl = ControlType.AI;
     }
 
     [UnityTest]
@@ -121,35 +116,32 @@ public class ConditionTests
     {
         _elifCondition.Construct(_expression, true, 0);
         _expression.EvaluateExpression().Returns(true);
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_elifCondition.Run());
         yield return null;
         
-        _player.DidNotReceive().RetirePlayer();
+        _player.DidNotReceive().CurrentControl = ControlType.AI;
     }
 
     [UnityTest]
     public IEnumerator ElseCondition_RunsBlockIfPreviousDidNotRun()
     {
         _elseCondition.Construct(_expression, false, 0);
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_elseCondition.Run());
         yield return null;
         
-        _player.Received().RetirePlayer();
+        _player.Received().CurrentControl = ControlType.AI;
     }
 
     [UnityTest]
     public IEnumerator ElseCondition_DoesNotRunBlockIfPreviousRuns()
     {
         _elseCondition.Construct(_expression, true, 0);
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_elseCondition.Run());
         yield return null;
         
-        _player.DidNotReceive().RetirePlayer();
+        _player.DidNotReceive().CurrentControl = ControlType.AI;
     }
 }

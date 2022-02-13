@@ -32,7 +32,7 @@ public class LapObjective : Objective
     }
 
     // Determines if the player has met the required lap counter
-    public override bool IsComplete()
+    public override void UpdateCompletion()
     {
         int currentLap = Player.CurrentLap;
         bool complete = (currentLap >= RequiredLapCounter);
@@ -43,9 +43,9 @@ public class LapObjective : Objective
                 (_mustChangePlayer && Player.AttachedGameObject == _initialPlayer.AttachedGameObject))
             {
                 Failed = true;
-                return false;
+                return;
             }
         }
-        return complete;
+        Passed = complete;
     }
 }

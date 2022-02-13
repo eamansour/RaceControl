@@ -113,7 +113,7 @@ public class CarStatementTests
         _testHelper.RunCoroutine(autopilot.Run());
         yield return null;
 
-        Assert.AreEqual(PlayerManager.ControlMethod.AI, _player.CurrentControl);
+        Assert.AreEqual(ControlType.AI, _player.CurrentControl);
     }
 
     [UnityTest]
@@ -125,7 +125,7 @@ public class CarStatementTests
         _testHelper.RunCoroutine(manualControl.Run());
         yield return null;
 
-        Assert.AreEqual(PlayerManager.ControlMethod.Human, _player.CurrentControl);
+        Assert.AreEqual(ControlType.Human, _player.CurrentControl);
     }
 
     [UnityTest]

@@ -7,7 +7,7 @@ public interface IPlayerManager
     Checkpoint LastCheckpoint { get; }
     Checkpoint RecentCheckpoint { get; }
     int CurrentLap { get; }
-    PlayerManager.ControlMethod CurrentControl { get; set; }
+    ControlType CurrentControl { get; set; }
     ICar PlayerCar { get; }
     bool IsRetiring { get; set; }
 
@@ -16,6 +16,6 @@ public interface IPlayerManager
     int GetRacePosition();
     void ResetPlayer();
     void RetirePlayer();
-    void SetRaceProgress(int currentLap, PlayerManager.ControlMethod currentControl, Checkpoint targetCheckpoint);
+    void SetRaceProgress(int currentLap, ControlType currentControl, Checkpoint targetCheckpoint);
     void StartPlayer();
 }

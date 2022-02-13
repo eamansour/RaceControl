@@ -45,6 +45,7 @@ public class LevelMenu : MonoBehaviour
             else
             {
                 PauseGame();
+                SoundManager.PlaySound("Pause");
             }
         }
     }
@@ -55,7 +56,6 @@ public class LevelMenu : MonoBehaviour
         IsPaused = true;
         _pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        SoundManager.PlaySound("Pause");
     }
 
     // Resumes the current level

@@ -69,11 +69,14 @@ public class GameManager : MonoBehaviour
                         break;
                     }
 
-                    if (!objective.Passed && objective.IsComplete())
+                    if (!objective.Passed)
                     {
-                        objective.Passed = true;
-                        objective.UpdateUI(true);
-                        s_remainingObjectives--;
+                        objective.UpdateCompletion();
+                        if (objective.Passed)
+                        {
+                            objective.UpdateUI(true);
+                            s_remainingObjectives--;                            
+                        }
                     }
                 }
                 _updateTimer = 0.5f;

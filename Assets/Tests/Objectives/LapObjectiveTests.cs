@@ -23,58 +23,57 @@ public class LapObjectiveTests
     }
 
     [Test]
-    public void IsComplete_ReturnsTrueIfRequiredLapCounterIsMet(
+    public void UpdateCompletion_PassesObjectiveIfRequiredLapCounterIsMet(
         [Values(4, 5, 6)] int lapCounter
     )
     {
         _player.CurrentLap.Returns(lapCounter);
         _lapObjective.Construct(4, false, false, _player);
 
-        bool result = _lapObjective.IsComplete();
+        _lapObjective.UpdateCompletion();
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(_lapObjective.Passed);
     }
 
     [Test]
-    public void IsComplete_ReturnsFalseIfRequiredLapCounterIsNotMet(
+    public void UpdateCompletion_DoesNotPassIfRequiredLapCounterIsNotMet(
         [Values(1, 2, 4)] int lapCounter
     )
     {
         _player.CurrentLap.Returns(lapCounter - 1);
         _lapObjective.Construct(5, false, false, _player);
 
-        bool result = _lapObjective.IsComplete();
+        _lapObjective.UpdateCompletion();
 
-        Assert.IsFalse(result);
+        Assert.IsFalse(_lapObjective.Passed);
     }
 
     [Test]
-    public void IsCompleteMustWin_ReturnsTrueIfLapCounterIsMetAndIsFirst()
+    public void UpdateCompletionMustWin_PassesObjectiveIfLapCounterIsMetAndIsFirst()
     {
         _player.CurrentLap.Returns(3);
         _player.GetRacePosition().Returns(1);
         _lapObjective.Construct(3, true, false, _player);
 
-        bool result = _lapObjective.IsComplete();
+        _lapObjective.UpdateCompletion();
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(_lapObjective.Passed);
     }
 
     [Test]
-    public void IsCompleteMustWin_FailsIfLapCounterIsMetAndIsNotFirst()
+    public void UpdateCompletionMustWin_FailsIfLapCounterIsMetAndIsNotFirst()
     {
         _player.CurrentLap.Returns(3);
         _player.GetRacePosition().Returns(2);
         _lapObjective.Construct(3, true, false, _player);
 
-        bool result = _lapObjective.IsComplete();
+        _lapObjective.UpdateCompletion();
 
         Assert.IsTrue(_lapObjective.Failed);
-        Assert.IsFalse(result);
     }
 
     [Test]
-    public void IsCompleteMustChangePlayer_FailsIfLapCounterIsMetAndHasNotChanged()
+    public void UpdateCompletionMustChangePlayer_FailsIfLapCounterIsMetAndHasNotChanged()
     {
         GameObject mockObject = new GameObject();
 
@@ -82,16 +81,15 @@ public class LapObjectiveTests
         _player.AttachedGameObject.Returns(mockObject);
         _lapObjective.Construct(3, false, true, _player);
 
-        bool result = _lapObjective.IsComplete();
+        _lapObjective.UpdateCompletion();
 
         Assert.IsTrue(_lapObjective.Failed);
-        Assert.IsFalse(result);
 
         Object.Destroy(mockObject);
     }
 
     [Test]
-    public void IsCompleteMustChangePlayer_ReturnsTrueIfLapCounterIsMetAndChanged()
+    public void UpdateCompletionMustChangePlayer_PassesObjectiveIfLapCounterIsMetAndChanged()
     {
         GameObject mockObject = new GameObject();
         GameObject mockDifferent = new GameObject();
@@ -105,9 +103,9 @@ public class LapObjectiveTests
         _lapObjective.Construct(3, false, true, _player);
         _lapObjective.Construct(newPlayer);
 
-        bool result = _lapObjective.IsComplete();
+        _lapObjective.UpdateCompletion();
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(_lapObjective.Passed);
 
         Object.Destroy(mockObject);
         Object.Destroy(mockDifferent);

@@ -11,8 +11,8 @@ public class CheckpointObjective : Objective
     }
 
     // Determines if the player has passed the required checkpoint
-    public override bool IsComplete()
+    public override void UpdateCompletion()
     {
-        return (Player.LastCheckpoint == _requiredCheckpoint);
+        Passed = (Player.LastCheckpoint == _requiredCheckpoint);
     }
 }

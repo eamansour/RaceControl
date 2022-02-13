@@ -5,10 +5,7 @@ public class EngineSound : MonoBehaviour
 {
     private const string EngineSoundName = "Engine";
 
-    [SerializeField]
     private List<float> _gearPitch = new List<float>() { 10f, 15f, 18f, 20f, 25f, 28f };
-    
-    [SerializeField]
     private List<int> _gearSpeed = new List<int>() { 5, 20, 35, 45, 55 };
 
     private Car _car;
@@ -26,10 +23,11 @@ public class EngineSound : MonoBehaviour
 
     private void Update()
     {
+        // In case of multiple players, only change the sound of the player being followed
         if (_cameraFollow.Target != _car.gameObject) return;
 
         float pitchFraction = _gearPitch[0];
-        for (int i = 1; i < _gearSpeed.Count; i++)
+        for (int i = 0; i < _gearSpeed.Count; i++)
         {
             // Simulate the sound of changing gears when above a speed threshold
             if (_car.GetSpeedInMPH() > _gearSpeed[i])

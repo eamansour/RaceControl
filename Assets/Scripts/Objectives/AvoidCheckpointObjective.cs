@@ -1,15 +1,17 @@
 using UnityEngine;
 
-public class AvoidCheckpointObjective : CheckpointObjective
+public class AvoidCheckpointObjective : Objective
 {
     [SerializeField]
     private Checkpoint _checkpointToAvoid;
 
-    public void CheckAvoidCheckpoint()
+    public void Construct(Checkpoint checkpointToAvoid)
     {
-        if (Player.LastCheckpoint == _checkpointToAvoid)
-        {
-            GameManager.LevelFail();
-        }
+        _checkpointToAvoid = checkpointToAvoid;
+    }
+
+    public override void UpdateCompletion()
+    {
+        Failed = (Player.LastCheckpoint == _checkpointToAvoid);
     }
 }

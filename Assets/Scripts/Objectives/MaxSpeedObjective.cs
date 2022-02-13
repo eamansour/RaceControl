@@ -5,22 +5,13 @@ public class MaxSpeedObjective : Objective
     [SerializeField]
     private float _maxSpeed = Mathf.Infinity;
 
-    // Determine whether the player has not gone over the maximum speed
-    public void CheckMaxSpeed()
+    public void Construct(float maxSpeed)
     {
-        if (Player.PlayerCar.GetSpeedInMPH() > _maxSpeed)
-        {
-            GameManager.LevelFail();
-        }
+        _maxSpeed = maxSpeed;
     }
 
-    public override bool IsComplete()
+    public override void UpdateCompletion()
     {
-        if (Player.PlayerCar.GetSpeedInMPH() > _maxSpeed)
-        {
-            Failed = true;
-            return false;
-        }
-        return true;
+        Failed = (Player.PlayerCar.GetSpeedInMPH() > _maxSpeed);
     }
 }

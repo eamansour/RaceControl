@@ -14,7 +14,6 @@ public class LoopTests
     private ForLoop _forLoop;
 
     private IExpression<bool> _expression;
-    private ICar _car;
     private IPlayerManager _player;
 
     private TestHelper _testHelper;
@@ -42,11 +41,11 @@ public class LoopTests
         temp.AddComponent<Image>();
         SetParent(temp, _testObject);
 
-        // Create dummy "retire" statement to test calls against
-        _car = Substitute.For<ICar>();
+        // Create dummy "autopilot" statement to test calls against
         _player = Substitute.For<IPlayerManager>();
-        Retire dummyStatement = temp.AddComponent<Retire>();
-        dummyStatement.Construct(_car, _player);
+        ICar car = Substitute.For<ICar>();
+        Autopilot dummyStatement = temp.AddComponent<Autopilot>();
+        dummyStatement.Construct(car, _player);
 
         _expression = Substitute.For<IExpression<bool>>();
 
@@ -93,31 +92,29 @@ public class LoopTests
     public IEnumerator WhileLoop_DoesNotRunBlockIfFalse()
     {
         _expression.EvaluateExpression().Returns(false);
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_whileLoop.Run());
         yield return null;
 
-        _player.DidNotReceive().RetirePlayer();
+        _player.DidNotReceive().CurrentControl = ControlType.AI;
     }
 
     [UnityTest]
     public IEnumerator WhileLoop_RepeatsBlockWhileTrue()
     {
         _expression.EvaluateExpression().Returns(true);
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_whileLoop.Run());
         yield return null;
 
         // Test three iterations
-        _player.Received(1).RetirePlayer();
+        _player.Received(1).CurrentControl = ControlType.AI;
         yield return null;
 
-        _player.Received(2).RetirePlayer();
+        _player.Received(2).CurrentControl = ControlType.AI;
         yield return null;
 
-        _player.Received(3).RetirePlayer();
+        _player.Received(3).CurrentControl = ControlType.AI;
         _expression.EvaluateExpression().Returns(false);
     }
 
@@ -125,20 +122,19 @@ public class LoopTests
     public IEnumerator WhileLoop_StopsRepeatingBlockWhenFalse()
     {
         _expression.EvaluateExpression().Returns(true);
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_whileLoop.Run());
         yield return null;
 
-        _player.Received(1).RetirePlayer();
+        _player.Received(1).CurrentControl = ControlType.AI;
         _expression.EvaluateExpression().Returns(false);
         yield return null;
 
-        _player.Received(2).RetirePlayer();
+        _player.Received(2).CurrentControl = ControlType.AI;
         yield return null;
 
         // While loop should have stopped
-        _player.Received(2).RetirePlayer();
+        _player.Received(2).CurrentControl = ControlType.AI;
     }
 
     [UnityTest]
@@ -148,12 +144,10 @@ public class LoopTests
         _rangeEndDropdown.value = 0;
         _incrementDropdown.value = 1;
 
-        _car.InPit.Returns(true);
-
         _testHelper.RunCoroutine(_forLoop.Run());
         yield return null;
 
-        _player.DidNotReceive().RetirePlayer();
+        _player.DidNotReceive().CurrentControl = ControlType.AI;
     }
 
     [UnityTest]
@@ -163,16 +157,14 @@ public class LoopTests
         _rangeEndDropdown.value = 2;
         _incrementDropdown.value = 1;
 
-        _car.InPit.Returns(true);
-
         _testHelper.RunCoroutine(_forLoop.Run());
         yield return null;
 
         // Test two iterations
-        _player.Received(1).RetirePlayer();
+        _player.Received(1).CurrentControl = ControlType.AI;
         yield return null;
 
-        _player.Received(2).RetirePlayer();
+        _player.Received(2).CurrentControl = ControlType.AI;
     }
 
     [UnityTest]
@@ -182,20 +174,18 @@ public class LoopTests
         _rangeEndDropdown.value = 2;
         _incrementDropdown.value = 1;
 
-        _car.InPit.Returns(true);
-
         _testHelper.RunCoroutine(_forLoop.Run());
         yield return null;
 
         // Test two iterations
-        _player.Received(1).RetirePlayer();
+        _player.Received(1).CurrentControl = ControlType.AI;
         yield return null;
 
-        _player.Received(2).RetirePlayer();
+        _player.Received(2).CurrentControl = ControlType.AI;
         yield return null;
 
         // For loop should have ended
-        _player.Received(2).RetirePlayer();
+        _player.Received(2).CurrentControl = ControlType.AI;
     }
 
     [Test]
@@ -204,8 +194,6 @@ public class LoopTests
         _rangeStartDropdown.value = 0;
         _rangeEndDropdown.value = 1;
         _incrementDropdown.value = 1;
-
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_forLoop.Run());
 
@@ -218,8 +206,6 @@ public class LoopTests
         _rangeStartDropdown.value = 0;
         _rangeEndDropdown.value = 2;
         _incrementDropdown.value = 1;
-
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_forLoop.Run());
 
@@ -236,8 +222,6 @@ public class LoopTests
         _rangeEndDropdown.value = 1;
         _incrementDropdown.value = 1;
 
-        _car.InPit.Returns(true);
-
         _testHelper.RunCoroutine(_forLoop.Run());
 
         Assert.AreEqual(0, Statement.Environment["i"]);
@@ -253,8 +237,6 @@ public class LoopTests
         _rangeEndDropdown.value = 1;
         _incrementDropdown.value = 1;
         Statement.Environment.Add("i", 20);
-
-        _car.InPit.Returns(true);
 
         _testHelper.RunCoroutine(_forLoop.Run());
 

@@ -11,8 +11,8 @@ public class MinSpeedObjective : Objective
     }
 
     // Determine whether the player has met the minimum speed required
-    public override bool IsComplete()
+    public override void UpdateCompletion()
     {
-        return (Player.PlayerCar.GetSpeedInMPH() >= _minSpeed);
+        Passed = (Player.PlayerCar.GetSpeedInMPH() >= _minSpeed);
     }
 }

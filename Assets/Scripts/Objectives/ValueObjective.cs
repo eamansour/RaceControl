@@ -16,9 +16,9 @@ public class ValueObjective : Objective
     }
 
     // Determines if a given variable has a value matching the target value
-    public override bool IsComplete()
+    public override void UpdateCompletion()
     {
         int currentValue = (int)Math.Round(Statement.Environment.Get<float>(_variableName));
-        return (currentValue == _targetValue);
+        Passed = (currentValue == _targetValue);
     }
 }

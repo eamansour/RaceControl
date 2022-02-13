@@ -6,6 +6,6 @@ public class ManualControl : CarStatement
     public override IEnumerator Run()
     {
         yield return StartCoroutine(base.Run());
-        Player.CurrentControl = PlayerManager.ControlMethod.Human;
+        Player.CurrentControl = ControlType.Human;
     }
 }

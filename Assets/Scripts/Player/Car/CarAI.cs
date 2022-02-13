@@ -52,12 +52,12 @@ public class CarAI : MonoBehaviour, ICarAI
 
     private void FixedUpdate()
     {
-        if (_player.CurrentControl != PlayerManager.ControlMethod.AI) return;
+        if (_player.CurrentControl != ControlType.AI) return;
 
         // Only allow the car to move when the player has started the level
         if (GameManager.LevelStarted)
         {
-            _car.SteerDir = GetSteerDir();
+            _car.SteerDir = GetSteerDirection();
             _car.Acceleration = _car.InPit ? 0f : GetAcceleration(_car.SteerDir);
 
             // The car needs to pit
@@ -78,7 +78,7 @@ public class CarAI : MonoBehaviour, ICarAI
     }
 
     // Calculates and returns the appropriate steering direction based on target information
-    private float GetSteerDir()
+    private float GetSteerDirection()
     {
         Vector3 directionToTarget = GetAvoidanceDirection((_targetPosition - transform.position).normalized);
         float targetAngle = Vector3.SignedAngle(-transform.forward, directionToTarget, Vector3.up);

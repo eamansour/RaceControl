@@ -35,7 +35,7 @@ public class OrderObjectiveTests
     }
 
     [Test]
-    public void IsComplete_ReturnsTrueRequiredLapsCompletedInRequiredOrder()
+    public void UpdateCompletion_PassesObjectiveRequiredLapsCompletedInRequiredOrder()
     {
         CreatePlayerMocks(3);
         foreach (IPlayerManager player in _players)
@@ -46,13 +46,13 @@ public class OrderObjectiveTests
         _orderObjective.Construct(1, false, false, Substitute.For<IPlayerManager>());
         _requiredIndexOrder.AddRange(new List<int> { 0, 1, 2 });
 
-        bool result = _orderObjective.IsComplete();
+        _orderObjective.UpdateCompletion();
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(_orderObjective.Passed);
     }
 
     [Test]
-    public void IsComplete_ReturnsFalseRequiredLapsNotCompleted()
+    public void UpdateCompletion_DoesNotPassRequiredLapsNotCompleted()
     {
         CreatePlayerMocks(3);
         foreach (IPlayerManager player in _players)
@@ -63,13 +63,13 @@ public class OrderObjectiveTests
         _orderObjective.Construct(1, false, false, Substitute.For<IPlayerManager>());
         _requiredIndexOrder.AddRange(new List<int> { 0, 1, 2 });
 
-        bool result = _orderObjective.IsComplete();
+        _orderObjective.UpdateCompletion();
 
-        Assert.IsFalse(result);
+        Assert.IsFalse(_orderObjective.Passed);
     }
 
     [Test]
-    public void IsComplete_FailsAndReturnsFalseRequiredOrderIncorrect()
+    public void UpdateCompletion_FailsAndDoesNotPassRequiredOrderIncorrect()
     {
         CreatePlayerMocks(3);
         _players[0].CurrentLap.Returns(0);
@@ -79,9 +79,8 @@ public class OrderObjectiveTests
         _orderObjective.Construct(1, false, false, Substitute.For<IPlayerManager>());
         _requiredIndexOrder.AddRange(new List<int> { 0, 1, 2 });
 
-        bool result = _orderObjective.IsComplete();
+        _orderObjective.UpdateCompletion();
 
-        Assert.IsFalse(result);
         Assert.IsTrue(_orderObjective.Failed);
     }
 }

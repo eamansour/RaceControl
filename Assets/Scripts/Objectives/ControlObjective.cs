@@ -4,23 +4,23 @@ using UnityEngine;
 public class ControlObjective : Objective
 {
     [SerializeField]
-    private List<PlayerManager.ControlMethod> _lapControl = new List<PlayerManager.ControlMethod>();
+    private List<ControlType> _lapControl = new List<ControlType>();
 
-    public void Construct(List<PlayerManager.ControlMethod> lapControl)
+    public void Construct(List<ControlType> lapControl)
     {
         _lapControl = lapControl;
     }
 
-    public override bool IsComplete()
+    public override void UpdateCompletion()
     {
         // Fail the objective if the current control method is incorrect
         int currentLap = Player.CurrentLap;
         if (currentLap < _lapControl.Count && Player.CurrentControl != _lapControl[currentLap])
         {
             Failed = true;
-            return false;
+            return;
         }
 
-        return (currentLap >= _lapControl.Count);
+        Passed = (currentLap >= _lapControl.Count);
     }
 }

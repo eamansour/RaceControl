@@ -3,10 +3,9 @@ using UnityEngine;
 using NSubstitute;
 
 [Category("ObjectiveTests")]
-public class SpeedObjectiveTests
+public class MinSpeedObjectiveTests
 {
     private MinSpeedObjective _minSpeedObjective;
-    private MaxSpeedObjective _maxSpeedObjective;
     private ICar _car;
     private IPlayerManager _player;    
 
@@ -18,42 +17,38 @@ public class SpeedObjectiveTests
         _player.PlayerCar.Returns(_car);
 
         _minSpeedObjective = new GameObject().AddComponent<MinSpeedObjective>();
-        _maxSpeedObjective = new GameObject().AddComponent<MaxSpeedObjective>();
-
         _minSpeedObjective.Construct(_player);
-        _maxSpeedObjective.Construct(_player);
     }
 
     [TearDown]
     public void TearDown()
     {
         Object.Destroy(_minSpeedObjective.gameObject);
-        Object.Destroy(_maxSpeedObjective.gameObject);
     }
 
     [Test]
-    public void IsComplete_MinSpeed_ReturnsTrueIfMinSpeedIsMet(
+    public void UpdateCompletion_MinSpeed_PassesObjectiveIfMinSpeedIsMet(
         [Values(40, 41, 50)] int speed
     )
     {
         _car.GetSpeedInMPH().Returns(speed);
         _minSpeedObjective.Construct(40);
 
-        bool result = _minSpeedObjective.IsComplete();
+        _minSpeedObjective.UpdateCompletion();
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(_minSpeedObjective.Passed);
     }
 
     [Test]
-    public void IsComplete_MinSpeed_ReturnsFalseIfMinSpeedIsNotMet(
+    public void UpdateCompletion_MinSpeed_DoesNotPassIfMinSpeedIsNotMet(
         [Values(10, 45, 49)] int speed
     )
     {
         _car.GetSpeedInMPH().Returns(speed);
         _minSpeedObjective.Construct(50);
 
-        bool result = _minSpeedObjective.IsComplete();
+        _minSpeedObjective.UpdateCompletion();
 
-        Assert.IsFalse(result);
+        Assert.IsFalse(_minSpeedObjective.Passed);
     }
 }

@@ -8,14 +8,14 @@ public class ControlObjectiveTests
 {
     private ControlObjective _controlObjective;
     private IPlayerManager _player;
-    private List<PlayerManager.ControlMethod> _lapControl;
+    private List<ControlType> _lapControl;
 
     [SetUp]
     public void SetUp()
     {
         _controlObjective = new GameObject().AddComponent<ControlObjective>();
         _player = Substitute.For<IPlayerManager>();
-        _lapControl = new List<PlayerManager.ControlMethod>();
+        _lapControl = new List<ControlType>();
 
         _controlObjective.Construct(_player);
         _controlObjective.Construct(_lapControl);
@@ -29,39 +29,37 @@ public class ControlObjectiveTests
 
 
     [Test]
-    public void IsComplete_ReturnsTrueIfLapCounterIsGreaterThanControlListCount()
+    public void UpdateCompletion_PassesObjectiveIfLapCounterIsGreaterThanControlListCount()
     {
-        _lapControl.Add(PlayerManager.ControlMethod.Human);
+        _lapControl.Add(ControlType.Human);
         _player.CurrentLap.Returns(4);
 
-        bool result = _controlObjective.IsComplete();
+        _controlObjective.UpdateCompletion();
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(_controlObjective.Passed);
     }
 
     [Test]
-    public void IsComplete_ReturnsFalseIfLapCounterIsLessThanListCountAndCorrectControlIsSet()
+    public void UpdateCompletion_DoesNotPassIfLapCounterIsLessThanListCountAndCorrectControlIsSet()
     {
-        _lapControl.Add(PlayerManager.ControlMethod.Human);
+        _lapControl.Add(ControlType.Human);
         _player.CurrentLap.Returns(0);
-        _player.CurrentControl.Returns(PlayerManager.ControlMethod.Human);
+        _player.CurrentControl.Returns(ControlType.Human);
 
-        bool result = _controlObjective.IsComplete();
+        _controlObjective.UpdateCompletion();
 
-        Assert.IsFalse(result);
+        Assert.IsFalse(_controlObjective.Passed);
     }
 
     [Test]
-    public void IsComplete_ReturnsFalseAndFailsIfWrongControlMethodIsSet()
+    public void UpdateCompletion_FailsIfWrongControlMethodIsSet()
     {
-        _lapControl.Add(PlayerManager.ControlMethod.Human);
+        _lapControl.Add(ControlType.Human);
         _player.CurrentLap.Returns(0);
-        _player.CurrentControl.Returns(PlayerManager.ControlMethod.Program);
+        _player.CurrentControl.Returns(ControlType.Program);
 
-        bool result = _controlObjective.IsComplete();
+        _controlObjective.UpdateCompletion();
 
-        Assert.IsFalse(result);
         Assert.IsTrue(_controlObjective.Failed);
-
     }
 }

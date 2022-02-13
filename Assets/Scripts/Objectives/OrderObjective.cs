@@ -22,7 +22,7 @@ public class OrderObjective : LapObjective
 
     // The objective is complete when all players have completed the required number of laps
     // in a required order, given by their player indexes
-    public override bool IsComplete()
+    public override void UpdateCompletion()
     {
         for (int i = 1; i < _requiredIndexOrder.Count; i++)
         {
@@ -33,7 +33,7 @@ public class OrderObjective : LapObjective
             if (_players[prevIndex].CurrentLap < _players[currentIndex].CurrentLap)
             {
                 Failed = true;
-                return false;
+                return;
             }
         }
 
@@ -53,6 +53,6 @@ public class OrderObjective : LapObjective
 
         } while (removed);
 
-        return (_requiredIndexOrder.Count == 0);
+        Passed = (_requiredIndexOrder.Count == 0);
     }
 }
