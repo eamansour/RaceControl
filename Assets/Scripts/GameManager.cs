@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class GameManager : MonoBehaviour
 {
+    public static event Action<IPlayerManager> OnPlayerUpdated;
     public static IPlayerManager CurrentPlayer { get; private set; }
     public static List<IPlayerManager> Players { get; private set; } = new List<IPlayerManager>();
     public static IInputController InputController { get; private set; }
@@ -135,6 +137,10 @@ public class GameManager : MonoBehaviour
     {
         CurrentPlayer = newPlayer;
         s_cameraFollow.Target = newPlayer.AttachedGameObject;
+        if (OnPlayerUpdated != null)
+        {
+            OnPlayerUpdated(newPlayer);
+        }
     }
 
     // Ends the level as a fail

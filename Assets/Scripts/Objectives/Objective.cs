@@ -22,15 +22,15 @@ public abstract class Objective : MonoBehaviour
         {
             Player = GameManager.CurrentPlayer;
         }
+        
+        // Subscribe to track any player updates
+        GameManager.OnPlayerUpdated += Construct;
     }
 
-    private void Update()
+    // Runs when the objective is destroyed, unsubscribe from events
+    private void OnDestroy()
     {
-        // The player in camera focus is the main player, so objectives should refer to it
-        if (!(Player as Object) || GameManager.CurrentPlayer.AttachedGameObject != Player.AttachedGameObject)
-        {
-            Player = GameManager.CurrentPlayer;
-        }
+        GameManager.OnPlayerUpdated -= Construct;
     }
 
     public abstract void UpdateCompletion();

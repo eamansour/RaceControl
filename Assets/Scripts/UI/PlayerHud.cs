@@ -53,6 +53,15 @@ public class PlayerHud : MonoBehaviour
                 player.GetComponentInChildren<TMP_Text>().text = $"{i}";
             }
         }
+        
+        // Subscribe to track any player updates
+        GameManager.OnPlayerUpdated += Construct;
+    }
+
+    // Runs when the PlayerHud is destroyed, unsubscribe from any events
+    private void OnDestroy()
+    {
+        GameManager.OnPlayerUpdated -= Construct;
     }
 
     // Runs on every frame, disables camera control when typing
@@ -77,11 +86,6 @@ public class PlayerHud : MonoBehaviour
     // Update the player's HUD on every physics system update
     private void FixedUpdate()
     {
-        if (!(_player as Object) || GameManager.CurrentPlayer.AttachedGameObject != _player.AttachedGameObject)
-        {
-            _player = GameManager.CurrentPlayer;
-        }
-
         // Optional UI text components
         if (_mphText)
         {
