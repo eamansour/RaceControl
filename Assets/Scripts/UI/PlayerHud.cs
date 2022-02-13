@@ -6,7 +6,6 @@ using TMPro;
 
 public class PlayerHud : MonoBehaviour
 {
-    private CameraFollow _cameraFollow;
     private CameraController _cameraController;
     private IPlayerManager _player;
 
@@ -40,9 +39,8 @@ public class PlayerHud : MonoBehaviour
 
     private void Start()
     {
-        _cameraFollow = GameObject.FindObjectOfType<CameraFollow>();
-        _cameraController = _cameraFollow.GetComponent<CameraController>();
-        _player = _cameraFollow.Target.GetComponent<IPlayerManager>();
+        _cameraController = FindObjectOfType<CameraController>();
+        _player = GameManager.CurrentPlayer;
 
         _eventSystem = EventSystem.current;
         
@@ -79,9 +77,9 @@ public class PlayerHud : MonoBehaviour
     // Update the player's HUD on every physics system update
     private void FixedUpdate()
     {
-        if (!(_player as Object) || _cameraFollow.Target != _player.AttachedGameObject)
+        if (!(_player as Object) || GameManager.CurrentPlayer.AttachedGameObject != _player.AttachedGameObject)
         {
-            _player = _cameraFollow.Target.GetComponent<IPlayerManager>();
+            _player = GameManager.CurrentPlayer;
         }
 
         // Optional UI text components

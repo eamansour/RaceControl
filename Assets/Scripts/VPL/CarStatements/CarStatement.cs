@@ -9,8 +9,6 @@ public abstract class CarStatement : Statement
 
     protected TMP_Dropdown TimerDropdown { get; private set; }
 
-    private static CameraFollow s_cameraFollow;
-
     public override IEnumerator Run()
     {
         if (Environment.ContainsKey("car") && Environment["car"] is IDataStructure<IPlayerManager>)
@@ -38,17 +36,12 @@ public abstract class CarStatement : Statement
     {
         if (Player == null || Player.Equals(null))
         {
-            Player = GameObject.FindGameObjectWithTag("Player").GetComponent<IPlayerManager>();
+            Player = GameManager.CurrentPlayer;
         }
 
         if (PlayerCar == null || PlayerCar.Equals(null))
         {
             PlayerCar = Player.PlayerCar;
-        }
-        
-        if (s_cameraFollow == null || s_cameraFollow.Equals(null))
-        {
-            s_cameraFollow = GameObject.FindObjectOfType<CameraFollow>();
         }
         
         TimerDropdown ??= GetComponentInChildren<TMP_Dropdown>();
@@ -78,6 +71,6 @@ public abstract class CarStatement : Statement
     {
         Player = newPlayer;
         PlayerCar = newPlayer.PlayerCar;
-        s_cameraFollow.Target = newPlayer.AttachedGameObject;
+        GameManager.SetPlayer(newPlayer);
     }
 }

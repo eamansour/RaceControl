@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    public static IPlayerManager CurrentPlayer { get; private set; }
     public static List<IPlayerManager> Players { get; private set; } = new List<IPlayerManager>();
     public static IInputController InputController { get; private set; }
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static bool LevelStarted { get; private set; } = false;
 
     private static LevelMenu s_levelMenu;
+    private static CameraFollow s_cameraFollow;
     private static IPlayerManager[] s_startPlayers;
     private static Objective[] s_objectives;
     private static int s_remainingObjectives = 0;
@@ -33,12 +35,26 @@ public class GameManager : MonoBehaviour
         LevelEnded = false;
 
         s_levelMenu = _levelMenu;
+        s_cameraFollow = FindObjectOfType<CameraFollow>();
 
         s_objectives = GetComponents<Objective>();
         s_remainingObjectives = s_objectives.Length;
 
         s_startPlayers = FindObjectsOfType<PlayerManager>();
         Players.AddRange(s_startPlayers);
+        
+        if (s_cameraFollow)
+        {
+            CurrentPlayer = s_cameraFollow.Target.GetComponent<IPlayerManager>();
+        }
+        else if (s_startPlayers.Length > 0)
+        {
+            CurrentPlayer = s_startPlayers[0];
+        }
+        else
+        {
+            Debug.LogWarning("CurrentPlayer not found: No camera target or start players set.");
+        }
     }
 
     // Runs every frame, checks if the objectives have been met once the level has been started
@@ -112,6 +128,13 @@ public class GameManager : MonoBehaviour
         {
             objective.Reset();
         }
+    }
+
+    // Update the current player to a new player
+    public static void SetPlayer(IPlayerManager newPlayer)
+    {
+        CurrentPlayer = newPlayer;
+        s_cameraFollow.Target = newPlayer.AttachedGameObject;
     }
 
     // Ends the level as a fail

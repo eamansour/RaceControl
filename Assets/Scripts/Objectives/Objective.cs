@@ -11,8 +11,6 @@ public abstract class Objective : MonoBehaviour
 
     protected IPlayerManager Player { get; private set; }
 
-    private CameraFollow _mainCamera;
-
     public void Construct(IPlayerManager player)
     {
         Player = player;
@@ -20,20 +18,18 @@ public abstract class Objective : MonoBehaviour
 
     protected virtual void Start()
     {
-        _mainCamera = GameObject.FindObjectOfType<CameraFollow>();
-
         if (Player == null || Player.Equals(null))
         {
-            Player = _mainCamera.Target.GetComponent<IPlayerManager>();
+            Player = GameManager.CurrentPlayer;
         }
     }
 
     private void Update()
     {
         // The player in camera focus is the main player, so objectives should refer to it
-        if (!(Player as Object) || _mainCamera.Target != Player.AttachedGameObject)
+        if (!(Player as Object) || GameManager.CurrentPlayer.AttachedGameObject != Player.AttachedGameObject)
         {
-            Player = _mainCamera.Target.GetComponent<IPlayerManager>();
+            Player = GameManager.CurrentPlayer;
         }
     }
 

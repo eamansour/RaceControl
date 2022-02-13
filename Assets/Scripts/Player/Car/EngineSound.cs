@@ -10,21 +10,18 @@ public class EngineSound : MonoBehaviour
 
     private Car _car;
     private AudioSource _source;
-    private CameraFollow _cameraFollow;
 
     private void Start()
     {
         _car = GetComponent<Car>();
         _source = SoundManager.GetSource(EngineSoundName);
         SoundManager.PlaySound(EngineSoundName);
-
-        _cameraFollow = GameObject.FindObjectOfType<CameraFollow>();
     }
 
     private void Update()
     {
         // In case of multiple players, only change the sound of the player being followed
-        if (_cameraFollow.Target != _car.gameObject) return;
+        if (GameManager.CurrentPlayer.AttachedGameObject != _car.gameObject) return;
 
         float pitchFraction = _gearPitch[0];
         for (int i = 0; i < _gearSpeed.Count; i++)
