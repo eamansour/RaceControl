@@ -1,13 +1,14 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour
 {
     private static SoundManager s_instance;
 
-    private static Sound[] s_sounds;
+    private static List<Sound> s_sounds = new List<Sound>();
 
     [SerializeField]
-    private Sound[] _sounds;
+    private List<Sound> _sounds = new List<Sound>();
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class SoundManager : MonoBehaviour
 
         // Create a hierarchy of GameObjects with audio sources attached
         s_sounds = _sounds;
-        for (int i = 0; i < s_sounds.Length; i++)
+        for (int i = 0; i < s_sounds.Count; i++)
         {
             GameObject go = new GameObject($"Sound{i}_{s_sounds[i].Name}");
             go.transform.SetParent(transform);
@@ -45,7 +46,7 @@ public class SoundManager : MonoBehaviour
     // Play a sound, given by its name
     public static void PlaySound(string name)
     {
-        for (int i = 0; i < s_sounds.Length; i++)
+        for (int i = 0; i < s_sounds.Count; i++)
         {
             if (s_sounds[i].Name == name)
             {
@@ -58,7 +59,7 @@ public class SoundManager : MonoBehaviour
     // Stop a sound, given by its name
     public static void StopSound(string name)
     {
-        for (int i = 0; i < s_sounds.Length; i++)
+        for (int i = 0; i < s_sounds.Count; i++)
         {
             if (s_sounds[i].Name == name)
             {
@@ -71,7 +72,7 @@ public class SoundManager : MonoBehaviour
     // Retrieve a given sound's audio source
     public static AudioSource GetSource(string name)
     {
-        for (int i = 0; i < s_sounds.Length; i++)
+        for (int i = 0; i < s_sounds.Count; i++)
         {
             if (s_sounds[i].Name == name)
             {

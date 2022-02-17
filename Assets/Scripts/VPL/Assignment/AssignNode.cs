@@ -15,11 +15,9 @@ public class AssignNode : AssignStatement<Node<IPlayerManager>>
             if (Environment.ContainsKey(selected) && Environment[selected] is Node<IPlayerManager>)
             {
                 Environment.Get<Node<IPlayerManager>>(selected).Next = _expression.EvaluateExpression();
-                Debug.Log($"{selected}.next = {Environment.Get<Node<IPlayerManager>>(selected).Next}");
                 yield break;
             }
         }
         yield return StartCoroutine(base.Run());
-        Debug.Log($"Key: {selected}, Value: {Environment.Get<Node<IPlayerManager>>(selected)}");
     }   
 }

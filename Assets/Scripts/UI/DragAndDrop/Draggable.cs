@@ -18,6 +18,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         eventData.pointerDrag.transform.SetParent(_canvas.transform);
         _canvasGroup.blocksRaycasts = false;
+        _canvasGroup.alpha = 0.75f;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -28,6 +29,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         _canvasGroup.blocksRaycasts = true;
+        _canvasGroup.alpha = 1f;
     
         // Destroy the dragged item if its parent is the UI canvas
         if (eventData.pointerDrag.transform.parent == _canvas.transform)

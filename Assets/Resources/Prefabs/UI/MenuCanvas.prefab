@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 3044336941569287441}
   - component: {fileID: 8158971958567427233}
   m_Layer: 5
-  m_Name: StatisticsTitleText (1)
+  m_Name: OptionalChallengeTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

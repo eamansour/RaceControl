@@ -1,0 +1,1 @@
+public enum ControlMode { Human, Program, AI }

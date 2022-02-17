@@ -445,7 +445,20 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Conditions
+          m_StringArgument: Conditions, also known as selection statements, are statements
+            that decide between multiple program flows depending on the result of
+            a Boolean expression.\n\nThe most common conditional constructs are the
+            "if-then-else", which runs statements inside the "if" block when a Boolean
+            expression evaluates to true, otherwise running the statements inside
+            the "else" block when false.\n\nIn Python, the "elif" (which stands for
+            "else if") statement can be added after an "if" statement and is only
+            executed when an "if" statement evaluates to false, allowing you to check
+            another condition before the "else" statement. For example, the following
+            conditional outputs "Less than 10" when the "if" statement is true, "Equal
+            to 10" when the "elif" statement is true, or "More than 10" when the
+            "if" and "elif" statements are false:\n\n  if fuel < 10:\n    print("Less
+            than 10")\n  elif fuel == 10:\n    print("Equal to 10")\n  else:\n   
+            print("More than 10")\n\n
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8794074963304281301
@@ -578,7 +591,26 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Loops
+          m_StringArgument: 'Loops, also known as iteration statements, are statements
+            that can repeat a block of code multiple times. Using loops means you
+            don''t need to re-write code multiple times, which reduces the overall
+            amount of code.\n\nThere two main categories of loops: bounded and unbounded
+            loops. Bounded loops are loops that run for a known number of times.
+            Unbounded loops are loops that can run forever or once an exit condition
+            is met. When loops run forever, they are called "infinite loops".\n\nTwo
+            of the most commonly used loops are "while" loops and "for" loops.\n\nA
+            "while" loop is an unbounded loop that executes as long as a Boolean
+            expression is true. For example: "while 5 != 0" will run as long as integer
+            5 is not equal to integer 0 (i.e. forever!). To stop a "while" loop,
+            its Boolean expression must eventually evaluate to false. The following
+            "while" loop runs as long as variable "x" is less than 5, increasing
+            x by one each time the loop executes:\n\n  x = 0\n  while x < 5:\n   
+            ...\n    x += 1\n\nA "for" loop is a bounded loop that executes until
+            a counter has reached a required value. They define a counter which increases/decreases
+            by a given amount after each iteration. For example, the Python loop:
+            "for i in range(5)" defines a counter variable "i" with value 0 which
+            increases by one until it reaches 4, meaning the loop will run 5 times
+            (since "i" starts at 0 and ends at 4).\n\n'
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8794074963422527133
@@ -2095,7 +2127,21 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Expressions
+          m_StringArgument: 'Expressions are units of code that can be evaluated
+            to create a new value. Two main types of expressions are arithmetic expressions
+            and Boolean expressions. Variables, constants, operators, and functions
+            can all be used as part of an expression. For example: "fuel * 2" uses
+            the value stored in a variable named "fuel" and multiplies it by 2.\n\nArithmetic
+            expressions involve performing mathematical calculations. A simple example
+            is "1 + 1", which evaluates to the integer 2.\n\nBoolean expressions
+            involve performing Boolean comparisons, which evaluate to either true
+            or false. For example: "5 > 3" evaluates to true.\n\nExpressions are
+            typically used alongside variables to store a calculated value, function
+            calls, and control structures (conditions and loops).\n\nLiterals are
+            values that are written directly in code, without performing calculations.
+            These are usually seen when defining constants, or initial/default values
+            for variables. For example: "fuel = 20" makes use of the integer literal
+            "20", meanwhile "isTrue = true" makes use of the Boolean literal "true".\n\n'
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8794074964599153343
@@ -2649,7 +2695,20 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Variables
+          m_StringArgument: Variables are named memory locations that store or reference
+            stored data values according to their type (e.g. an integer variable
+            stores integers). As the name suggests, the data stored by variables
+            can be changed using assignment statements.\n\nFor example in Python,
+            a variable "x" can be declared with value 10 using "x = 10", which can
+            then be changed to 11 using another assignment statement "x = 11". If
+            a variable isn't defined, you can't use it and the program will throw
+            an error.\n\nVariables are always associated with scope, more specifically
+            local or global scope. Local variables can only be accessed in the procedure,
+            condition, loop, or class they were originally defined in. Global variables
+            can be accessed anywhere in a program.\n\nConstants are similar to variables
+            but cannot be changed as their values must remain constant. Constants
+            are typically used when you need to use a value that will never change,
+            like the required number of laps in a race.\n\n
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8794074965244406291
@@ -2782,6 +2841,26 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Classes
+          m_StringArgument: Classes are the foundations of Object-Oriented Programming
+            (OOP for short). They can be thought of as templates for creating types
+            of objects. When objects are created, they are known as instances of
+            classes - A concrete object made from the template.\n\nClasses have methods
+            and attributes. Methods are the procedures/functions that the class defines.
+            One of the most important methods is the "constructor" which is called
+            whenever a new object of the class is created.\n\nAttributes are the
+            variables associated with a class, and can be used in all of the class'
+            methods. The constructor typically gives attributes their values when
+            an object is created.\n\nAn example class is given below in Python, which
+            defines a "Car" class with a constructor method "__init__(self, ...)",
+            a method for accelerating "accelerate(self, time)", and a method for
+            turning "turn(self, direction, time)". It also includes attributes "speed"
+            and "fuel"\n\n  class Car:\n    def __init__(self, speed, fuel):\n     
+            self.speed = speed\n      self.fuel = fuel\n\n    def accelerate(self,
+            time):\n      ...\n    def turn(self, direction, time):\n      ...\n\nA
+            new "Car" object is created in the Python code below, which sets the
+            car's starting speed to 0 and fuel to 100. The following line then calls
+            the car's "accelerate" method to accelerate for 5 seconds, which is done
+            by using the "." operator followed by the method.\n\n  newCar = Car(0,
+            100)\n  newCar.accelerate(5)\n\n
           m_BoolArgument: 0
         m_CallState: 2

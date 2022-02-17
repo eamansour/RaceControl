@@ -18,10 +18,18 @@ public class EngineSound : MonoBehaviour
         SoundManager.PlaySound(EngineSoundName);
     }
 
+    private void OnDestroy()
+    {
+        if (SoundManager.GetSource(EngineSoundName))
+        {
+            SoundManager.StopSound(EngineSoundName);
+        }
+    }
+
     private void Update()
     {
         // In case of multiple players, only change the sound of the player being followed
-        if (GameManager.CurrentPlayer.AttachedGameObject != _car.gameObject) return;
+        if (Time.timeScale == 0f || GameManager.CurrentPlayer.AttachedGameObject != _car.gameObject) return;
 
         float pitchFraction = _gearPitch[0];
         for (int i = 0; i < _gearSpeed.Count; i++)

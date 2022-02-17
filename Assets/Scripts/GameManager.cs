@@ -12,10 +12,10 @@ public class GameManager : MonoBehaviour
     public static bool LevelEnded { get; private set; } = false;
     public static bool LevelStarted { get; private set; } = false;
 
-    private static LevelMenu s_levelMenu;
+    private static ILevelMenu s_levelMenu;
     private static CameraFollow s_cameraFollow;
     private static IPlayerManager[] s_startPlayers;
-    private static Objective[] s_objectives;
+    private static IObjective[] s_objectives;
     private static int s_remainingObjectives = 0;
 
     [SerializeField]
@@ -25,6 +25,17 @@ public class GameManager : MonoBehaviour
     private bool _sortPlayers = true;
 
     private float _updateTimer = 0.5f;
+
+    public void Construct(
+        IObjective[] objectives = null,
+        IPlayerManager[] startPlayers = null,
+        ILevelMenu levelMenu = null
+    )
+    {
+        s_objectives = objectives ?? new IObjective[0];
+        s_startPlayers = startPlayers ?? new IPlayerManager[0];
+        s_levelMenu = levelMenu;
+    }
 
     private void Awake()
     {
@@ -39,7 +50,7 @@ public class GameManager : MonoBehaviour
         s_levelMenu = _levelMenu;
         s_cameraFollow = FindObjectOfType<CameraFollow>();
 
-        s_objectives = GetComponents<Objective>();
+        s_objectives = GetComponents<IObjective>();
         s_remainingObjectives = s_objectives.Length;
 
         s_startPlayers = FindObjectsOfType<PlayerManager>();
@@ -126,7 +137,7 @@ public class GameManager : MonoBehaviour
         Players.Clear();
         Players.AddRange(s_startPlayers);
 
-        foreach (Objective objective in s_objectives)
+        foreach (IObjective objective in s_objectives)
         {
             objective.Reset();
         }
@@ -136,7 +147,12 @@ public class GameManager : MonoBehaviour
     public static void SetPlayer(IPlayerManager newPlayer)
     {
         CurrentPlayer = newPlayer;
-        s_cameraFollow.Target = newPlayer.AttachedGameObject;
+
+        if (s_cameraFollow)
+        {
+            s_cameraFollow.Target = newPlayer.AttachedGameObject;
+        }
+        
         if (OnPlayerUpdated != null)
         {
             OnPlayerUpdated(newPlayer);

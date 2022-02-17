@@ -1,14 +1,27 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Droppable : MonoBehaviour, IDropHandler
 {
+    private static Action OnLayoutUpdated;
+
     [SerializeField]
     private RectTransform _targetRect;
 
     [SerializeField]
     private bool _reserveFirstIndex = false;
+
+    private void Start()
+    {
+        OnLayoutUpdated += RefreshLayout;
+    }
+
+    private void OnDestroy()
+    {
+        OnLayoutUpdated -= RefreshLayout;
+    }
 
     // Event method that fires when something is dropped onto the current object
     public void OnDrop(PointerEventData eventData)
@@ -27,14 +40,27 @@ public class Droppable : MonoBehaviour, IDropHandler
                 {
                     if (droppedPosY >= sibling.position.y)
                     {
-                        if (i == 0 && _reserveFirstIndex) return;
+                        if (i == 0 && _reserveFirstIndex)
+                        {
+                            eventData.pointerDrag.transform.SetSiblingIndex(1);
+                            break;
+                        }
 
                         eventData.pointerDrag.transform.SetSiblingIndex(i);
                         break;
                     }
                 }
             }
-            LayoutRebuilder.ForceRebuildLayoutImmediate(_targetRect);
+            if (OnLayoutUpdated != null)
+            {
+                OnLayoutUpdated();
+            }
         }
+    }
+
+    // Rebuilds the target's layout group
+    private void RefreshLayout()
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_targetRect);
     }
 }

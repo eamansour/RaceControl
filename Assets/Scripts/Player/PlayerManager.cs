@@ -8,12 +8,12 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
     public Checkpoint LastCheckpoint { get; private set; }
     public Checkpoint RecentCheckpoint { get; private set; }
     public int CurrentLap { get; private set; } = 0;
-    public ControlType CurrentControl { get; set; }
+    public ControlMode CurrentControl { get; set; }
     public ICar PlayerCar { get; private set; }
     public bool IsRetiring { get; set; } = false;
 
     [SerializeField]
-    private ControlType _levelControl = ControlType.Program;
+    private ControlMode _levelControl = ControlMode.Program;
 
     [SerializeField]
     private Checkpoint _startCheckpoint;
@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
     private void Update()
     {
         // Link keyboard inputs to the player's car if a human has control
-        if (CurrentControl == ControlType.Human)
+        if (CurrentControl == ControlMode.Human)
         {
             PlayerCar.Acceleration = _inputController.VerticalInput;
             PlayerCar.SteerDir = _inputController.HorizontalInput;
@@ -85,7 +85,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
             && (TargetCheckpoint.Next.IsStartFinish || LastCheckpoint.Next.IsStartFinish))
         {
             Console.Paused = true;
-            CurrentControl = ControlType.AI;
+            CurrentControl = ControlMode.AI;
             TargetCheckpoint = collidedCheckpoint.Next;
             _carAI.SetTarget(TargetCheckpoint);
             _carAI.GoToPit();
@@ -94,7 +94,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
         // Transfer control back to the player when the car exits the pit lane
         if (collidedCheckpoint.name == "PitExit" && gameObject.CompareTag("Player"))
         {
-            if (CurrentControl == ControlType.AI)
+            if (CurrentControl == ControlMode.AI)
             {
                 PlayerCar.ResetControl();
                 CurrentControl = _levelControl;
@@ -163,7 +163,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
     }
 
     // Updates the player's race progress
-    public void SetRaceProgress(int currentLap, ControlType currentControl, Checkpoint targetCheckpoint)
+    public void SetRaceProgress(int currentLap, ControlMode currentControl, Checkpoint targetCheckpoint)
     {
         CurrentLap = currentLap;
         CurrentControl = currentControl;

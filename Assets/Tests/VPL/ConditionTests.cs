@@ -72,7 +72,7 @@ public class ConditionTests
         _testHelper.RunCoroutine(_ifCondition.Run());
         yield return null;
         
-        _player.Received(1).CurrentControl = ControlType.AI;
+        _player.Received(1).CurrentControl = ControlMode.AI;
     }
 
     [UnityTest]
@@ -84,7 +84,7 @@ public class ConditionTests
         _testHelper.RunCoroutine(_ifCondition.Run());
         yield return null;
         
-        _player.DidNotReceive().CurrentControl = ControlType.AI;
+        _player.DidNotReceive().CurrentControl = ControlMode.AI;
     }
 
     [UnityTest]
@@ -96,7 +96,7 @@ public class ConditionTests
         _testHelper.RunCoroutine(_elifCondition.Run());
         yield return null;
         
-        _player.Received(1).CurrentControl = ControlType.AI;
+        _player.Received(1).CurrentControl = ControlMode.AI;
     }
 
     [UnityTest]
@@ -108,7 +108,7 @@ public class ConditionTests
         _testHelper.RunCoroutine(_elifCondition.Run());
         yield return null;
         
-        _player.DidNotReceive().CurrentControl = ControlType.AI;
+        _player.DidNotReceive().CurrentControl = ControlMode.AI;
     }
 
     [UnityTest]
@@ -120,7 +120,7 @@ public class ConditionTests
         _testHelper.RunCoroutine(_elifCondition.Run());
         yield return null;
         
-        _player.DidNotReceive().CurrentControl = ControlType.AI;
+        _player.DidNotReceive().CurrentControl = ControlMode.AI;
     }
 
     [UnityTest]
@@ -131,7 +131,7 @@ public class ConditionTests
         _testHelper.RunCoroutine(_elseCondition.Run());
         yield return null;
         
-        _player.Received().CurrentControl = ControlType.AI;
+        _player.Received().CurrentControl = ControlMode.AI;
     }
 
     [UnityTest]
@@ -142,6 +142,6 @@ public class ConditionTests
         _testHelper.RunCoroutine(_elseCondition.Run());
         yield return null;
         
-        _player.DidNotReceive().CurrentControl = ControlType.AI;
+        _player.DidNotReceive().CurrentControl = ControlMode.AI;
     }
 }

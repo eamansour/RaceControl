@@ -4536,7 +4536,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ObjectiveText>k__BackingField: {fileID: 0}
-  _requiredCheckpoint: {fileID: 0}
   _checkpointToAvoid: {fileID: 4496160963510022114}
 --- !u!1 &1966183324
 GameObject:

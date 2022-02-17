@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelMenu : MonoBehaviour
+public class LevelMenu : MonoBehaviour, ILevelMenu
 {
+    private const string EngineSoundName = "Engine";
+    private const string PauseSoundName = "Pause";
+
     public static bool IsPaused = false;
-    
+
     // Fields for pause menu, level success, and level failure UIs
     [SerializeField]
     private GameObject _pauseMenuUI;
@@ -45,7 +48,6 @@ public class LevelMenu : MonoBehaviour
             else
             {
                 PauseGame();
-                SoundManager.PlaySound("Pause");
             }
         }
     }
@@ -56,6 +58,12 @@ public class LevelMenu : MonoBehaviour
         IsPaused = true;
         _pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+
+        if (SoundManager.GetSource(EngineSoundName) && SoundManager.GetSource(PauseSoundName))
+        {
+            SoundManager.StopSound(EngineSoundName);
+            SoundManager.PlaySound(PauseSoundName);
+        }
     }
 
     // Resumes the current level
@@ -64,6 +72,11 @@ public class LevelMenu : MonoBehaviour
         IsPaused = false;
         _pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+
+        if (SoundManager.GetSource(EngineSoundName))
+        {
+            SoundManager.PlaySound(EngineSoundName);
+        }
     }
 
     // Restarts the current level

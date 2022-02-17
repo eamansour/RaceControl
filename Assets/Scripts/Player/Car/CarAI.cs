@@ -52,7 +52,7 @@ public class CarAI : MonoBehaviour, ICarAI
 
     private void FixedUpdate()
     {
-        if (_player.CurrentControl != ControlType.AI) return;
+        if (_player.CurrentControl != ControlMode.AI) return;
 
         // Only allow the car to move when the player has started the level
         if (GameManager.LevelStarted)

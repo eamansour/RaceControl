@@ -6,7 +6,7 @@ public class Accelerate : CarStatement
     {
         yield return StartCoroutine(base.Run());
 
-        float selectedTime = GetSelectedToFloat(TimerDropdown);
+        float selectedTime = GetSelectedToFloat(DropdownInput);
         yield return StartCoroutine(PlayerCar.Accelerate(selectedTime));
     }
 }

@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using System;
 
 public class QuizManager : MonoBehaviour
 {
@@ -32,7 +32,18 @@ public class QuizManager : MonoBehaviour
     // Retrieve the questions from the JSON file and start the quiz
     private void Start()
     {
-        List<Question> questions = JsonUtility.FromJson<Questions>(_questionsJson.text).questions.ToList();
+
+        List<Question> questions = new List<Question>(); 
+        try 
+        {
+            questions = JsonUtility.FromJson<Questions>(_questionsJson.text).questions.ToList();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+            return;
+        }
+
         SetRandomSample(questions, _questionSampleSize);
         NextQuestion();
     }
@@ -44,7 +55,7 @@ public class QuizManager : MonoBehaviour
         {
             if (questions.Count == 0) return;
 
-            int randomIndex = Random.Range(0, questions.Count);
+            int randomIndex = UnityEngine.Random.Range(0, questions.Count);
             _sampledQuestions.Add(questions[randomIndex]);
 
             questions.RemoveAt(randomIndex);

@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public abstract class Objective : MonoBehaviour
+public abstract class Objective : MonoBehaviour, IObjective
 {
     public bool Passed { get; set; } = false;
     public bool Failed { get; protected set; } = false;
@@ -22,7 +22,7 @@ public abstract class Objective : MonoBehaviour
         {
             Player = GameManager.CurrentPlayer;
         }
-        
+
         // Subscribe to track any player updates
         GameManager.OnPlayerUpdated += Construct;
     }

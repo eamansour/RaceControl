@@ -60,7 +60,7 @@ public class PitStopTests
     [UnityTest]
     public IEnumerator OnTriggerEnter_PitsCarWhenAIControlled()
     {
-        _playerManager.CurrentControl = ControlType.AI;
+        _playerManager.CurrentControl = ControlMode.AI;
         _car.Fuel = 50f;
         _testPlayer.SetActive(true);
         yield return new WaitForSeconds(0.2f);
@@ -72,7 +72,7 @@ public class PitStopTests
     [UnityTest]
     public IEnumerator ServiceCar_RefuelsCarWhenBelowOneHundred()
     {
-        _playerManager.CurrentControl = ControlType.AI;
+        _playerManager.CurrentControl = ControlMode.AI;
         _car.Fuel = 50f;
         _testPlayer.SetActive(true);
         yield return new WaitForSeconds(0.2f);
@@ -83,7 +83,7 @@ public class PitStopTests
     [UnityTest]
     public IEnumerator ServiceCar_DoesNotRefuelAboveOneHundred()
     {
-        _playerManager.CurrentControl = ControlType.AI;
+        _playerManager.CurrentControl = ControlMode.AI;
         _car.Fuel = 95f;
         _testPlayer.SetActive(true);
         yield return new WaitForSeconds(0.2f);

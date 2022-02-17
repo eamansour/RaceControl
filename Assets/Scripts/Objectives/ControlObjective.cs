@@ -4,9 +4,9 @@ using UnityEngine;
 public class ControlObjective : Objective
 {
     [SerializeField]
-    private List<ControlType> _lapControl = new List<ControlType>();
+    private List<ControlMode> _lapControl = new List<ControlMode>();
 
-    public void Construct(List<ControlType> lapControl)
+    public void Construct(List<ControlMode> lapControl)
     {
         _lapControl = lapControl;
     }

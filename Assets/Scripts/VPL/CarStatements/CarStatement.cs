@@ -7,7 +7,7 @@ public abstract class CarStatement : Statement
     protected static ICar PlayerCar;
     protected static IPlayerManager Player;
 
-    protected TMP_Dropdown TimerDropdown { get; private set; }
+    protected TMP_Dropdown DropdownInput { get; private set; }
 
     public override IEnumerator Run()
     {
@@ -25,11 +25,11 @@ public abstract class CarStatement : Statement
         Player = player;
     }
     
-    public void Construct(ICar playerCar, IPlayerManager player, TMP_Dropdown timerDropdown)
+    public void Construct(ICar playerCar, IPlayerManager player, TMP_Dropdown dropdownInput)
     {
         PlayerCar = playerCar;
         Player = player;
-        TimerDropdown = timerDropdown;
+        DropdownInput = dropdownInput;
     }
 
     protected virtual void Start()
@@ -44,7 +44,7 @@ public abstract class CarStatement : Statement
             PlayerCar = Player.PlayerCar;
         }
         
-        TimerDropdown ??= GetComponentInChildren<TMP_Dropdown>();
+        DropdownInput ??= GetComponentInChildren<TMP_Dropdown>();
     }
 
     // Update player-related environment variables

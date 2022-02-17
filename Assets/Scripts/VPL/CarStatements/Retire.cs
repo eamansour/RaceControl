@@ -7,7 +7,7 @@ public class Retire : CarStatement
         yield return StartCoroutine(base.Run());
 
         Player.IsRetiring = true;
-        Player.CurrentControl = ControlType.AI;
+        Player.CurrentControl = ControlMode.AI;
 
         // Prevent early termination of the retire statement
         while (!PlayerCar.InPit)

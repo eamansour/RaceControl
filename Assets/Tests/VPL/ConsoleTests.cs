@@ -60,13 +60,13 @@ public class ConsoleTests
         _console.StartProgram(false);
         yield return null;
 
-        _player.Received(1).CurrentControl = ControlType.AI;
+        _player.Received(1).CurrentControl = ControlMode.AI;
         yield return null;
         
-        _player.Received(2).CurrentControl = ControlType.AI;
+        _player.Received(2).CurrentControl = ControlMode.AI;
         yield return null;
 
-        _player.Received(3).CurrentControl = ControlType.AI;
+        _player.Received(3).CurrentControl = ControlMode.AI;
     }
 
     [Test]
@@ -94,13 +94,13 @@ public class ConsoleTests
         _console.StartProgram(false);
         yield return null;
 
-        _player.DidNotReceive().CurrentControl = ControlType.AI;
+        _player.DidNotReceive().CurrentControl = ControlMode.AI;
 
         Console.Paused = false;
         yield return null;
         yield return null;
 
         // No longer paused
-        _player.Received(1).CurrentControl = ControlType.AI;
+        _player.Received(1).CurrentControl = ControlMode.AI;
     }
 }

@@ -16,7 +16,7 @@ public class Turn : CarStatement
         float direction = selectedDirection == "LEFT" ? -1f : 1f;
 
         // Retrieve selected dropdown option as a float
-        float selectedTime = GetSelectedToFloat(TimerDropdown);
+        float selectedTime = GetSelectedToFloat(DropdownInput);
 
         yield return StartCoroutine(PlayerCar.Turn(direction, selectedTime));
     }

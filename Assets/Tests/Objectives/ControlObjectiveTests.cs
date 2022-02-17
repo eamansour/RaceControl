@@ -8,14 +8,14 @@ public class ControlObjectiveTests
 {
     private ControlObjective _controlObjective;
     private IPlayerManager _player;
-    private List<ControlType> _lapControl;
+    private List<ControlMode> _lapControl;
 
     [SetUp]
     public void SetUp()
     {
         _controlObjective = new GameObject().AddComponent<ControlObjective>();
         _player = Substitute.For<IPlayerManager>();
-        _lapControl = new List<ControlType>();
+        _lapControl = new List<ControlMode>();
 
         _controlObjective.Construct(_player);
         _controlObjective.Construct(_lapControl);
@@ -31,7 +31,7 @@ public class ControlObjectiveTests
     [Test]
     public void UpdateCompletion_PassesObjectiveIfLapCounterIsGreaterThanControlListCount()
     {
-        _lapControl.Add(ControlType.Human);
+        _lapControl.Add(ControlMode.Human);
         _player.CurrentLap.Returns(4);
 
         _controlObjective.UpdateCompletion();
@@ -42,9 +42,9 @@ public class ControlObjectiveTests
     [Test]
     public void UpdateCompletion_DoesNotPassIfLapCounterIsLessThanListCountAndCorrectControlIsSet()
     {
-        _lapControl.Add(ControlType.Human);
+        _lapControl.Add(ControlMode.Human);
         _player.CurrentLap.Returns(0);
-        _player.CurrentControl.Returns(ControlType.Human);
+        _player.CurrentControl.Returns(ControlMode.Human);
 
         _controlObjective.UpdateCompletion();
 
@@ -54,9 +54,9 @@ public class ControlObjectiveTests
     [Test]
     public void UpdateCompletion_FailsIfWrongControlMethodIsSet()
     {
-        _lapControl.Add(ControlType.Human);
+        _lapControl.Add(ControlMode.Human);
         _player.CurrentLap.Returns(0);
-        _player.CurrentControl.Returns(ControlType.Program);
+        _player.CurrentControl.Returns(ControlMode.Program);
 
         _controlObjective.UpdateCompletion();
 

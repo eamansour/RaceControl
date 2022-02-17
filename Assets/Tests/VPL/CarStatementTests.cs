@@ -12,7 +12,7 @@ public class CarStatementTests
 {
     private ICar _car;
     private IPlayerManager _player;
-    private TMP_Dropdown _timerDropdown;
+    private TMP_Dropdown _testDropdown;
 
     private TestHelper _testHelper;
     private GameObject _testObject;
@@ -24,8 +24,8 @@ public class CarStatementTests
         _testObject.AddComponent<Image>();
         _testHelper = _testObject.AddComponent<TestHelper>();
         
-        _timerDropdown = new GameObject().AddComponent<TMP_Dropdown>();
-        AddTestDropdownOptions(_timerDropdown);
+        _testDropdown = new GameObject().AddComponent<TMP_Dropdown>();
+        AddTestDropdownOptions(_testDropdown);
         
         _car = Substitute.For<ICar>();
         _player = Substitute.For<IPlayerManager>();
@@ -39,11 +39,12 @@ public class CarStatementTests
             go.SetActive(true);
             Object.Destroy(go);
         }
+        GameManager.Players.Clear();
     }
 
     private void AddTestDropdownOptions(TMP_Dropdown testDropdown)
     {
-        List<string> options = new List<string> { "5", "4", "3" };
+        List<string> options = new List<string> { "5", "1", "0" };
         testDropdown.AddOptions(options);
     }
 
@@ -51,8 +52,8 @@ public class CarStatementTests
     public IEnumerator AccelerateStatement_ShouldCallCarAccelerate()
     {
         Accelerate accelerate = _testObject.AddComponent<Accelerate>();
-        _timerDropdown.transform.SetParent(accelerate.transform);
-        accelerate.Construct(_car, _player, _timerDropdown);
+        _testDropdown.transform.SetParent(accelerate.transform);
+        accelerate.Construct(_car, _player, _testDropdown);
 
         _testHelper.RunCoroutine(accelerate.Run());
         yield return null;
@@ -64,8 +65,8 @@ public class CarStatementTests
     public IEnumerator BrakeStatement_ShouldCallCarBrake()
     {
         Brake brake = _testObject.AddComponent<Brake>();
-        _timerDropdown.transform.SetParent(brake.transform);
-        brake.Construct(_car, _player, _timerDropdown);
+        _testDropdown.transform.SetParent(brake.transform);
+        brake.Construct(_car, _player, _testDropdown);
 
         _testHelper.RunCoroutine(brake.Run());
         yield return null;
@@ -80,9 +81,9 @@ public class CarStatementTests
         TMP_Dropdown directionDropdown = _testObject.AddComponent<TMP_Dropdown>();
         AddTestDropdownOptions(directionDropdown);
 
-        _timerDropdown.transform.SetParent(turn.transform);
+        _testDropdown.transform.SetParent(turn.transform);
         turn.Construct(directionDropdown);
-        turn.Construct(_car, _player, _timerDropdown);
+        turn.Construct(_car, _player, _testDropdown);
 
         _testHelper.RunCoroutine(turn.Run());
         yield return null;
@@ -94,8 +95,8 @@ public class CarStatementTests
     public void WaitStatement_ShouldNotAffectCar()
     {
         Wait wait = _testObject.AddComponent<Wait>();
-        _timerDropdown.transform.SetParent(wait.transform);
-        wait.Construct(_car, _player, _timerDropdown);
+        _testDropdown.transform.SetParent(wait.transform);
+        wait.Construct(_car, _player, _testDropdown);
 
         _testHelper.RunCoroutine(wait.Run());
 
@@ -108,24 +109,24 @@ public class CarStatementTests
     public IEnumerator Autopilot_ShouldSetControlToAI()
     {
         Autopilot autopilot = _testObject.AddComponent<Autopilot>();
-        autopilot.Construct(_car, _player, _timerDropdown);
+        autopilot.Construct(_car, _player, _testDropdown);
 
         _testHelper.RunCoroutine(autopilot.Run());
         yield return null;
 
-        Assert.AreEqual(ControlType.AI, _player.CurrentControl);
+        Assert.AreEqual(ControlMode.AI, _player.CurrentControl);
     }
 
     [UnityTest]
     public IEnumerator ManualControl_ShouldSetControlToHuman()
     {
         ManualControl manualControl = _testObject.AddComponent<ManualControl>();
-        manualControl.Construct(_car, _player, _timerDropdown);
+        manualControl.Construct(_car, _player, _testDropdown);
 
         _testHelper.RunCoroutine(manualControl.Run());
         yield return null;
 
-        Assert.AreEqual(ControlType.Human, _player.CurrentControl);
+        Assert.AreEqual(ControlMode.Human, _player.CurrentControl);
     }
 
     [UnityTest]
@@ -133,7 +134,7 @@ public class CarStatementTests
     {
         Retire retire = _testObject.AddComponent<Retire>();
         _car.InPit.Returns(true);
-        retire.Construct(_car, _player, _timerDropdown);
+        retire.Construct(_car, _player, _testDropdown);
 
         _testHelper.RunCoroutine(retire.Run());
         yield return null;
@@ -156,5 +157,50 @@ public class CarStatementTests
         yield return null;
         
         Assert.IsTrue(GameManager.Players.Count > 1);
+    }
+
+    [UnityTest]
+    public IEnumerator CarList_ShouldUpdateCurrentPlayer()
+    {
+        CarListStatement carList = _testObject.AddComponent<CarListStatement>();
+        Autopilot dummyStatement = _testObject.AddComponent<Autopilot>();
+
+        IPlayerManager newPlayer = Substitute.For<IPlayerManager>();
+        GameManager.Players.AddRange(new List<IPlayerManager> { _player, newPlayer });
+
+        // Select player at index 1 (newPlayer)
+        _testDropdown.value = 1;
+
+        carList.Construct(_car, _player, _testDropdown);
+        carList.Construct(dummyStatement);
+
+        yield return null;
+        _testHelper.RunCoroutine(carList.Run());
+        yield return null;
+        
+        Assert.AreSame(newPlayer, GameManager.CurrentPlayer);
+    }
+
+    [UnityTest]
+    public IEnumerator CarList_ShouldRunStatementOnNewPlayer()
+    {
+        CarListStatement carList = _testObject.AddComponent<CarListStatement>();
+        Autopilot dummyStatement = _testObject.AddComponent<Autopilot>();
+
+        IPlayerManager newPlayer = Substitute.For<IPlayerManager>();
+        GameManager.Players.AddRange(new List<IPlayerManager> { _player, newPlayer });
+
+        // Select player at index 1 (newPlayer)
+        _testDropdown.value = 1;
+
+        carList.Construct(_car, _player, _testDropdown);
+        carList.Construct(dummyStatement);
+
+        yield return null;
+        _testHelper.RunCoroutine(carList.Run());
+        yield return null;
+        
+        // Should have executed the dummy "autopilot" statement
+        newPlayer.Received(1).CurrentControl = ControlMode.AI;
     }
 }

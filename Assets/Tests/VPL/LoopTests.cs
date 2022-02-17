@@ -96,7 +96,7 @@ public class LoopTests
         _testHelper.RunCoroutine(_whileLoop.Run());
         yield return null;
 
-        _player.DidNotReceive().CurrentControl = ControlType.AI;
+        _player.DidNotReceive().CurrentControl = ControlMode.AI;
     }
 
     [UnityTest]
@@ -108,13 +108,13 @@ public class LoopTests
         yield return null;
 
         // Test three iterations
-        _player.Received(1).CurrentControl = ControlType.AI;
+        _player.Received(1).CurrentControl = ControlMode.AI;
         yield return null;
 
-        _player.Received(2).CurrentControl = ControlType.AI;
+        _player.Received(2).CurrentControl = ControlMode.AI;
         yield return null;
 
-        _player.Received(3).CurrentControl = ControlType.AI;
+        _player.Received(3).CurrentControl = ControlMode.AI;
         _expression.EvaluateExpression().Returns(false);
     }
 
@@ -126,15 +126,15 @@ public class LoopTests
         _testHelper.RunCoroutine(_whileLoop.Run());
         yield return null;
 
-        _player.Received(1).CurrentControl = ControlType.AI;
+        _player.Received(1).CurrentControl = ControlMode.AI;
         _expression.EvaluateExpression().Returns(false);
         yield return null;
 
-        _player.Received(2).CurrentControl = ControlType.AI;
+        _player.Received(2).CurrentControl = ControlMode.AI;
         yield return null;
 
         // While loop should have stopped
-        _player.Received(2).CurrentControl = ControlType.AI;
+        _player.Received(2).CurrentControl = ControlMode.AI;
     }
 
     [UnityTest]
@@ -147,7 +147,7 @@ public class LoopTests
         _testHelper.RunCoroutine(_forLoop.Run());
         yield return null;
 
-        _player.DidNotReceive().CurrentControl = ControlType.AI;
+        _player.DidNotReceive().CurrentControl = ControlMode.AI;
     }
 
     [UnityTest]
@@ -161,10 +161,10 @@ public class LoopTests
         yield return null;
 
         // Test two iterations
-        _player.Received(1).CurrentControl = ControlType.AI;
+        _player.Received(1).CurrentControl = ControlMode.AI;
         yield return null;
 
-        _player.Received(2).CurrentControl = ControlType.AI;
+        _player.Received(2).CurrentControl = ControlMode.AI;
     }
 
     [UnityTest]
@@ -178,14 +178,14 @@ public class LoopTests
         yield return null;
 
         // Test two iterations
-        _player.Received(1).CurrentControl = ControlType.AI;
+        _player.Received(1).CurrentControl = ControlMode.AI;
         yield return null;
 
-        _player.Received(2).CurrentControl = ControlType.AI;
+        _player.Received(2).CurrentControl = ControlMode.AI;
         yield return null;
 
         // For loop should have ended
-        _player.Received(2).CurrentControl = ControlType.AI;
+        _player.Received(2).CurrentControl = ControlMode.AI;
     }
 
     [Test]

@@ -30,7 +30,7 @@ public class PitStop : MonoBehaviour
         if (collidedObject.CompareTag("Player") || collidedObject.CompareTag("AI"))
         {
             IPlayerManager player = collidedObject.GetComponent<IPlayerManager>();
-            if (player.CurrentControl != ControlType.AI) return;
+            if (player.CurrentControl != ControlMode.AI) return;
 
             IsFree = false;
             _car = (Car)player.PlayerCar;
