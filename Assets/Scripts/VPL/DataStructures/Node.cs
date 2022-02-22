@@ -25,6 +25,7 @@ public class Node<T> : IDataStructure<T>
         Data = head.Data;
     }
 
+    // Insert a new linked node with a given value before a given node, returning the new node
     public Node<T> Insert(Node<T> node, T value)
     {
         Node<T> head = new Node<T>();

@@ -22,8 +22,8 @@ public class LiteralExpressionTests
         _nodeLiteral = _testObject.AddComponent<NodeLiteral>();
         _literalDropdown = new GameObject().AddComponent<TMP_Dropdown>();
 
-        _floatLiteral.Construct(_literalDropdown);
-        _nodeLiteral.Construct(_literalDropdown);
+        _floatLiteral.Construct(dropdownInput: _literalDropdown);
+        _nodeLiteral.Construct(dropdownInput: _literalDropdown);
         Statement.SetUpEnvironment();
     }
 

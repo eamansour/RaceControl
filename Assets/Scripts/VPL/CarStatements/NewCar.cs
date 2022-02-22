@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class NewCar : CarStatement
 {
+    private const int MaxNewCarAmount = 10;
     private static IPlayerManager s_originalPlayer;
     private static Transform s_spawnPoint;
+    private static List<GameObject> s_carObjects = new List<GameObject>();
 
     [SerializeField]
     private GameObject _carPrefab;
-    private List<GameObject> _carObjects = new List<GameObject>();
 
     public void Construct(GameObject carPrefab)
     {
@@ -29,25 +30,28 @@ public class NewCar : CarStatement
         base.Update();
 
         // Reset the current player to the level's original player and delete any new players
-        if (!GameManager.LevelStarted && _carObjects.Count > 0)
+        if (!GameManager.LevelStarted && s_carObjects.Count > 0)
         {
-            foreach (GameObject car in _carObjects)
+            foreach (GameObject car in s_carObjects)
             {
                 Destroy(car);
             }
 
             SetPlayer(s_originalPlayer);
-            _carObjects.Clear();
+            s_carObjects.Clear();
         }
     }
 
     public override IEnumerator Run()
     {
-        _carObjects.Add(GameObject.Instantiate(_carPrefab, s_spawnPoint.position, s_spawnPoint.rotation));
+        // Prevent an infinite amount of cars from spawning
+        if (s_carObjects.Count >= MaxNewCarAmount) yield break;
+
+        s_carObjects.Add(GameObject.Instantiate(_carPrefab, s_spawnPoint.position, s_spawnPoint.rotation));
         yield return new WaitForSeconds(0.03f);
 
         // Set the current player to the newly created player (including race progress)
-        IPlayerManager newPlayer = _carObjects[_carObjects.Count - 1].GetComponent<IPlayerManager>();
+        IPlayerManager newPlayer = s_carObjects[s_carObjects.Count - 1].GetComponent<IPlayerManager>();
         ICar newCar = newPlayer.PlayerCar;
         newPlayer.SetRaceProgress(Player.CurrentLap, Player.CurrentControl, Player.TargetCheckpoint);
 

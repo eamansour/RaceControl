@@ -16,7 +16,7 @@ public class MenuManagerTests
         SceneManager.LoadScene(0);
     }
 
-    [UnityTest]
+    [UnityTest, Timeout(5000)]
     public IEnumerator NextScene_ShouldIncrementSceneIndex()
     {
         _menuManager.NextScene();
@@ -26,7 +26,7 @@ public class MenuManagerTests
         Assert.AreEqual(1, newScene.buildIndex);
     }
 
-    [UnityTest]
+    [UnityTest, Timeout(5000)]
     public IEnumerator LoadLevel_ShouldLoadSpecifiedScene()
     {
         _menuManager.LoadLevel("Level-1");

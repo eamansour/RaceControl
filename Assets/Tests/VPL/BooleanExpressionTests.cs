@@ -29,7 +29,7 @@ public class BooleanExpressionTests
         List<string> options = new List<string> { "==", "!=", "<", ">", "<=", ">=" };
         _operatorDropdown.AddOptions(options);
 
-        _booleanExpression.Construct(_leftOperand, _operatorDropdown, _rightOperand);
+        _booleanExpression.Construct(_leftOperand, _rightOperand, _operatorDropdown);
     }
 
     [TearDown]

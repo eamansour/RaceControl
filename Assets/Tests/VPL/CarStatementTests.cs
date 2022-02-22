@@ -40,11 +40,12 @@ public class CarStatementTests
             Object.Destroy(go);
         }
         GameManager.Players.Clear();
+        Statement.Environment.Clear();
     }
 
     private void AddTestDropdownOptions(TMP_Dropdown testDropdown)
     {
-        List<string> options = new List<string> { "5", "1", "0" };
+        List<string> options = new List<string> { "5", "1", "i" };
         testDropdown.AddOptions(options);
     }
 
@@ -130,7 +131,7 @@ public class CarStatementTests
     }
 
     [UnityTest]
-    public IEnumerator Retire_ShouldCallPlayerRetire()
+    public IEnumerator Retire_ShouldCallPlayerRetireWhenInPit()
     {
         Retire retire = _testObject.AddComponent<Retire>();
         _car.InPit.Returns(true);
@@ -140,6 +141,19 @@ public class CarStatementTests
         yield return null;
 
         _player.Received().RetirePlayer();
+    }
+
+    [UnityTest]
+    public IEnumerator Retire_ShouldNotCallPlayerRetireWhenNotInPit()
+    {
+        Retire retire = _testObject.AddComponent<Retire>();
+        _car.InPit.Returns(false);
+        retire.Construct(_car, _player, _testDropdown);
+
+        _testHelper.RunCoroutine(retire.Run());
+        yield return null;
+
+        _player.DidNotReceive().RetirePlayer();
     }
 
     [UnityTest]
@@ -202,5 +216,53 @@ public class CarStatementTests
         
         // Should have executed the dummy "autopilot" statement
         newPlayer.Received(1).CurrentControl = ControlMode.AI;
+    }
+
+    [UnityTest]
+    public IEnumerator CarList_ShouldSetPlayerWithValidIndexVariable()
+    {
+        CarListStatement carList = _testObject.AddComponent<CarListStatement>();
+        Autopilot dummyStatement = _testObject.AddComponent<Autopilot>();
+
+        IPlayerManager newPlayer = Substitute.For<IPlayerManager>();
+        GameManager.Players.AddRange(new List<IPlayerManager> { _player, newPlayer });
+        Statement.Environment.Add("i", 1);
+
+        // Select "i" option
+        _testDropdown.value = 2;
+
+        carList.Construct(_car, _player, _testDropdown);
+        carList.Construct(dummyStatement);
+
+        yield return null;
+        _testHelper.RunCoroutine(carList.Run());
+        yield return null;
+        
+        // Should have executed the dummy "autopilot" statement
+        newPlayer.Received(1).CurrentControl = ControlMode.AI;
+    }
+
+    [UnityTest]
+    public IEnumerator CarList_ShouldSetZeroPlayerWithInvalidIndexVariable()
+    {
+        CarListStatement carList = _testObject.AddComponent<CarListStatement>();
+        Autopilot dummyStatement = _testObject.AddComponent<Autopilot>();
+
+        IPlayerManager newPlayer = Substitute.For<IPlayerManager>();
+        GameManager.Players.AddRange(new List<IPlayerManager> { _player, newPlayer });
+        Statement.Environment.Add("i", 5);
+
+        // Select "i" option
+        _testDropdown.value = 2;
+
+        carList.Construct(_car, _player, _testDropdown);
+        carList.Construct(dummyStatement);
+
+        yield return null;
+        _testHelper.RunCoroutine(carList.Run());
+        yield return null;
+        
+        // Should have executed the dummy "autopilot" statement
+        _player.Received(1).CurrentControl = ControlMode.AI;
     }
 }

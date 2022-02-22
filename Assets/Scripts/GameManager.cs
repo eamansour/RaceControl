@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     private static ILevelMenu s_levelMenu;
     private static CameraFollow s_cameraFollow;
+    private static CameraController s_cameraController;
     private static IPlayerManager[] s_startPlayers;
     private static IObjective[] s_objectives;
     private static int s_remainingObjectives = 0;
@@ -49,6 +50,9 @@ public class GameManager : MonoBehaviour
 
         s_levelMenu = _levelMenu;
         s_cameraFollow = FindObjectOfType<CameraFollow>();
+        s_cameraController = s_cameraFollow 
+            ? s_cameraFollow.GetComponent<CameraController>()
+            : FindObjectOfType<CameraController>();
 
         s_objectives = GetComponents<IObjective>();
         s_remainingObjectives = s_objectives.Length;
@@ -128,6 +132,11 @@ public class GameManager : MonoBehaviour
     {
         LevelStarted = false;
         s_remainingObjectives = s_objectives.Length;
+        
+        if (s_cameraController)
+        {
+            s_cameraController.ResetCamera();
+        }
 
         foreach (IPlayerManager player in Players)
         {

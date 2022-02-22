@@ -29,7 +29,7 @@ public class ArithmeticExpressionTests
         List<string> options = new List<string> { "+", "-", "*", "/", "%" };
         _operatorDropdown.AddOptions(options);
 
-        _arithmeticExpression.Construct(_leftOperand, _operatorDropdown, _rightOperand);
+        _arithmeticExpression.Construct(_leftOperand, _rightOperand, _operatorDropdown);
     }
 
     [TearDown]

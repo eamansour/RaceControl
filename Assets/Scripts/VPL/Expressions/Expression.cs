@@ -6,6 +6,12 @@ using System;
 public abstract class Expression<T> : Statement, IExpression<T>
 {
     [field: SerializeField]
+    protected TMP_InputField LeftOperandInput { get; private set; }
+
+    [field: SerializeField]
+    protected TMP_InputField RightOperandInput { get; private set; }
+
+    [field: SerializeField]
     protected TMP_Dropdown DropdownInput { get; private set; }
 
     // Assigns a result of an expression to a given variable
@@ -17,8 +23,14 @@ public abstract class Expression<T> : Statement, IExpression<T>
     // Evaluates an expression
     public abstract T EvaluateExpression();
 
-    public void Construct(TMP_Dropdown dropdownInput)
+    public void Construct(
+        TMP_InputField leftOperandInput = null,
+        TMP_InputField rightOperandInput = null,
+        TMP_Dropdown dropdownInput = null
+    )
     {
+        LeftOperandInput = leftOperandInput;
+        RightOperandInput = rightOperandInput;
         DropdownInput = dropdownInput;
     }
 

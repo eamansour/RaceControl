@@ -30,7 +30,7 @@ public class LevelMenuSceneTests
         }
     }
 
-    [UnityTest]
+    [UnityTest, Timeout(5000)]
     public IEnumerator ExitToMenu_ShouldLoadMenuScene()
     {
         _levelMenu.ExitToMenu();
@@ -39,7 +39,7 @@ public class LevelMenuSceneTests
         Assert.AreEqual(0, SceneManager.GetActiveScene().buildIndex);
     }
 
-    [UnityTest]
+    [UnityTest, Timeout(5000)]
     public IEnumerator Restart_ShouldReloadCurrentScene()
     {
         // Force the test to restart the scene once

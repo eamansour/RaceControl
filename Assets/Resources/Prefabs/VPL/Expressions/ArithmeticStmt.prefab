@@ -2347,6 +2347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5952d4134060c84d961c815b6828fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <LeftOperandInput>k__BackingField: {fileID: 1565325174420596422}
+  <RightOperandInput>k__BackingField: {fileID: 1565325173782315201}
   <DropdownInput>k__BackingField: {fileID: 1833485351748246628}
-  _leftOperandInput: {fileID: 1565325174420596422}
-  _rightOperandInput: {fileID: 1565325173782315201}

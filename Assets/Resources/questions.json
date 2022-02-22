@@ -56,7 +56,7 @@
                 "for i in range(5):",
                 "for car in cars:",
                 "for x > y:",
-                "Both A and B"
+                "Both top-left and top-right"
             ],
             "correctIndex": 3
         },

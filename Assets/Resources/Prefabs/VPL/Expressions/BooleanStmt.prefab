@@ -2274,9 +2274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4edf72ff1d323844b2080cdd159584c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <LeftOperandInput>k__BackingField: {fileID: 4916168827546832672}
+  <RightOperandInput>k__BackingField: {fileID: 4916168826574498087}
   <DropdownInput>k__BackingField: {fileID: 5256055104729118082}
-  _leftOperandInput: {fileID: 4916168827546832672}
-  _rightOperandInput: {fileID: 4916168826574498087}
 --- !u!1 &5256055106336765500
 GameObject:
   m_ObjectHideFlags: 0

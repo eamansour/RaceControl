@@ -16,11 +16,19 @@ public abstract class AssignStatement<T> : Statement
     private ICar _car;
     private IObstacleSpawn _spawner;
 
-    public void Construct(ICar car, IExpression<T> expression, TMP_InputField variableInput, IObstacleSpawn spawner)
+    public void Construct(
+        ICar car,
+        IExpression<T> expression,
+        IObstacleSpawn spawner,
+        TMP_InputField variableInput = null,
+        TMP_Dropdown variableDropdown = null
+        
+    )
     {
         _car = car;
         _expression = expression;
         _variableInput = variableInput;
+        _variableDropdown = variableDropdown;
         _spawner = spawner;
     }
 

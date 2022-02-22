@@ -103,4 +103,15 @@ public class ConsoleTests
         // No longer paused
         _player.Received(1).CurrentControl = ControlMode.AI;
     }
+
+    [UnityTest]
+    public IEnumerator StopProgram_StopsLevel()
+    {
+        GameManager.StartLevel();
+
+        _console.StopProgram();
+        yield return null;
+
+        Assert.IsFalse(GameManager.LevelStarted);
+    }
 }

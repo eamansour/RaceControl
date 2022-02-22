@@ -1410,34 +1410,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 597281803809944891, guid: 460efcf1af089854e88a9505639b0620, type: 3}
-      propertyPath: _sounds.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 597281803809944891, guid: 460efcf1af089854e88a9505639b0620, type: 3}
-      propertyPath: _sounds.Array.data[12]._clip
-      value: 
-      objectReference: {fileID: 8300000, guid: f60645cc808495d47b3c783ef857d0b1, type: 3}
-    - target: {fileID: 597281803809944891, guid: 460efcf1af089854e88a9505639b0620, type: 3}
-      propertyPath: _sounds.Array.data[13]._clip
-      value: 
-      objectReference: {fileID: 8300000, guid: f60645cc808495d47b3c783ef857d0b1, type: 3}
-    - target: {fileID: 597281803809944891, guid: 460efcf1af089854e88a9505639b0620, type: 3}
-      propertyPath: _sounds.Array.data[12]._mixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
-    - target: {fileID: 597281803809944891, guid: 460efcf1af089854e88a9505639b0620, type: 3}
-      propertyPath: _sounds.Array.data[13]._mixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
-    - target: {fileID: 597281803809944891, guid: 460efcf1af089854e88a9505639b0620, type: 3}
-      propertyPath: _sounds.Array.data[12].<Name>k__BackingField
-      value: QuizSelect
-      objectReference: {fileID: 0}
-    - target: {fileID: 597281803809944891, guid: 460efcf1af089854e88a9505639b0620, type: 3}
-      propertyPath: _sounds.Array.data[13].<Name>k__BackingField
-      value: QuizSelect
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460efcf1af089854e88a9505639b0620, type: 3}
 --- !u!1 &679744855

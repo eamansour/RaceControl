@@ -8,7 +8,7 @@ public class NodeLiteral : LiteralExpression<Node<IPlayerManager>>
 
     public void Construct(TMP_Dropdown dropdown, bool getNextNode)
     {
-        base.Construct(dropdown);
+        base.Construct(dropdownInput: dropdown);
         _getNextNode = getNextNode;
     }
 

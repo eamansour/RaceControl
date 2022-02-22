@@ -92,3 +92,7 @@ MonoBehaviour:
     _clip: {fileID: 8300000, guid: 23391e03140dd1749a9982b21e54d3c8, type: 3}
     _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
     _loop: 0
+  - <Name>k__BackingField: QuizSelect
+    _clip: {fileID: 8300000, guid: f60645cc808495d47b3c783ef857d0b1, type: 3}
+    _mixerGroup: {fileID: 24300002, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+    _loop: 0

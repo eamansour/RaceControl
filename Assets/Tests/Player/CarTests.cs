@@ -94,12 +94,15 @@ public class CarTests
         _car.SetCarLock(false);
         _carRigidbody.velocity = Vector3.zero;
 
-        _testHelper.RunCoroutine(_car.Turn(1, 0.5f));
+        _testHelper.RunCoroutine(_car.Turn(1, 0.11f));
         yield return new WaitForSeconds(0.1f);
 
         Assert.AreEqual(1, _car.SteerDir);
         Assert.AreEqual(0, _car.Acceleration);
         Assert.AreEqual(0, _car.Braking);
+
+        yield return new WaitForSeconds(0.1f);
+        Assert.AreEqual(0, _car.SteerDir);
     }
 
     [UnityTest]
@@ -111,5 +114,18 @@ public class CarTests
         yield return null;
         
         Assert.AreEqual(22, speed);
+    }
+
+    [UnityTest]
+    public IEnumerator Accelerate_ShouldNotMoveWithNoFuel()
+    {
+        _car.Fuel = 0f;
+        _car.SetCarLock(false);
+        _carRigidbody.velocity = Vector3.zero;
+
+        _testHelper.RunCoroutine(_car.Accelerate(0.1f));
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.IsTrue(Mathf.RoundToInt(_carRigidbody.velocity.z) == 0);
     }
 }

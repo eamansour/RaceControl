@@ -16,6 +16,7 @@ public class GameManagerTests
     {
         _testObject = new GameObject();
         _gameManager = _testObject.AddComponent<GameManager>();
+        _testObject.AddComponent<CameraController>();
     }
 
     [TearDown]

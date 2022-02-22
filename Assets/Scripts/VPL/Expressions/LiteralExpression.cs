@@ -1,7 +1,7 @@
 public abstract class LiteralExpression<T> : Expression<T>
 {
 
-    // Evaluates a generic literal expression by searching the environment for
+    // Evaluates a generic literal by searching the environment for
     // a selected option's corresponding value, defaulting otherwise
     public override T EvaluateExpression()
     {

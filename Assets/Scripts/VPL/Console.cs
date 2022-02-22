@@ -7,9 +7,6 @@ public class Console : MonoBehaviour
 
     private const float FailDelay = 10f;
 
-    [SerializeField]
-    private CameraController _mainCamera;
-
     private bool _waitAndFail = true;
 
     private Statement _currentStatement;
@@ -65,9 +62,7 @@ public class Console : MonoBehaviour
             _currentStatement = child.GetComponent<Statement>();
             _currentStatement.StopAllCoroutines();
         }
-
         GameManager.ResetLevel();
-        _mainCamera.ResetCamera();
     }
 
     // Play an appropriate sound when clicking a start/stop program button

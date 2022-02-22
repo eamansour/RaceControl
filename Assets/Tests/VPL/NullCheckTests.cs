@@ -22,7 +22,7 @@ public class NullCheckTests
         _nullExpression = _testObject.AddComponent<NullCheckExpression>();
         _operandDropdown = _testObject.AddComponent<TMP_Dropdown>();
 
-        _nullExpression.Construct(_operandDropdown);
+        _nullExpression.Construct(dropdownInput: _operandDropdown);
 
         Statement.SetUpEnvironment();
     }
