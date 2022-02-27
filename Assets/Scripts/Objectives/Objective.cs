@@ -27,19 +27,21 @@ public abstract class Objective : MonoBehaviour, IObjective
         GameManager.OnPlayerUpdated += Construct;
     }
 
-    // Runs when the objective is destroyed, unsubscribe from events
     private void OnDestroy()
     {
         GameManager.OnPlayerUpdated -= Construct;
     }
 
+    /// <inheritdoc />
     public abstract void UpdateCompletion();
 
+    /// <inheritdoc />
     public void UpdateUI(bool complete)
     {
         ObjectiveText.color = complete ? Color.green : Color.red;
     }
 
+    /// <inheritdoc />
     public void Reset()
     {
         ObjectiveText.color = Color.white;

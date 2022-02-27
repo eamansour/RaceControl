@@ -20,13 +20,17 @@ public class TextManager : MonoBehaviour
         _runningCoroutine = StartCoroutine(WriteText());        
     }
 
-    // Directly sets the message text, displaying a message immediately
+    /// <summary>
+    /// Directly sets the message text, displaying a message immediately.
+    /// </summary>
     public void SetMessage(string message)
     {
         _messageText.text = message.Replace("\\n", "\n");
     }
 
-    // Finishes the current message or begins writing the next message onto the UI
+    /// <summary>
+    /// Finishes the current message or begins writing the next message onto the UI.
+    /// </summary>
     public void DisplayMessage()
     {
         // Skip the animation of the current message
@@ -50,7 +54,9 @@ public class TextManager : MonoBehaviour
         }
     }
 
-    // Applies a letter-by-letter animation to displaying text
+    /// <summary>
+    /// Applies a letter-by-letter animation to displaying text.
+    /// </summary>
     private IEnumerator WriteText()
     {
         if (messages.Length == 0) yield break;

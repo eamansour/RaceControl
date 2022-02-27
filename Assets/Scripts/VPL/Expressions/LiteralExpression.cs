@@ -1,8 +1,10 @@
 public abstract class LiteralExpression<T> : Expression<T>
 {
-
-    // Evaluates a generic literal by searching the environment for
-    // a selected option's corresponding value, defaulting otherwise
+    /// <summary>
+    /// Evaluates a literal by searching the environment for
+    /// a selected option's corresponding value, or using the 
+    /// type's default value otherwise.
+    /// </summary>
     public override T EvaluateExpression()
     {
         string literal = GetSelectedDropdownText(DropdownInput);

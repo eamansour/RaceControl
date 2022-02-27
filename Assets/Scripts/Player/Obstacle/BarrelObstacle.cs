@@ -15,7 +15,9 @@ public class BarrelObstacle : MonoBehaviour
         }
     }
 
-    // Apply a slowing effect when the barrel is collided with
+    /// <summary>
+    /// Apply a slowing effect when the barrel is collided with.
+    /// </summary>
     private void OnCollisionEnter(Collision collision)
     {
         // Only AI players can be affected by barrels

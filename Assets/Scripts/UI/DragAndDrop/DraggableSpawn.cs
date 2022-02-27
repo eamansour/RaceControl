@@ -14,7 +14,10 @@ public class DraggableSpawn : MonoBehaviour, IDragHandler, IBeginDragHandler
         _canvas = GetComponentInParent<Canvas>();
     }
 
-    // Dragging a "spawner" object will spawn a draggable object and use the object's drag-and-drop behaviour 
+    /// <summary>
+    /// Spawns a draggable object and switch to the draggable object's drag-and-drop behaviour
+    /// when the user drags their cursor from the spawner.
+    /// </summary>
     public void OnBeginDrag(PointerEventData eventData)
     {
         Draggable spawned = Instantiate(_objectToSpawn, _canvas.transform).GetComponent<Draggable>();

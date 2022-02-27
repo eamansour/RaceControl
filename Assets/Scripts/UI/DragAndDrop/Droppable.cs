@@ -23,7 +23,9 @@ public class Droppable : MonoBehaviour, IDropHandler
         OnLayoutUpdated -= RefreshLayout;
     }
 
-    // Event method that fires when something is dropped onto the current object
+    /// <summary>
+    /// Sets a dropped object to be a child of a target transform, and sorts it into an appropriate child index.
+    /// </summary>
     public void OnDrop(PointerEventData eventData)
     {
         // Ensure the dropped object exists and is draggable
@@ -58,7 +60,9 @@ public class Droppable : MonoBehaviour, IDropHandler
         }
     }
 
-    // Rebuilds the target's layout group
+    /// <summary>
+    /// Rebuilds the target's layout group.
+    /// </summary>
     private void RefreshLayout()
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(_targetRect);

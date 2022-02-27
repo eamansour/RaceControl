@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
 {
-    public static string UnlockedSceneKey = "UnlockedScene";
+    public static string UnlockedSceneKey = "unlockedScene";
 
     [SerializeField]
     private Button[] _levelButtons;

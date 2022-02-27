@@ -37,13 +37,17 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    // Start background music
+    /// <summary>
+    /// Starts the game's background music.
+    /// </summary>
     private void Start()
     {
         PlaySound("Music");
     }
 
-    // Play a sound, given by its name
+    /// <summary>
+    /// Plays a sound, given by its name.
+    /// </summary>
     public static void PlaySound(string name)
     {
         for (int i = 0; i < s_sounds.Count; i++)
@@ -56,7 +60,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    // Stop a sound, given by its name
+    /// <summary>
+    /// Stop a sound, given by its name.
+    /// </summary>
     public static void StopSound(string name)
     {
         for (int i = 0; i < s_sounds.Count; i++)
@@ -69,7 +75,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    // Retrieve a given sound's audio source
+    /// <summary>
+    /// Gets a given sound's audio source if the sound exists, null otherwise.
+    /// </summary>
     public static AudioSource GetSource(string name)
     {
         for (int i = 0; i < s_sounds.Count; i++)

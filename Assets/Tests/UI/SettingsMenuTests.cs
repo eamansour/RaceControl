@@ -29,8 +29,11 @@ public class SettingsMenuTests
     [TearDown]
     public void TearDown()
     {
-        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Untagged"))
+        foreach (GameObject go in GameObject.FindObjectsOfType<GameObject>())
+        {
+            go.SetActive(true);
             Object.Destroy(go);
+        }
     }
 
     [Test]
@@ -61,6 +64,22 @@ public class SettingsMenuTests
     {
         _settingsMenu.SetFullScreen(false);
         Assert.IsFalse(_fullscreenToggle.isOn);
+    }
+
+    [Test]
+    public void ClearData_EmptiesPlayerPreferences()
+    {
+        PlayerPrefs.SetFloat("volume", 1f);
+        PlayerPrefs.SetInt("resolution", 1);
+        PlayerPrefs.SetInt("fullscreen", 1);
+        PlayerPrefs.SetInt("unlockedScene", 1);
+
+        _settingsMenu.ClearData();
+        
+        Assert.IsFalse(PlayerPrefs.HasKey("volume"));
+        Assert.IsFalse(PlayerPrefs.HasKey("resolution"));
+        Assert.IsFalse(PlayerPrefs.HasKey("fullscreen"));
+        Assert.IsFalse(PlayerPrefs.HasKey("unlockedScene"));
     }
 
     [UnityTest]

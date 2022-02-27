@@ -33,7 +33,7 @@ public class LevelFeedback : MonoBehaviour, ILevelFeedback
         _statisticsText = transform.Find("StatisticsPanel").GetComponentInChildren<TMP_Text>();
     }
 
-    // Set the appropriate background and feedback text depending on the level's outcome
+    /// <inheritdoc />
     public void DisplayFeedback(bool win)
     {
         gameObject.SetActive(true);
@@ -42,7 +42,9 @@ public class LevelFeedback : MonoBehaviour, ILevelFeedback
         DisplayProgramStatistics();
     }
 
-    // Analyses and displays the inputted program's statistics
+    /// <summary>
+    /// Analyses and displays the inputted program's statistics (number of statements and code complexity).
+    /// </summary>
     private void DisplayProgramStatistics()
     {
         if (!_statisticsText || !_consoleContent) return;

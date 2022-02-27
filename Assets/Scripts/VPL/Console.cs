@@ -11,7 +11,9 @@ public class Console : MonoBehaviour
 
     private Statement _currentStatement;
 
-    // Runs the player's inputted program
+    /// <summary>
+    /// Runs the player's inputted program.
+    /// </summary>
     private IEnumerator RunProgram()
     {
         foreach (Transform child in transform)
@@ -39,7 +41,9 @@ public class Console : MonoBehaviour
         }
     }
 
-    // Wrapper method to run inputted programs via a UI button
+    /// <summary>
+    /// Wrapper method to run inputted programs via a UI button.
+    /// </summary>
     public void StartProgram(bool failAfterDelay)
     {
         _waitAndFail = failAfterDelay;
@@ -48,7 +52,9 @@ public class Console : MonoBehaviour
         StartCoroutine(RunProgram());
     }
 
-    // Stops the inputted program, returning the player and camera to their original positions
+    /// <summary>
+    /// Stops the inputted program, returning the player and camera to their original positions.
+    /// </summary>
     public void StopProgram()
     {
         if (_currentStatement)
@@ -65,7 +71,9 @@ public class Console : MonoBehaviour
         GameManager.ResetLevel();
     }
 
-    // Play an appropriate sound when clicking a start/stop program button
+    /// <summary>
+    /// Play an appropriate sound when clicking a start/stop program button.
+    /// </summary>
     public void OnClick(bool start)
     {
         if (start)

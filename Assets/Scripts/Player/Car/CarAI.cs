@@ -3,8 +3,9 @@ using UnityEngine;
 public class CarAI : MonoBehaviour, ICarAI
 {
     private const float MaxSteerAngle = 45f;
-    private const float DistanceThreshold = 10f;
+    private const float DistanceThreshold = 5f;
     private const float FuelThreshold = 40f;
+    private const float ReverseAcceleration = -0.75f;
 
     [SerializeField]
     private bool _randomiseSkill = false;
@@ -77,22 +78,34 @@ public class CarAI : MonoBehaviour, ICarAI
         }
     }
 
-    // Calculates and returns the appropriate steering direction based on target information
+    /// <summary>
+    /// Calculates and returns the appropriate steering direction based on target information.
+    /// </summary>
     private float GetSteerDirection()
     {
         Vector3 directionToTarget = GetAvoidanceDirection((_targetPosition - transform.position).normalized);
         float targetAngle = Vector3.SignedAngle(-transform.forward, directionToTarget, Vector3.up);
+        float steering = Mathf.Clamp(targetAngle / MaxSteerAngle, -1f, 1f);
 
-        return Mathf.Clamp(targetAngle / MaxSteerAngle, -1f, 1f);
+        // Invert steering when reversing
+        float dotProduct = Vector3.Dot(-transform.forward, directionToTarget);
+        if (dotProduct < 0f)
+        {
+            steering = -steering;
+        }
+
+        return steering;
     }
 
-    // Calculates and returns the appropriate acceleration based on target position
-    // and current speed information
+    /// <summary>
+    /// Calculates and returns the appropriate acceleration based on target position
+    /// and current speed information.
+    /// </summary>
     private float GetAcceleration(float steerAmount)
     {
         Vector3 directionToTarget = (_targetPosition - transform.position).normalized;
         float targetDistance = Vector3.Distance(transform.position, _targetPosition);
-        float scalar = Vector3.Dot(-transform.forward, directionToTarget);
+        float dotProduct = Vector3.Dot(-transform.forward, directionToTarget);
 
         float acceleration = 0f;
 
@@ -102,34 +115,25 @@ public class CarAI : MonoBehaviour, ICarAI
             return -1f;
         }
 
-        if (scalar > 0f)
+        // Accelerate or reverse depending on whether the target is in front or behind the car
+        if (dotProduct > 0f)
         {
-            // When the target is in front of the car, accelerate
             acceleration = Mathf.Clamp(1f - Mathf.Abs(steerAmount), 0.1f, 1f);
         }
         else
         {
-            // Prevent the AI from reversing endlessly
-            if (targetDistance > DistanceThreshold)
-            {
-                acceleration = 1f;
-            }
-            else
-            {
-                // When the target is behind the car, reverse
-                acceleration = Mathf.Clamp(-1f + Mathf.Abs(steerAmount), -1f, -0.1f);
-            }
+            acceleration = ReverseAcceleration;
         }
         return acceleration;
     }
 
-    // Sets the AI's next target position to a given checkpoint's position
+    /// <inheritdoc />
     public void SetTarget(Checkpoint newTarget)
     {
         _targetPosition = newTarget.GetPosition();
     }
 
-    // Updates the AI's target to an available pit stop
+    /// <inheritdoc />
     public void GoToPit()
     {
         foreach (PitStop pit in _pitStops)
@@ -143,7 +147,9 @@ public class CarAI : MonoBehaviour, ICarAI
         }
     }
 
-    // Updates the AI's next target when a checkpoint is triggered
+    /// <summary>
+    /// Determine the AI's next target and maximum speed when a checkpoint is triggered.
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer != _checkpointsLayer) return;
@@ -161,7 +167,10 @@ public class CarAI : MonoBehaviour, ICarAI
         }
     }
 
-    // Returns an opponent's Transform if they are directly ahead of this car, or null otherwise 
+    /// <summary>
+    /// Detects if an opponent's car is ahead of the AI and returns the detected Transform,
+    /// or null otherwise.
+    /// </summary>
     private Transform DetectCarAhead()
     {
         // Prevent the AI from detecting itself
@@ -186,23 +195,25 @@ public class CarAI : MonoBehaviour, ICarAI
         return null;
     }
 
-    // Returns an adjusted direction vector to avoid an opponent ahead,
-    // or the same direction if there is nobody ahead of this car
+    /// <summary>
+    /// Returns an adjusted direction vector to avoid an opponent ahead,
+    /// or the same direction if there is nobody ahead of this car.
+    /// </summary>
     private Vector3 GetAvoidanceDirection(Vector3 direction)
     {
-        Transform carAhead = DetectCarAhead();
-        if (!carAhead) return direction;
+        Transform detectedCar = DetectCarAhead();
+        if (!detectedCar) return direction;
 
         // Make the AI desire to either avoid opponents or continue travelling to the target position
         float targetDistance = Vector3.Distance(transform.position, _targetPosition);
-        float desireToStay = Mathf.Clamp((DistanceThreshold / 2f) / targetDistance, 0.25f, 1f);
+        float desireToStay = Mathf.Clamp(DistanceThreshold / targetDistance, 0.25f, 1f);
         float desireToAvoid = 1f - desireToStay;
 
-        Vector3 avoidVector = Vector3.Reflect((carAhead.position - transform.position).normalized, -carAhead.right);
+        Vector3 avoidVector = Vector3.Reflect((detectedCar.position - transform.position).normalized, -detectedCar.right);
         Vector3 newDirection = ((avoidVector.normalized * desireToAvoid) + (direction * desireToStay)).normalized;
 
-        Debug.DrawRay(transform.position, avoidVector * 5, Color.green);
-        Debug.DrawRay(transform.position, newDirection * 5, Color.yellow);
+        Debug.DrawRay(transform.position, avoidVector * 5, Color.cyan);
+        Debug.DrawRay(transform.position, newDirection * 5, Color.green);
 
         return newDirection;
     }

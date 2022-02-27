@@ -2,9 +2,11 @@ using System.Collections.Generic;
 
 public static class Extensions
 {
-    // Allow retrieval of various value types from a dictionary
-    public static T Get<T>(this Dictionary<string, object> dictionary, string value)
+    /// <summary>
+    /// Helper method to get the value of a given key and cast it to a given type.
+    /// </summary>
+    public static T Get<T>(this Dictionary<string, object> dictionary, string key)
     {
-        return (T)dictionary[value];
+        return (T)dictionary[key];
     }
 }

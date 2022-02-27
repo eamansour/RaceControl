@@ -65,7 +65,9 @@ public class ForLoop : CompoundStatement
         }
     }
 
-    // Returns the integer representation of a selected text
+    /// <summary>
+    /// Returns the integer representation of a selected range's text.
+    /// <summary>
     private int ParseSelectedRange(string selectedText)
     {
         int playerCount = GameManager.Players.Count;

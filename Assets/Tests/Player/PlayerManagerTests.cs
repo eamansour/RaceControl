@@ -75,10 +75,15 @@ public class PlayerManagerTests
     }
 
     [Test]
-    public void SetRaceProgress_UpdatesPlayerRaceInformation()
+    public void CopyRaceProgress_UpdatesPlayerRaceInformation()
     {
         Checkpoint newCheckpoint = new GameObject().AddComponent<Checkpoint>();
-        _playerManager.SetRaceProgress(5, ControlMode.AI, newCheckpoint);
+        IPlayerManager otherPlayer = Substitute.For<IPlayerManager>();
+        otherPlayer.CurrentLap.Returns(5);
+        otherPlayer.CurrentControl.Returns(ControlMode.AI);
+        otherPlayer.TargetCheckpoint.Returns(newCheckpoint);
+
+        _playerManager.CopyRaceProgress(otherPlayer);
 
         Assert.AreEqual(5, _playerManager.CurrentLap);
         Assert.AreEqual(ControlMode.AI, _playerManager.CurrentControl);
@@ -109,8 +114,13 @@ public class PlayerManagerTests
     public void ResetPlayer_ResetsFuelAndRaceProgress()
     {
         Checkpoint newCheckpoint = new GameObject().AddComponent<Checkpoint>();
+        IPlayerManager otherPlayer = Substitute.For<IPlayerManager>();
+        otherPlayer.CurrentLap.Returns(10);
+        otherPlayer.CurrentControl.Returns(ControlMode.AI);
+        otherPlayer.TargetCheckpoint.Returns(newCheckpoint);
+
         _car.Fuel = 50f;
-        _playerManager.SetRaceProgress(10, ControlMode.AI, newCheckpoint);
+        _playerManager.CopyRaceProgress(otherPlayer);
 
         _playerManager.ResetPlayer();
 

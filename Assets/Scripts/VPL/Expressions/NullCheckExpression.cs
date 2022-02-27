@@ -37,8 +37,10 @@ public class NullCheckExpression : Expression<bool>
         return result;
     }
 
-    // Determine whether a red/yellow flag is on the track, given as true/false for
-    // a yellow or a red flag, respectively
+    /// <summary>
+    /// Determine whether a red/yellow flag is on the track, given as true/false for
+    /// a yellow or a red flag, respectively.
+    /// </summary>
     private bool EvaluateFlag(string opText, bool yellowFlag)
     {
         List<IRaceFlag> flags = yellowFlag 

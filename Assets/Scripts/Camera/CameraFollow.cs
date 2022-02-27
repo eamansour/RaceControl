@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    // Properties for the camera to follow a target
     [field: SerializeField]
     public GameObject Target { get; set; }
 
@@ -30,7 +29,9 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    // Continuously move the camera over time based on the target's position
+    /// <summary>
+    /// Continuously move the camera over time based on the target's position.
+    /// </summary>
     private void FixedUpdate()
     {
         if (_followBehind)
@@ -48,7 +49,9 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    // Toggles the camera follow mode to follow behind a target
+    /// <summary>
+    /// Toggles the camera follow mode to follow behind a target.
+    /// </summary>
     public void ToggleFollowBehind()
     {
         _followBehind = !_followBehind;

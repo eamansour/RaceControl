@@ -8113,6 +8113,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6323098885287100767, guid: d0e550d4baed33945b9dd6c15e8aa74d, type: 3}
+      propertyPath: _winMessage
+      value: 'Great work! Finding the accelerator wasn''t too much of a challenge,
+        was it?
+
+
+        The statements you just used are our pre-defined procedures.
+        Procedures are used to execute a set of statements in order.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323098885287100767, guid: d0e550d4baed33945b9dd6c15e8aa74d, type: 3}
       propertyPath: _consoleContent
       value: 
       objectReference: {fileID: 1516452316}

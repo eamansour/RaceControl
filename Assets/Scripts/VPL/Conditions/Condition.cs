@@ -1,6 +1,4 @@
 using System.Collections;
-using System;
-using UnityEngine;
 
 public abstract class Condition : CompoundStatement
 {
@@ -23,7 +21,9 @@ public abstract class Condition : CompoundStatement
 
     public abstract override IEnumerator Run();
 
-    // Evaluates a conditional statement
+    /// <summary>
+    /// Evaluates a conditional statement block.
+    /// </summary>
     protected IEnumerator EvaluateCondition()
     {
         bool expressionResult = _expression.EvaluateExpression();

@@ -1,10 +1,12 @@
 using System.Collections;
-using UnityEngine;
 
 public abstract class CompoundStatement : Statement
 {
     public abstract override IEnumerator Run();
 
+    /// <summary>
+    /// Runs a compound statement's contained block of statements.
+    /// </summary>
     protected IEnumerator RunBlock()
     {
         // The first child of compound statements is a label, skip this

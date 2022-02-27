@@ -12,7 +12,7 @@ public class ObstacleSpawn : MonoBehaviour, IObstacleSpawn
         _obstacle = obstacle;
     }
 
-    // Spawns an obstacle from the current transform
+    /// <inheritdoc />
     public void SpawnObstacle()
     {
         Rigidbody clone = Instantiate(_obstacle, transform.position, _obstacle.transform.rotation);

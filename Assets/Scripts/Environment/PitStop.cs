@@ -21,6 +21,9 @@ public class PitStop : MonoBehaviour
         _pitExit = pitExit;
     }
 
+    /// <summary>
+    /// Updates the car to be serviced and performs repairs when the pit stop is triggered.
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (_isColliding) return;
@@ -42,6 +45,9 @@ public class PitStop : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Performs repairs on a car over time.
+    /// </summary>
     private IEnumerator ServiceCar()
     {
         _car.transform.position = transform.position;

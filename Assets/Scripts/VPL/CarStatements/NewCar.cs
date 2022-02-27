@@ -53,7 +53,7 @@ public class NewCar : CarStatement
         // Set the current player to the newly created player (including race progress)
         IPlayerManager newPlayer = s_carObjects[s_carObjects.Count - 1].GetComponent<IPlayerManager>();
         ICar newCar = newPlayer.PlayerCar;
-        newPlayer.SetRaceProgress(Player.CurrentLap, Player.CurrentControl, Player.TargetCheckpoint);
+        newPlayer.CopyRaceProgress(Player);
 
         // Update the current player
         SetPlayer(newPlayer);

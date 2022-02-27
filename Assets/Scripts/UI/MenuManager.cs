@@ -3,26 +3,34 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    // Returns the current scene's build index
+    /// <summary>
+    /// Gets the current scene's build index.
+    /// </summary>
     public static int GetActiveSceneIndex()
     {
         return SceneManager.GetActiveScene().buildIndex;
     }
 
-    // Loads the next scene
+    /// <summary>
+    /// Loads the next scene in the build.
+    /// </summary>
     public void NextScene()
     {
         int nextSceneIndex = GetActiveSceneIndex() + 1;
         SceneManager.LoadScene(nextSceneIndex);
     }
 
-    // Loads a given level
+    /// <summary>
+    /// Loads a level, given by name.
+    /// </summary>
     public void LoadLevel(string level)
     {
         SceneManager.LoadScene(level);
     }
 
-    // Terminates the game
+    /// <summary>
+    /// Terminates the game.
+    /// </summary>
     public void QuitGame()
     {
         Application.Quit();

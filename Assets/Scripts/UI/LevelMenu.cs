@@ -8,7 +8,6 @@ public class LevelMenu : MonoBehaviour, ILevelMenu
 
     public static bool IsPaused = false;
 
-    // Fields for pause menu, level success, and level failure UIs
     [SerializeField]
     private GameObject _pauseMenuUI;
 
@@ -36,7 +35,7 @@ public class LevelMenu : MonoBehaviour, ILevelMenu
         }
     }
 
-    // Runs every frame, checking if the player tries to pause the game
+    /// <inheritdoc />
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -52,7 +51,7 @@ public class LevelMenu : MonoBehaviour, ILevelMenu
         }
     }
 
-    // Pauses the current level
+    /// <inheritdoc />
     public void PauseGame()
     {
         IsPaused = true;
@@ -66,7 +65,7 @@ public class LevelMenu : MonoBehaviour, ILevelMenu
         }
     }
 
-    // Resumes the current level
+    /// <inheritdoc />
     public void ResumeGame()
     {
         IsPaused = false;
@@ -79,7 +78,7 @@ public class LevelMenu : MonoBehaviour, ILevelMenu
         }
     }
 
-    // Restarts the current level
+    /// <inheritdoc />
     public void RestartLevel()
     {
         IsPaused = false;
@@ -88,7 +87,7 @@ public class LevelMenu : MonoBehaviour, ILevelMenu
         SceneManager.LoadScene(currentScene.buildIndex);
     }
 
-    // Returns the user to the main menu
+    /// <inheritdoc />
     public void ExitToMenu()
     {
         IsPaused = false;
@@ -96,14 +95,14 @@ public class LevelMenu : MonoBehaviour, ILevelMenu
         SceneManager.LoadScene(0);
     }
 
-    // Displays the "Level Success" UI
+    /// <inheritdoc />
     public void DisplayLevelSuccess()
     {
         _levelSuccessUI.SetActive(true);
         _levelFeedback.DisplayFeedback(true);
     }
 
-    // Displays the "Level Fail" UI
+    /// <inheritdoc />
     public void DisplayLevelFail()
     {
         _levelFailUI.SetActive(true);

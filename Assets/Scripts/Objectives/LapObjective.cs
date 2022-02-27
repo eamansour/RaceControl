@@ -31,7 +31,6 @@ public class LapObjective : Objective
         _initialPlayer = player;
     }
 
-    // Determines if the player has met the required lap counter
     public override void UpdateCompletion()
     {
         int currentLap = Player.CurrentLap;

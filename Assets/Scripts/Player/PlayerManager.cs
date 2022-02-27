@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
     public ControlMode CurrentControl { get; set; }
     public ICar PlayerCar { get; private set; }
     public bool IsRetiring { get; set; } = false;
+    public float CurrentLapTime { get; private set; } = 0f;
+    public float BestLapTime { get; private set; } = Mathf.Infinity;
 
     [SerializeField]
     private ControlMode _levelControl = ControlMode.Program;
@@ -70,9 +72,12 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
             PlayerCar.Acceleration = _inputController.VerticalInput;
             PlayerCar.SteerDir = _inputController.HorizontalInput;
         }
+        CurrentLapTime += (GameManager.LevelStarted && !GameManager.LevelEnded) ? Time.deltaTime : 0f;
     }
 
-    // Updates the player's race progress when a checkpoint is triggered
+    /// <summary>
+    /// Updates the player's race progress and control behaviour when a checkpoint is triggered
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer != _checkpointsLayer) return;
@@ -107,20 +112,20 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
         {
             if (TargetCheckpoint.IsStartFinish)
             {
-                CurrentLap++;
+                NextLap();
             }
             LastCheckpoint = TargetCheckpoint;
             TargetCheckpoint = TargetCheckpoint.Next;
         }
     }
 
-    // Returns the distance to the player's target checkpoint
+    /// <inheritdoc />
     public float DistanceToTarget()
     {
         return Vector3.Distance(transform.position, TargetCheckpoint.GetPosition());
     }
 
-    // Resets the player and the level progress to their initial states
+    /// <inheritdoc />
     public void ResetPlayer()
     {
         PlayerCar.SetCarLock(true);
@@ -132,6 +137,9 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
         transform.rotation = _initialRotation;
 
         CurrentLap = 0;
+        CurrentLapTime = 0f;
+        BestLapTime = Mathf.Infinity;
+
         TargetCheckpoint = _startCheckpoint;
         LastCheckpoint = _startCheckpoint;
         RecentCheckpoint = _startCheckpoint;
@@ -140,13 +148,13 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
         _carAI.SetTarget(_startCheckpoint);
     }
 
-    // Wrapper method to unlock the player's car's physics properties
+    /// <inheritdoc />
     public void StartPlayer()
     {
         PlayerCar.SetCarLock(false);
     }
 
-    // Retires the player from the race
+    /// <inheritdoc />
     public void RetirePlayer()
     {
         PlayerCar.SetCarLock(true);
@@ -155,21 +163,38 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
         Console.Paused = false;
     }
 
-    // Returns the player's position in the race
+    /// <inheritdoc />
     public int GetRacePosition()
     {
         List<IPlayerManager> players = GameManager.Players;
         return players.IndexOf(this) + 1;
     }
 
-    // Updates the player's race progress
-    public void SetRaceProgress(int currentLap, ControlMode currentControl, Checkpoint targetCheckpoint)
+    /// <inheritdoc />
+    public void CopyRaceProgress(IPlayerManager otherPlayer)
     {
-        CurrentLap = currentLap;
-        CurrentControl = currentControl;
-        TargetCheckpoint = targetCheckpoint;
-        LastCheckpoint = targetCheckpoint;
-        RecentCheckpoint = targetCheckpoint;
+        CurrentLap = otherPlayer.CurrentLap;
+        CurrentLapTime = otherPlayer.CurrentLapTime;
+        BestLapTime = otherPlayer.BestLapTime;
+        CurrentControl = otherPlayer.CurrentControl;
+        
+        TargetCheckpoint = otherPlayer.TargetCheckpoint;
+        LastCheckpoint = otherPlayer.TargetCheckpoint;
+        RecentCheckpoint = otherPlayer.TargetCheckpoint;
+
         _carAI.SetTarget(TargetCheckpoint);
+    }
+
+    /// <summary>
+    /// Starts the player's next lap.
+    /// </summary>
+    private void NextLap()
+    {
+        if (CurrentLap != 0)
+        {
+            BestLapTime = Mathf.Min(BestLapTime, CurrentLapTime);
+        }
+        CurrentLapTime = 0f;
+        CurrentLap++;
     }
 }

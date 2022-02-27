@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEngine;
 using TMPro;
 
 public abstract class CarStatement : Statement
@@ -17,15 +16,8 @@ public abstract class CarStatement : Statement
             yield return null;
         }
     }
-
-    // Construct methods for manual initialisation
-    public void Construct(ICar playerCar, IPlayerManager player)
-    {
-        PlayerCar = playerCar;
-        Player = player;
-    }
     
-    public void Construct(ICar playerCar, IPlayerManager player, TMP_Dropdown dropdownInput)
+    public void Construct(ICar playerCar, IPlayerManager player, TMP_Dropdown dropdownInput = null)
     {
         PlayerCar = playerCar;
         Player = player;
@@ -61,12 +53,9 @@ public abstract class CarStatement : Statement
         }
     }
 
-    // Retrieves a selected dropdown option and converts it to a float
-    protected float GetSelectedToFloat(TMP_Dropdown dropdown)
-    {
-        return float.TryParse(GetSelectedDropdownText(dropdown), out float value) ? value : 0f;
-    }
-
+    /// <summary>
+    /// Updates the currently-controlled player in the level.
+    /// </summary>
     protected void SetPlayer(IPlayerManager newPlayer)
     {
         Player = newPlayer;

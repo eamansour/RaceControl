@@ -6,13 +6,18 @@ public class Node<T> : IDataStructure<T>
     public Node<T> Next { get; set; } = null;
     public T Data { get; set; } = default(T);
 
+    /// <summary>
+    /// Creates an empty node.
+    /// </summary>
     public Node()
     {
         Next = null;
         Data = default(T);
     }
 
-    // Creates a linked node from a given collection
+    /// <summary>
+    /// Creates a linked node from a given collection.
+    /// </summary>
     public Node(IEnumerable<T> collection)
     {
         List<T> collectionList = collection.ToList();
@@ -25,7 +30,9 @@ public class Node<T> : IDataStructure<T>
         Data = head.Data;
     }
 
-    // Insert a new linked node with a given value before a given node, returning the new node
+    /// <summary>
+    /// Insert a new linked node with a given value before a given node, returning the new node
+    /// <summary>
     public Node<T> Insert(Node<T> node, T value)
     {
         Node<T> head = new Node<T>();
@@ -35,6 +42,7 @@ public class Node<T> : IDataStructure<T>
         return node;
     }
 
+    /// <inheritdoc />
     public T GetContainedValue()
     {
         return Data;

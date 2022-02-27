@@ -10,12 +10,10 @@ public class Car : MonoBehaviour, ICar
     public float Fuel { get; set; } = 100f;
     public bool InPit { get; set; } = false;
 
-    // Car-related constants
     private const float DefaultTorque = 100f;
     private const float Steering = 20f;
     private const float BrakeTorque = 100f;
 
-    // Physics properties for a car
     [SerializeField]
     private Transform _centreOfMass;
     private Rigidbody _carRigidbody;
@@ -26,13 +24,11 @@ public class Car : MonoBehaviour, ICar
     private float _fuelBurnRate = 1f;
     private Wheel[] _wheels;
 
-    // Constructor-like method to initialise serialized fields
     public void Construct(Transform centreOfMass)
     {
         _centreOfMass = centreOfMass;
     }
 
-    // Retrieves the inital values for the car's physics components and wheels
     private void Start()
     {
         _carRigidbody = GetComponent<Rigidbody>();
@@ -42,7 +38,6 @@ public class Car : MonoBehaviour, ICar
         _wheels = GetComponentsInChildren<Wheel>();
     }
 
-    // Updates the car's properties every frame
     private void Update()
     {
         // Simulate fuel usage by decreasing it when accelerating
@@ -65,7 +60,7 @@ public class Car : MonoBehaviour, ICar
         }
     }
 
-    // Sets the car to accelerate for a given amount of time (in seconds)
+    /// <inheritdoc />
     public IEnumerator Accelerate(float time)
     {
         Acceleration = 1f;
@@ -74,7 +69,7 @@ public class Car : MonoBehaviour, ICar
         Acceleration = 0f;
     }
 
-    // Sets the car to brake for a given amount of time (in seconds)
+    /// <inheritdoc />
     public IEnumerator Brake(float time)
     {
         Braking = 1f;
@@ -83,7 +78,7 @@ public class Car : MonoBehaviour, ICar
         Braking = 0f;
     }
 
-    // Sets the car to turn in a direction between 1 and -1 for a given amount of time (in seconds)
+    /// <inheritdoc />
     public IEnumerator Turn(float dir, float time)
     {
         SteerDir = dir;
@@ -91,14 +86,14 @@ public class Car : MonoBehaviour, ICar
         SteerDir = 0f;
     }
 
-    // Locks or unlocks the car's physics properties, controlling its ability to move
+    /// <inheritdoc />
     public void SetCarLock(bool locked)
     {
         _carRigidbody.isKinematic = locked;
         _carRigidbody.velocity = Vector3.zero;
     }
 
-    // Resets the car's acceleration and steering controls
+    /// <inheritdoc />
     public void ResetControl()
     {
         StopAllCoroutines();
@@ -107,13 +102,13 @@ public class Car : MonoBehaviour, ICar
         _motorTorque = DefaultTorque;
     }
 
-    // Returns the car's speed in miles per hour (MPH)
+    /// <inheritdoc />
     public int GetSpeedInMPH()
     {
         return (int)Math.Round(_carRigidbody.velocity.magnitude * 2.237f, 0);
     }
 
-    // Returns an integer representation of the car's fuel property
+    /// <inheritdoc />
     public int GetFuelInt()
     {
         return (int)Math.Round(Fuel, 0);

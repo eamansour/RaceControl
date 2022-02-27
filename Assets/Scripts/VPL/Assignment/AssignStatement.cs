@@ -22,7 +22,6 @@ public abstract class AssignStatement<T> : Statement
         IObstacleSpawn spawner,
         TMP_InputField variableInput = null,
         TMP_Dropdown variableDropdown = null
-        
     )
     {
         _car = car;
@@ -47,7 +46,9 @@ public abstract class AssignStatement<T> : Statement
         }
     }
 
-    // Assigns a result of an expression to a given variable
+    /// <summary>
+    /// Assigns a result of an expression to a given variable.
+    /// </summary>
     public override IEnumerator Run()
     {
         string variable = "";
@@ -78,7 +79,9 @@ public abstract class AssignStatement<T> : Statement
         }
     }
 
-    // Handles assignment referencing the "fuel" variable, only allowing it to be decreased
+    /// <summary>
+    /// Handles assignment to update player fuel, only allowing it to be decreased.
+    /// </summary>
     private void UpdatePlayerFuel(T result)
     {
         float fuelResult = Convert.ToSingle(result);

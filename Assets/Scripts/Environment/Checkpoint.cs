@@ -17,13 +17,17 @@ public class Checkpoint : MonoBehaviour
         Index = transform.GetSiblingIndex();
     }
 
-    // Returns the checkpoint's position
+    /// <summary>
+    /// Gets the checkpoint's current position.
+    /// </summary>
     public Vector3 GetPosition()
     {
         return transform.position;
     }
 
-    // Returns the checkpoint's rotation
+    /// <summary>
+    /// Gets the checkpoint's current rotation.
+    /// </summary>
     public Vector3 GetRotation()
     {
         return transform.localEulerAngles;

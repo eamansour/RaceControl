@@ -15,7 +15,6 @@ public class ValueObjective : Objective
         _targetValue = targetValue;
     }
 
-    // Determines if a given variable has a value matching the target value
     public override void UpdateCompletion()
     {
         int currentValue = (int)Math.Round(Statement.Environment.Get<float>(_variableName));

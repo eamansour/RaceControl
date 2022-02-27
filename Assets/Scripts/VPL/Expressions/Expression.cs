@@ -14,13 +14,12 @@ public abstract class Expression<T> : Statement, IExpression<T>
     [field: SerializeField]
     protected TMP_Dropdown DropdownInput { get; private set; }
 
-    // Assigns a result of an expression to a given variable
     public override IEnumerator Run()
     {
         yield break;
     }
 
-    // Evaluates an expression
+    /// <inheritdoc />
     public abstract T EvaluateExpression();
 
     public void Construct(
@@ -34,7 +33,9 @@ public abstract class Expression<T> : Statement, IExpression<T>
         DropdownInput = dropdownInput;
     }
 
-    // Retrieves an inputted operand from an inputfield and converts it to a float value
+    /// <summary>
+    /// Retrieves an inputted operand from an inputfield and converts it to a float value.
+    /// </summary>
     protected virtual float GetOperandValue(TMP_InputField operandInput)
     {
         float result = 0;

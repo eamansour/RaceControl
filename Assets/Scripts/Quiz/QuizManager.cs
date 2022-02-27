@@ -32,7 +32,6 @@ public class QuizManager : MonoBehaviour
     // Retrieve the questions from the JSON file and start the quiz
     private void Start()
     {
-
         List<Question> questions = new List<Question>(); 
         try 
         {
@@ -48,7 +47,9 @@ public class QuizManager : MonoBehaviour
         NextQuestion();
     }
 
-    // Retrieves a random sample of questions to be presented
+    /// <summary>
+    /// Sets the random sample of questions to be presented in the quiz.
+    /// </summary>
     private void SetRandomSample(List<Question> questions, int sampleSize)
     {
         while (sampleSize > 0)
@@ -63,7 +64,9 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    // Selects an option with a given index
+    /// <summary>
+    /// Selects an option with a given index and updates the quiz progress.
+    /// </summary>
     public void SelectOption(int optionIndex)
     {
         if (_currentQuestion.correctIndex == optionIndex)
@@ -79,7 +82,9 @@ public class QuizManager : MonoBehaviour
         NextQuestion();
     }
 
-    // Displays the quiz ending UI
+    /// <summary>
+    /// Displays the quiz ending UI with the appropriate text depending on the user's final score.
+    /// </summary>
     private void EndQuiz()
     {
         _animator.Play("QuizEnd");
@@ -102,7 +107,9 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    // Updates the UI and retrieves the next question, ending the quiz if all questions are exhausted
+    /// <summary>
+    /// Updates the UI and retrieves the next question, ending the quiz if all questions are exhausted.
+    /// </summary>
     private void NextQuestion()
     {
         _scoreText.text = $"Score:  {_score} / {_sampledQuestions.Count}";

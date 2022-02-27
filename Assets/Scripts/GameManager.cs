@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         s_levelMenu = _levelMenu;
         s_cameraFollow = FindObjectOfType<CameraFollow>();
-        s_cameraController = s_cameraFollow 
+        s_cameraController = s_cameraFollow
             ? s_cameraFollow.GetComponent<CameraController>()
             : FindObjectOfType<CameraController>();
 
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
         s_startPlayers = FindObjectsOfType<PlayerManager>();
         Players.AddRange(s_startPlayers);
-        
+
         if (s_cameraFollow)
         {
             CurrentPlayer = s_cameraFollow.Target.GetComponent<IPlayerManager>();
@@ -74,50 +74,53 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Runs every frame, checks if the objectives have been met once the level has been started
+    /// <summary>
+    /// Runs every frame, checks if the objectives have been met once the level has been started.
+    /// </summary>
     private void Update()
     {
-        if (LevelStarted && !LevelEnded)
+        if (!LevelStarted || LevelEnded) return;
+
+        _updateTimer -= Time.deltaTime;
+
+        if (s_objectives.Length > 0 && s_remainingObjectives <= 0)
         {
-            _updateTimer -= Time.deltaTime;
+            LevelWin();
+            return;
+        }
 
-            if (s_objectives.Length > 0 && s_remainingObjectives <= 0)
+        if (_updateTimer <= 0f)
+        {
+            if (_sortPlayers)
             {
-                LevelWin();
-                return;
+                UpdatePlayerPositions();
             }
 
-            if (_updateTimer <= 0f)
+            foreach (Objective objective in s_objectives)
             {
-                if (_sortPlayers)
+                if (objective.Failed)
                 {
-                    UpdatePlayerPositions();
+                    LevelFail();
+                    break;
                 }
 
-                foreach (Objective objective in s_objectives)
+                if (!objective.Passed)
                 {
-                    if (objective.Failed)
+                    objective.UpdateCompletion();
+                    if (objective.Passed)
                     {
-                        LevelFail();
-                        break;
-                    }
-
-                    if (!objective.Passed)
-                    {
-                        objective.UpdateCompletion();
-                        if (objective.Passed)
-                        {
-                            objective.UpdateUI(true);
-                            s_remainingObjectives--;                            
-                        }
+                        objective.UpdateUI(true);
+                        s_remainingObjectives--;
                     }
                 }
-                _updateTimer = 0.5f;
             }
+            _updateTimer = 0.5f;
         }
     }
 
-    // Starts the level
+    /// <summary>
+    /// Sets the level to its started state.
+    /// </summary>
     public static void StartLevel()
     {
         LevelStarted = true;
@@ -127,12 +130,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Resets the level to its initial state
+    /// <summary>
+    /// Resets the level to its initial state.
+    /// </summary>
     public static void ResetLevel()
     {
         LevelStarted = false;
         s_remainingObjectives = s_objectives.Length;
-        
+
         if (s_cameraController)
         {
             s_cameraController.ResetCamera();
@@ -152,7 +157,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update the current player to a new player
+    /// <summary>
+    /// Update the current player to a new player.
+    /// </summary>
     public static void SetPlayer(IPlayerManager newPlayer)
     {
         CurrentPlayer = newPlayer;
@@ -161,14 +168,16 @@ public class GameManager : MonoBehaviour
         {
             s_cameraFollow.Target = newPlayer.AttachedGameObject;
         }
-        
+
         if (OnPlayerUpdated != null)
         {
             OnPlayerUpdated(newPlayer);
         }
     }
 
-    // Ends the level as a fail
+    /// <summary>
+    /// Ends the level as a failure.
+    /// </summary>
     public static void LevelFail()
     {
         LevelEnded = true;
@@ -176,7 +185,9 @@ public class GameManager : MonoBehaviour
         SoundManager.PlaySound("Fail");
     }
 
-    // Ends the level as a success and unlocks the next level
+    /// <summary>
+    /// Ends the level as a success and unlocks the next level.
+    /// </summary>
     private void LevelWin()
     {
         LevelEnded = true;
@@ -190,7 +201,9 @@ public class GameManager : MonoBehaviour
         SoundManager.PlaySound("Win");
     }
 
-    // Updates player race positions
+    /// <summary>
+    /// Sorts the current players according to their progress in the level.
+    /// </summary>
     private void UpdatePlayerPositions()
     {
         Players.Sort((left, right) =>

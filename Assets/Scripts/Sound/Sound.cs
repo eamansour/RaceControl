@@ -30,13 +30,17 @@ public class Sound
 
     private AudioSource _source;
 
-    // Play the current sound from its audio source
+    /// <summary>
+    /// Play the current sound from its audio source.
+    /// </summary>
     public void Play()
     {
         Source.Play();
     }
 
-    // Stops the current sound
+    /// <summary>
+    /// Stops the current sound.
+    /// </summary>
     public void Stop()
     {
         Source.Stop();

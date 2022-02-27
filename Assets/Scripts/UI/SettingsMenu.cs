@@ -57,14 +57,18 @@ public class SettingsMenu : MonoBehaviour
         LoadSettings();
     }
 
-    // Updates the game's sound volume
+    /// <summary>
+    /// Updates the game's sound volume.
+    /// </summary>
     public void SetVolume(float volume)
     {
         _mixer.SetFloat("volume", volume);
         _soundSlider.value = volume;
     }
 
-    // Updates the game's display resolution
+    /// <summary>
+    /// Updates the game's display resolution.
+    /// </summary>
     public void SetResolution(int resolutionIndex)
     {
         Resolution newResolution = _resolutions[resolutionIndex];
@@ -73,14 +77,18 @@ public class SettingsMenu : MonoBehaviour
         _resolutionDropdown.RefreshShownValue();
     }
 
-    // Updates the game's fullscreen/windowed setting
+    /// <summary>
+    /// Updates the game's fullscreen/windowed setting.
+    /// </summary>
     public void SetFullScreen(bool fullscreen)
     {
         Screen.fullScreen = fullscreen;
         _fullscreenToggle.isOn = fullscreen;
     }
 
-    // Saves settings to a Player preferences file
+    /// <summary>
+    /// Saves settings to player preferences.
+    /// </summary>
     public void SaveSettings()
     {
         _mixer.GetFloat("volume", out float volume);
@@ -90,7 +98,17 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // Loads settings from a Player preferences file, or default values
+    /// <summary>
+    /// Clears all saved data, including game progression
+    /// </summary>
+    public void ClearData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    /// <summary>
+    /// Loads settings from a player preferences, or loads default values.
+    /// </summary>
     private void LoadSettings()
     {
         float volume = PlayerPrefs.GetFloat(s_volumePrefKey, 0f);

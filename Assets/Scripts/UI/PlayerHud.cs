@@ -3,6 +3,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using System;
 
 public class PlayerHud : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class PlayerHud : MonoBehaviour
 
     [SerializeField]
     private TMP_Text _lapText;
+
+    [SerializeField]
+    private TMP_Text _currentLapTimeText;
+
+    [SerializeField]
+    private TMP_Text _bestLapTimeText;
 
     [SerializeField]
     private TMP_Text _wrongWayText;
@@ -53,8 +60,6 @@ public class PlayerHud : MonoBehaviour
                 player.GetComponentInChildren<TMP_Text>().text = $"{i}";
             }
         }
-        
-        // Subscribe to track any player updates
         GameManager.OnPlayerUpdated += Construct;
     }
 
@@ -100,6 +105,19 @@ public class PlayerHud : MonoBehaviour
         if (_positionText)
         {
             _positionText.text = $"{GetOrdinalPosition()}";
+            TimeSpan currentLapTime = TimeSpan.FromSeconds(_player.CurrentLapTime);
+
+            _currentLapTimeText.text = $"Time: {currentLapTime.ToString("mm':'ss':'fff")}";
+
+            if (_player.BestLapTime != Mathf.Infinity)
+            {
+                TimeSpan bestLapTime = TimeSpan.FromSeconds(_player.BestLapTime);
+                _bestLapTimeText.text = $"Best: {bestLapTime.ToString("mm':'ss':'fff")}";
+            }
+            else
+            {
+                _bestLapTimeText.text = "";
+            }
         }
 
         if (_lapText)
@@ -117,13 +135,12 @@ public class PlayerHud : MonoBehaviour
             _wrongWayText.gameObject.SetActive(false);
         }
 
-        // Update the checkpoint particles' position/rotation as the player moves
-        Checkpoint targetCheckpoint = _player.TargetCheckpoint;
-        _checkpointParticles.position = targetCheckpoint.GetPosition();
-        _checkpointParticles.localEulerAngles = new Vector3(0, -targetCheckpoint.GetRotation().z, 0);
+        UpdateCheckpointParticles();
     }
 
-    // Returns the player's position in the race as an ordinal number string
+    /// <summary>
+    /// Calculates and returns the player's position in the race as an ordinal number string.
+    /// </summary>
     private string GetOrdinalPosition()
     {
         StringBuilder sb = new StringBuilder();
@@ -146,5 +163,16 @@ public class PlayerHud : MonoBehaviour
                 break;
         }
         return sb.ToString();
+    }
+
+    /// <summary>
+    /// Updates the position and rotation of the checkpoint particle system using the player's
+    /// target checkpoint.
+    /// </summary>
+    private void UpdateCheckpointParticles()
+    {
+        Checkpoint targetCheckpoint = _player.TargetCheckpoint;
+        _checkpointParticles.position = targetCheckpoint.GetPosition();
+        _checkpointParticles.localEulerAngles = new Vector3(0, -targetCheckpoint.GetRotation().z, 0);
     }
 }
