@@ -24,7 +24,7 @@ public class AvoidCheckpointObjectiveTests
     public void TearDown()
     {
         Object.Destroy(_avoidObjective.gameObject);
-        Object.Destroy(_checkpointToAvoid.gameObject);   
+        Object.Destroy(_checkpointToAvoid.gameObject);
     }
 
     [Test]

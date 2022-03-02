@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
     private void Awake()
     {
         AttachedGameObject = gameObject;
-        
+
         PlayerCar = GetComponent<ICar>();
         CurrentControl = _levelControl;
 
@@ -103,7 +103,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
             {
                 PlayerCar.ResetControl();
                 CurrentControl = _levelControl;
-                Console.Paused = false;          
+                Console.Paused = false;
             }
         }
 
@@ -177,7 +177,7 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
         CurrentLapTime = otherPlayer.CurrentLapTime;
         BestLapTime = otherPlayer.BestLapTime;
         CurrentControl = otherPlayer.CurrentControl;
-        
+
         TargetCheckpoint = otherPlayer.TargetCheckpoint;
         LastCheckpoint = otherPlayer.TargetCheckpoint;
         RecentCheckpoint = otherPlayer.TargetCheckpoint;

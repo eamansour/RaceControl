@@ -41,11 +41,8 @@ public abstract class Expression<T> : Statement, IExpression<T>
         float result = 0;
         string operandText = operandInput.text;
 
-        if (Environment.ContainsKey(operandText))
+        if (Environment.ContainsKey(operandText) && Environment[operandText].GetType().IsPrimitive)
         {
-            // Avoid casting stored player types
-            if (Environment[operandText] is IDataStructure<IPlayerManager>) return 0f;
-
             result = Convert.ToSingle(Environment[operandText]);
         }
         else

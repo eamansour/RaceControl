@@ -22,8 +22,6 @@ public class RaceFlag : MonoBehaviour, IRaceFlag
     private MaxSpeedObjective _maxSpeedObjective;
     private AvoidCheckpointObjective _avoidCheckpointObjective;
 
-
-    // Initialise required fields
     private void Start()
     {
         _flagRenderer = GetComponent<Renderer>();

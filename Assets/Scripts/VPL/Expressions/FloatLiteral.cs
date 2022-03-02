@@ -4,7 +4,7 @@ public class FloatLiteral : LiteralExpression<float>
     {
         float result = base.EvaluateExpression();
         if (result != default(float)) return result;
-        
-        return GetSelectedToFloat(DropdownInput);
+
+        return GetOperandValue(LeftOperandInput);
     }
 }

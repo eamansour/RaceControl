@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 17931653352699511}
   - component: {fileID: 4930457337192513165}
   m_Layer: 5
-  m_Name: LiteralStmt
+  m_Name: LiteralDropdownStmt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f49352501295f4482ffda34c214353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <LeftOperandInput>k__BackingField: {fileID: 0}
+  <RightOperandInput>k__BackingField: {fileID: 0}
   <DropdownInput>k__BackingField: {fileID: 4628651771569374897}
 --- !u!1 &1492274382677017621
 GameObject:

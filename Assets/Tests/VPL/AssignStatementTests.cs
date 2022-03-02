@@ -24,7 +24,7 @@ public class AssignStatementTests
     {
         _testObject = new GameObject();
         _testObject.AddComponent<Image>();
-        
+
         _assignFloat = _testObject.AddComponent<AssignFloat>();
         _assignNode = _testObject.AddComponent<AssignNode>();
 
@@ -86,7 +86,7 @@ public class AssignStatementTests
     {
         _assignNode.Construct(false);
         _variableDropdown.AddOptions(new List<string> { "test" });
-        
+
         Node<IPlayerManager> testNode = new Node<IPlayerManager>();
         _nodeExpression.EvaluateExpression().Returns(testNode);
 

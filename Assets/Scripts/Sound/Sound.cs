@@ -15,10 +15,10 @@ public class Sound
             _source = value;
             _source.outputAudioMixerGroup = _mixerGroup;
             _source.clip = _clip;
-            _source.loop = _loop;            
+            _source.loop = _loop;
         }
     }
-    
+
     [SerializeField]
     private AudioClip _clip;
 

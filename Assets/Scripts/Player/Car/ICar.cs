@@ -10,7 +10,7 @@ public interface ICar
     bool InPit { get; set; }
 
     void Construct(Transform _centreOfMass);
-    
+
     /// <summary>
     /// Sets the car to accelerate for a given amount of time (in seconds).
     /// </summary>

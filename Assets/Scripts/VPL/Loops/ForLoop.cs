@@ -6,8 +6,11 @@ using System;
 public class ForLoop : CompoundStatement
 {
     [SerializeField]
+    private TMP_InputField _indexVariableInput;
+
+    [SerializeField]
     private TMP_Dropdown _rangeStartDropdown;
-    
+
     [SerializeField]
     private TMP_Dropdown _rangeEndDropdown;
 
@@ -15,11 +18,13 @@ public class ForLoop : CompoundStatement
     private TMP_Dropdown _incrementDropdown;
 
     public void Construct(
+        TMP_InputField indexVariableInput,
         TMP_Dropdown rangeStartDropdown,
         TMP_Dropdown rangeEndDropdown,
         TMP_Dropdown incrementDropdown
     )
     {
+        _indexVariableInput = indexVariableInput;
         _rangeStartDropdown = rangeStartDropdown;
         _rangeEndDropdown = rangeEndDropdown;
         _incrementDropdown = incrementDropdown;
@@ -27,41 +32,42 @@ public class ForLoop : CompoundStatement
 
     public override IEnumerator Run()
     {
+        string indexVariable = _indexVariableInput.text;
         string selectedRangeStart = GetSelectedDropdownText(_rangeStartDropdown);
         string selectedRangeEnd = GetSelectedDropdownText(_rangeEndDropdown);
 
-        // Retrieve and parse selected dropdown options
+        // Retrieve and parse selected inputs
         int increment = Int32.Parse(GetSelectedDropdownText(_incrementDropdown));
         int startIndex = ParseSelectedRange(selectedRangeStart);
         int endIndex = ParseSelectedRange(selectedRangeEnd);
         int originalIndex = Int32.MaxValue;
 
         // Add index variable into the environment or store an existing index and update its value to allow scope
-        if (Environment.ContainsKey("i"))
+        if (Environment.ContainsKey(indexVariable))
         {
-            originalIndex = (int)Environment["i"];
-            Environment["i"] = startIndex;
+            originalIndex = (int)Environment[indexVariable];
+            Environment[indexVariable] = startIndex;
         }
         else
         {
-            Environment.Add("i", startIndex);
+            Environment.Add(indexVariable, startIndex);
         }
 
         // Translate for loop into while loop equivalent
-        while (Environment.Get<int>("i") != endIndex)
+        while (Environment.Get<int>(indexVariable) != endIndex)
         {
             yield return StartCoroutine(RunBlock());
-            Environment["i"] = Environment.Get<int>("i") + increment;
+            Environment[indexVariable] = Environment.Get<int>(indexVariable) + increment;
         }
 
         // Return the index variable to its original index value to allow outer loops to continue
         if (originalIndex != Int32.MaxValue)
         {
-            Environment["i"] = originalIndex;
+            Environment[indexVariable] = originalIndex;
         }
         else
         {
-            Environment.Remove("i");
+            Environment.Remove(indexVariable);
         }
     }
 

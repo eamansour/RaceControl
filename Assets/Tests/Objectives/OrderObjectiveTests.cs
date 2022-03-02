@@ -59,7 +59,7 @@ public class OrderObjectiveTests
         {
             player.CurrentLap.Returns(0);
         }
-        
+
         _orderObjective.Construct(1, false, false, Substitute.For<IPlayerManager>());
         _requiredIndexOrder.AddRange(new List<int> { 0, 1, 2 });
 
@@ -75,7 +75,7 @@ public class OrderObjectiveTests
         _players[0].CurrentLap.Returns(0);
         _players[1].CurrentLap.Returns(1);
         _players[2].CurrentLap.Returns(1);
-        
+
         _orderObjective.Construct(1, false, false, Substitute.For<IPlayerManager>());
         _requiredIndexOrder.AddRange(new List<int> { 0, 1, 2 });
 

@@ -23,7 +23,7 @@ public class BarrelObstacle : MonoBehaviour
         // Only AI players can be affected by barrels
         GameObject other = collision.gameObject;
         if (!other.CompareTag("AI")) return;
-        
+
         other.GetComponent<Rigidbody>().velocity = Vector3.zero;
         Destroy(gameObject);
     }

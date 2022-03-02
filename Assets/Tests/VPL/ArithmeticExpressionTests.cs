@@ -22,7 +22,7 @@ public class ArithmeticExpressionTests
 
         _arithmeticExpression = _testObject.AddComponent<ArithmeticExpression>();
         _operatorDropdown = _testObject.AddComponent<TMP_Dropdown>();
-        
+
         _leftOperand = new GameObject().AddComponent<TMP_InputField>();
         _rightOperand = new GameObject().AddComponent<TMP_InputField>();
 

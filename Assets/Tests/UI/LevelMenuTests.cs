@@ -53,7 +53,7 @@ public class LevelMenuTests
         _levelFeedback.When(x => x.DisplayFeedback(false)).Do(x => {});
 
         _levelMenu.DisplayLevelFail();
-        
+
         Assert.IsTrue(_levelFailUI.activeInHierarchy);
     }
 

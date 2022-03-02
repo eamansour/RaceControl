@@ -50,7 +50,7 @@ public class PlayerHud : MonoBehaviour
         _player = GameManager.CurrentPlayer;
 
         _eventSystem = EventSystem.current;
-        
+
         if (_initialiseIndexText)
         {
             List<IPlayerManager> players = GameManager.Players;

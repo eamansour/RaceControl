@@ -7,7 +7,7 @@ public class MaxSpeedObjectiveTests
 {
     private MaxSpeedObjective _maxSpeedObjective;
     private ICar _car;
-    private IPlayerManager _player;    
+    private IPlayerManager _player;
 
     [SetUp]
     public void SetUp()

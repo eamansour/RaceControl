@@ -75,7 +75,7 @@ public class SettingsMenuTests
         PlayerPrefs.SetInt("unlockedScene", 1);
 
         _settingsMenu.ClearData();
-        
+
         Assert.IsFalse(PlayerPrefs.HasKey("volume"));
         Assert.IsFalse(PlayerPrefs.HasKey("resolution"));
         Assert.IsFalse(PlayerPrefs.HasKey("fullscreen"));

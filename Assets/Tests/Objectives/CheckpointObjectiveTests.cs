@@ -24,7 +24,7 @@ public class CheckpointObjectiveTests
     public void TearDown()
     {
         Object.Destroy(_checkpointObjective.gameObject);
-        Object.Destroy(_requiredCheckpoint.gameObject);   
+        Object.Destroy(_requiredCheckpoint.gameObject);
     }
 
     [Test]

@@ -62,7 +62,7 @@ public class ConsoleTests
 
         _player.Received(1).CurrentControl = ControlMode.AI;
         yield return null;
-        
+
         _player.Received(2).CurrentControl = ControlMode.AI;
         yield return null;
 
@@ -80,11 +80,11 @@ public class ConsoleTests
     public void StartProgram_SetsUpEnvironment()
     {
         Assert.IsEmpty(Statement.Environment);
-        
+
         _console.StartProgram(false);
 
         Assert.IsNotEmpty(Statement.Environment);
-        
+
     }
 
     [UnityTest]

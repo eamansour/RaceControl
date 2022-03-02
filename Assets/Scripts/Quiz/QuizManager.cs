@@ -32,8 +32,8 @@ public class QuizManager : MonoBehaviour
     // Retrieve the questions from the JSON file and start the quiz
     private void Start()
     {
-        List<Question> questions = new List<Question>(); 
-        try 
+        List<Question> questions = new List<Question>();
+        try
         {
             questions = JsonUtility.FromJson<Questions>(_questionsJson.text).questions.ToList();
         }

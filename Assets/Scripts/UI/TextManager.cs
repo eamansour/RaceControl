@@ -17,7 +17,7 @@ public class TextManager : MonoBehaviour
     private void Start()
     {
         _messageText = GetComponentInChildren<TMP_Text>();
-        _runningCoroutine = StartCoroutine(WriteText());        
+        _runningCoroutine = StartCoroutine(WriteText());
     }
 
     /// <summary>

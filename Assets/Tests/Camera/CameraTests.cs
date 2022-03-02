@@ -134,7 +134,7 @@ public class CameraTests
     {
         _cameraController.gameObject.transform.position = new Vector3(10f, 11f, 1f);
         _cameraController.gameObject.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-        
+
         _cameraController.ResetCamera();
 
         Assert.IsTrue(_cameraController.transform.position == Vector3.zero);

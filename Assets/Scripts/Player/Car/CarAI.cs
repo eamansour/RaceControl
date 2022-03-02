@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
 public class CarAI : MonoBehaviour, ICarAI
 {
     private const float MaxSteerAngle = 45f;
-    private const float DistanceThreshold = 5f;
+    private const float DistanceThreshold = 3f;
     private const float FuelThreshold = 40f;
-    private const float ReverseAcceleration = -0.75f;
+    private const float ReverseAcceleration = -0.5f;
 
     [SerializeField]
     private bool _randomiseSkill = false;
@@ -47,7 +48,7 @@ public class CarAI : MonoBehaviour, ICarAI
         // Randomise the AI player's skill level between 60% and 100%
         if (_randomiseSkill)
         {
-            _skillMultiplier = Mathf.Clamp(Random.value, 0.6f, 1f);
+            _skillMultiplier = Mathf.Clamp(UnityEngine.Random.value, 0.6f, 1f);
         }
     }
 
@@ -116,9 +117,12 @@ public class CarAI : MonoBehaviour, ICarAI
         }
 
         // Accelerate or reverse depending on whether the target is in front or behind the car
-        if (dotProduct > 0f)
+        if (Math.Round(dotProduct, 2) >= 0f)
         {
-            acceleration = Mathf.Clamp(1f - Mathf.Abs(steerAmount), 0.1f, 1f);
+            float absoluteSteer = Mathf.Abs(steerAmount);
+            acceleration = absoluteSteer > 0.5f && _car.GetSpeedInMPH() < 10
+                ? 1f
+                : Mathf.Clamp(1f - absoluteSteer, 0.1f, 1f);
         }
         else
         {

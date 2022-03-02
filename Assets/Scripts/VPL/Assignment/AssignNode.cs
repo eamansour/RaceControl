@@ -24,5 +24,5 @@ public class AssignNode : AssignStatement<Node<IPlayerManager>>
             }
         }
         yield return StartCoroutine(base.Run());
-    }   
+    }
 }

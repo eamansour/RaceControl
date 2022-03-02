@@ -57,12 +57,12 @@ public class PitStop : MonoBehaviour
             _car.Fuel = Mathf.Clamp(_car.Fuel + RefuelAmount, _car.Fuel, 100f);
             yield return new WaitForSeconds(RefuelInterval);
         }
-        
+
         // Release the serviced car from the pits and wait before accepting another car
         _car.SetCarLock(false);
         _car.InPit = false;
         yield return new WaitForSeconds(CooldownTime);
-        
+
         _isColliding = false;
         IsFree = true;
     }

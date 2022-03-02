@@ -11,6 +11,7 @@ public class LiteralExpressionTests
     private FloatLiteral _floatLiteral;
     private NodeLiteral _nodeLiteral;
     private TMP_Dropdown _literalDropdown;
+    private TMP_InputField _literalInput;
 
     [SetUp]
     public void SetUp()
@@ -21,8 +22,9 @@ public class LiteralExpressionTests
         _floatLiteral = _testObject.AddComponent<FloatLiteral>();
         _nodeLiteral = _testObject.AddComponent<NodeLiteral>();
         _literalDropdown = new GameObject().AddComponent<TMP_Dropdown>();
+        _literalInput = new GameObject().AddComponent<TMP_InputField>();
 
-        _floatLiteral.Construct(dropdownInput: _literalDropdown);
+        _floatLiteral.Construct(leftOperandInput: _literalInput);
         _nodeLiteral.Construct(dropdownInput: _literalDropdown);
         Statement.SetUpEnvironment();
     }
@@ -32,6 +34,7 @@ public class LiteralExpressionTests
     {
         Object.Destroy(_testObject);
         Object.Destroy(_literalDropdown.gameObject);
+        Object.Destroy(_literalInput.gameObject);
     }
 
     [Test]
@@ -39,7 +42,7 @@ public class LiteralExpressionTests
         [Values("-1", "23", "5.87")] string input
     )
     {
-        _literalDropdown.AddOptions(new List<string> { input });
+        _literalInput.text = input;
 
         float result = _floatLiteral.EvaluateExpression();
 
@@ -51,7 +54,7 @@ public class LiteralExpressionTests
         [Values("BAD", "123BAD", "!!£$%^&123")] string input
     )
     {
-        _literalDropdown.AddOptions(new List<string> { input });
+        _literalInput.text = input;
 
         float result = _floatLiteral.EvaluateExpression();
 
@@ -62,7 +65,7 @@ public class LiteralExpressionTests
     public void FloatLiteral_ShouldReturnVariableFloatValueIfSet()
     {
         Statement.Environment.Add("test", 10f);
-        _literalDropdown.AddOptions(new List<string> { "test" });
+        _literalInput.text = "test";
 
         float result = _floatLiteral.EvaluateExpression();
 
@@ -73,7 +76,7 @@ public class LiteralExpressionTests
     public void FloatLiteral_ShouldReturnZeroIfVariableIsNotFloat()
     {
         Statement.Environment.Add("test", new Node<object>());
-        _literalDropdown.AddOptions(new List<string> { "test" });
+        _literalInput.text = "test";
 
         float result = _floatLiteral.EvaluateExpression();
 

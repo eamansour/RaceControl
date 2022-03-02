@@ -12,11 +12,15 @@ public abstract class CarStatement : Statement
     {
         if (Environment.ContainsKey("car") && Environment["car"] is IDataStructure<IPlayerManager>)
         {
-            SetPlayer(Environment.Get<IDataStructure<IPlayerManager>>("car").GetContainedValue());
+            IPlayerManager containedPlayer = Environment.Get<IDataStructure<IPlayerManager>>("car").GetContainedValue();
+            if (containedPlayer != Player)
+            {
+                SetPlayer(Environment.Get<IDataStructure<IPlayerManager>>("car").GetContainedValue());
+            }
             yield return null;
         }
     }
-    
+
     public void Construct(ICar playerCar, IPlayerManager player, TMP_Dropdown dropdownInput = null)
     {
         PlayerCar = playerCar;
@@ -35,7 +39,7 @@ public abstract class CarStatement : Statement
         {
             PlayerCar = Player.PlayerCar;
         }
-        
+
         DropdownInput ??= GetComponentInChildren<TMP_Dropdown>();
     }
 

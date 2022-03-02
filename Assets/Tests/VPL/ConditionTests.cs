@@ -31,7 +31,7 @@ public class ConditionTests
         _ifCondition = _testObject.AddComponent<IfCondition>();
         _elifCondition = _testObject.AddComponent<ElifCondition>();
         _elseCondition = _testObject.AddComponent<ElseCondition>();
-        
+
         // Create child object to hold condition statements
         GameObject temp = new GameObject();
         temp.AddComponent<Image>();
@@ -71,7 +71,7 @@ public class ConditionTests
 
         _testHelper.RunCoroutine(_ifCondition.Run());
         yield return null;
-        
+
         _player.Received(1).CurrentControl = ControlMode.AI;
     }
 
@@ -83,7 +83,7 @@ public class ConditionTests
 
         _testHelper.RunCoroutine(_ifCondition.Run());
         yield return null;
-        
+
         _player.DidNotReceive().CurrentControl = ControlMode.AI;
     }
 
@@ -95,7 +95,7 @@ public class ConditionTests
 
         _testHelper.RunCoroutine(_elifCondition.Run());
         yield return null;
-        
+
         _player.Received(1).CurrentControl = ControlMode.AI;
     }
 
@@ -107,7 +107,7 @@ public class ConditionTests
 
         _testHelper.RunCoroutine(_elifCondition.Run());
         yield return null;
-        
+
         _player.DidNotReceive().CurrentControl = ControlMode.AI;
     }
 
@@ -119,7 +119,7 @@ public class ConditionTests
 
         _testHelper.RunCoroutine(_elifCondition.Run());
         yield return null;
-        
+
         _player.DidNotReceive().CurrentControl = ControlMode.AI;
     }
 
@@ -130,7 +130,7 @@ public class ConditionTests
 
         _testHelper.RunCoroutine(_elseCondition.Run());
         yield return null;
-        
+
         _player.Received().CurrentControl = ControlMode.AI;
     }
 
@@ -141,7 +141,7 @@ public class ConditionTests
 
         _testHelper.RunCoroutine(_elseCondition.Run());
         yield return null;
-        
+
         _player.DidNotReceive().CurrentControl = ControlMode.AI;
     }
 }

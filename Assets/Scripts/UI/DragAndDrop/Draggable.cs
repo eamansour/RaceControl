@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     private Canvas _canvas;
-    private CanvasGroup _canvasGroup; 
+    private CanvasGroup _canvasGroup;
     private RectTransform _rectTransform;
 
     private void Awake()
@@ -30,7 +30,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         _canvasGroup.blocksRaycasts = true;
         _canvasGroup.alpha = 1f;
-    
+
         // Destroy the dragged item if its parent is the UI canvas
         if (eventData.pointerDrag.transform.parent == _canvas.transform)
         {

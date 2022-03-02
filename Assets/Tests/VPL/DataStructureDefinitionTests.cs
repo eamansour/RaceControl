@@ -41,7 +41,7 @@ public class DataStructureDefinitionTests
 
         GameManager.Players.AddRange(testPlayers);
         _testHelper.RunCoroutine(_linkedListDef.Run());
-        
+
         Assert.IsInstanceOf<Node<IPlayerManager>>(Statement.Environment["car"]);
     }
 
@@ -56,7 +56,7 @@ public class DataStructureDefinitionTests
 
         GameManager.Players.AddRange(testPlayers);
         _testHelper.RunCoroutine(_linkedListDef.Run());
-        
+
         Assert.AreSame(testPlayers[0], Statement.Environment.Get<Node<IPlayerManager>>("car").Data);
         Assert.AreSame(testPlayers[1], Statement.Environment.Get<Node<IPlayerManager>>("car").Next.Data);
     }

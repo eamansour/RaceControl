@@ -1289,6 +1289,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227780497}
     m_Modifications:
+    - target: {fileID: 9149847309215073853, guid: fbb6d8ff546052e4bb44c4b981d90500, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9149847309726399032, guid: fbb6d8ff546052e4bb44c4b981d90500, type: 3}
       propertyPath: m_Name
       value: TimePanel

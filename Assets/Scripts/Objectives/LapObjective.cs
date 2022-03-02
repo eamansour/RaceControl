@@ -38,7 +38,7 @@ public class LapObjective : Objective
 
         if (complete)
         {
-            if ((_mustWin && Player.GetRacePosition() != 1) || 
+            if ((_mustWin && Player.GetRacePosition() != 1) ||
                 (_mustChangePlayer && Player.AttachedGameObject == _initialPlayer.AttachedGameObject))
             {
                 Failed = true;

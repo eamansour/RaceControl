@@ -10,7 +10,7 @@ public class NullCheckExpression : Expression<bool>
     {
         s_raceFlags = raceFlags;
     }
-    
+
     private void Start()
     {
         if (s_raceFlags.Count == 0)
@@ -43,10 +43,10 @@ public class NullCheckExpression : Expression<bool>
     /// </summary>
     private bool EvaluateFlag(string opText, bool yellowFlag)
     {
-        List<IRaceFlag> flags = yellowFlag 
+        List<IRaceFlag> flags = yellowFlag
             ? s_raceFlags.Where(flag => flag.Flag == RaceFlag.FlagType.YellowFlag).ToList()
             : s_raceFlags.Where(flag => flag.Flag == RaceFlag.FlagType.RedFlag).ToList();
-        
+
         return flags.Count > 0;
     }
 }

@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 using NSubstitute;
 
 [Category("GameManagementTests")]
@@ -30,7 +28,7 @@ public class GameManagerTests
     public void StartLevel_StartsAllPlayers()
     {
         List<IPlayerManager> testPlayers = new List<IPlayerManager>
-        { 
+        {
             Substitute.For<IPlayerManager>(),
             Substitute.For<IPlayerManager>(),
             Substitute.For<IPlayerManager>()
@@ -56,7 +54,7 @@ public class GameManagerTests
     public void ResetLevel_ResetsAllPlayers()
     {
         List<IPlayerManager> testPlayers = new List<IPlayerManager>
-        { 
+        {
             Substitute.For<IPlayerManager>(),
             Substitute.For<IPlayerManager>(),
             Substitute.For<IPlayerManager>()
@@ -74,7 +72,7 @@ public class GameManagerTests
     [Test]
     public void ResetLevel_ResetsStartPlayers()
     {
-        IPlayerManager[] startPlayers = { 
+        IPlayerManager[] startPlayers = {
             Substitute.For<IPlayerManager>(),
             Substitute.For<IPlayerManager>()
         };
@@ -89,7 +87,7 @@ public class GameManagerTests
     [Test]
     public void ResetLevel_ResetsAllObjectives()
     {
-        IObjective[] objectives = { 
+        IObjective[] objectives = {
             Substitute.For<IObjective>(),
             Substitute.For<IObjective>()
         };

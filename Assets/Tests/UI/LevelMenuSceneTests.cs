@@ -50,7 +50,7 @@ public class LevelMenuSceneTests
             RestartOnce--;
             yield return new WaitForSeconds(0.1f);
             Scene newScene = SceneManager.GetActiveScene();
-    
+
             Assert.AreEqual("MainMenu", newScene.name);
         }
     }

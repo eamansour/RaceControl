@@ -19,6 +19,7 @@ public class LoopTests
     private TestHelper _testHelper;
     private GameObject _testObject;
 
+    private TMP_InputField _indexVariableInput;
     private TMP_Dropdown _rangeStartDropdown;
     private TMP_Dropdown _rangeEndDropdown;
     private TMP_Dropdown _incrementDropdown;
@@ -35,7 +36,7 @@ public class LoopTests
         // Add components to test
         _whileLoop = _testObject.AddComponent<WhileLoop>();
         _forLoop = _testObject.AddComponent<ForLoop>();
-        
+
         // Create child object to hold loop statements
         GameObject temp = new GameObject();
         temp.AddComponent<Image>();
@@ -49,12 +50,13 @@ public class LoopTests
 
         _expression = Substitute.For<IExpression<bool>>();
 
+        _indexVariableInput = new GameObject().AddComponent<TMP_InputField>();
         _rangeStartDropdown = CreateTestDropdown();
         _rangeEndDropdown = CreateTestDropdown();
         _incrementDropdown = CreateTestDropdown();
 
         _whileLoop.Construct(_expression);
-        _forLoop.Construct(_rangeStartDropdown, _rangeEndDropdown, _incrementDropdown);
+        _forLoop.Construct(_indexVariableInput, _rangeStartDropdown, _rangeEndDropdown, _incrementDropdown);
         Statement.SetUpEnvironment();
     }
 
@@ -65,6 +67,7 @@ public class LoopTests
         Object.Destroy(_rangeStartDropdown.gameObject);
         Object.Destroy(_rangeEndDropdown.gameObject);
         Object.Destroy(_incrementDropdown.gameObject);
+        Object.Destroy(_indexVariableInput.gameObject);
     }
 
     // Helper method to set an object's parent in the Unity hierarchy
@@ -77,7 +80,7 @@ public class LoopTests
     private TMP_Dropdown CreateTestDropdown()
     {
         TMP_Dropdown testDropdown = new GameObject().AddComponent<TMP_Dropdown>();
-        List<string> options = new List<string> { 
+        List<string> options = new List<string> {
             "0",
             "1",
             "2",
@@ -140,6 +143,7 @@ public class LoopTests
     [UnityTest]
     public IEnumerator ForLoop_DoesNotRunBlockIfEnded()
     {
+        _indexVariableInput.text = "i";
         _rangeStartDropdown.value = 0;
         _rangeEndDropdown.value = 0;
         _incrementDropdown.value = 1;
@@ -153,6 +157,7 @@ public class LoopTests
     [UnityTest]
     public IEnumerator ForLoop_RepeatsBlockUntilEnd()
     {
+        _indexVariableInput.text = "i";
         _rangeStartDropdown.value = 0;
         _rangeEndDropdown.value = 2;
         _incrementDropdown.value = 1;
@@ -170,6 +175,7 @@ public class LoopTests
     [UnityTest]
     public IEnumerator ForLoop_StopsRepeatingBlockWhenEnded()
     {
+        _indexVariableInput.text = "i";
         _rangeStartDropdown.value = 0;
         _rangeEndDropdown.value = 2;
         _incrementDropdown.value = 1;
@@ -191,6 +197,7 @@ public class LoopTests
     [Test]
     public void ForLoop_AddsIndexToEnvironment()
     {
+        _indexVariableInput.text = "i";
         _rangeStartDropdown.value = 0;
         _rangeEndDropdown.value = 1;
         _incrementDropdown.value = 1;
@@ -203,6 +210,7 @@ public class LoopTests
     [UnityTest]
     public IEnumerator ForLoop_UpdatesIndexInEnvironment()
     {
+        _indexVariableInput.text = "i";
         _rangeStartDropdown.value = 0;
         _rangeEndDropdown.value = 2;
         _incrementDropdown.value = 1;
@@ -218,6 +226,7 @@ public class LoopTests
     [UnityTest]
     public IEnumerator ForLoop_RemovesIndexIfPreviouslyNonExistent()
     {
+        _indexVariableInput.text = "i";
         _rangeStartDropdown.value = 0;
         _rangeEndDropdown.value = 1;
         _incrementDropdown.value = 1;
@@ -233,9 +242,11 @@ public class LoopTests
     [UnityTest]
     public IEnumerator ForLoop_ReturnsIndexToPreviousValueIfExisted()
     {
+        _indexVariableInput.text = "i";
         _rangeStartDropdown.value = 0;
         _rangeEndDropdown.value = 1;
         _incrementDropdown.value = 1;
+
         Statement.Environment.Add("i", 20);
 
         _testHelper.RunCoroutine(_forLoop.Run());

@@ -14,7 +14,7 @@ public class CarTests
 
     [SetUp]
     public void SetUp()
-    { 
+    {
         _plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
         _playerObject = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Test/TestCar"));
         _carRigidbody = _playerObject.GetComponent<Rigidbody>();
@@ -47,7 +47,7 @@ public class CarTests
     {
         _car.Fuel = 10.6f;
         int fuel = _car.GetFuelInt();
-        
+
         Assert.AreEqual(11, fuel);
     }
 
@@ -55,10 +55,10 @@ public class CarTests
     public IEnumerator SetCarLockTrue_ShouldSetVelocityToZero()
     {
         _carRigidbody.velocity = new Vector3(10, 10, 10);
-        
+
         _car.SetCarLock(true);
         yield return null;
-        
+
         Assert.AreEqual(Vector3.zero, _carRigidbody.velocity);
     }
 
@@ -112,7 +112,7 @@ public class CarTests
         _carRigidbody.velocity = new Vector3(0, 0, 10);
         int speed = _car.GetSpeedInMPH();
         yield return null;
-        
+
         Assert.AreEqual(22, speed);
     }
 

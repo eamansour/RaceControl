@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         if (LevelMenu.IsPaused) return;
-    
+
         Vector3 currentPosition = transform.position;
         Vector3 mousePosition = _inputController.MousePosition;
 
@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour
         currentPosition.x += xInput * _speed * Time.deltaTime;
 
         // Mouse panning
-        if (mousePosition.y >= Screen.height) 
+        if (mousePosition.y >= Screen.height)
         {
             currentPosition.x += _speed * Time.deltaTime;
         }
@@ -58,11 +58,11 @@ public class CameraController : MonoBehaviour
         {
             currentPosition.z += _speed * Time.deltaTime;
         }
-        
+
         // Restrict camera movement to map
         currentPosition.x = Mathf.Clamp(currentPosition.x, -_xLimit, _xLimit);
         currentPosition.z = Mathf.Clamp(currentPosition.z, -_zLimit, _zLimit);
-        
+
         transform.position = currentPosition;
     }
 

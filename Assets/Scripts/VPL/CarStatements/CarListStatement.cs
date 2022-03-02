@@ -19,21 +19,17 @@ public class CarListStatement : CarStatement
 
         string selected = GetSelectedDropdownText(DropdownInput);
 
-        if (selected == "i")
+        if (Environment.ContainsKey(selected))
         {
-            // Using pre-defined index (i)
-            if (Environment.ContainsKey("i"))
+            // Default to the first player if the index is out of bounds
+            int index = (int)Environment[selected];
+            if (index > 0 && index < players.Count)
             {
-                // Default to the first player if the index is out of bounds
-                int index = (int)Environment["i"];
-                if (index > 0 && index < players.Count)
-                {
-                    player = players[index];
-                }
-                else
-                {
-                    player = players[0];
-                }
+                player = players[index];
+            }
+            else
+            {
+                player = players[0];
             }
         }
         else
@@ -51,7 +47,7 @@ public class CarListStatement : CarStatement
             if (_carStatement)
             {
                 _carStatement.Construct(player.PlayerCar, player, DropdownInput);
-                yield return StartCoroutine(_carStatement.Run());                
+                yield return StartCoroutine(_carStatement.Run());
             }
         }
     }

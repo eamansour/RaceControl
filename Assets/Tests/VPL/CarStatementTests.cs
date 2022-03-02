@@ -23,10 +23,10 @@ public class CarStatementTests
         _testObject = new GameObject();
         _testObject.AddComponent<Image>();
         _testHelper = _testObject.AddComponent<TestHelper>();
-        
+
         _testDropdown = new GameObject().AddComponent<TMP_Dropdown>();
         AddTestDropdownOptions(_testDropdown);
-        
+
         _car = Substitute.For<ICar>();
         _player = Substitute.For<IPlayerManager>();
     }
@@ -169,7 +169,7 @@ public class CarStatementTests
         yield return null;
         _testHelper.RunCoroutine(newCar.Run());
         yield return null;
-        
+
         Assert.IsTrue(GameManager.Players.Count > 1);
     }
 
@@ -191,7 +191,7 @@ public class CarStatementTests
         yield return null;
         _testHelper.RunCoroutine(carList.Run());
         yield return null;
-        
+
         Assert.AreSame(newPlayer, GameManager.CurrentPlayer);
     }
 
@@ -213,7 +213,7 @@ public class CarStatementTests
         yield return null;
         _testHelper.RunCoroutine(carList.Run());
         yield return null;
-        
+
         // Should have executed the dummy "autopilot" statement
         newPlayer.Received(1).CurrentControl = ControlMode.AI;
     }
@@ -237,7 +237,7 @@ public class CarStatementTests
         yield return null;
         _testHelper.RunCoroutine(carList.Run());
         yield return null;
-        
+
         // Should have executed the dummy "autopilot" statement
         newPlayer.Received(1).CurrentControl = ControlMode.AI;
     }
@@ -261,7 +261,7 @@ public class CarStatementTests
         yield return null;
         _testHelper.RunCoroutine(carList.Run());
         yield return null;
-        
+
         // Should have executed the dummy "autopilot" statement
         _player.Received(1).CurrentControl = ControlMode.AI;
     }

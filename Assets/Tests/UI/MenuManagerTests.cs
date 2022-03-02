@@ -12,7 +12,7 @@ public class MenuManagerTests
     [SetUp]
     public void SetUp()
     {
-        _menuManager = new GameObject().AddComponent<MenuManager>();    
+        _menuManager = new GameObject().AddComponent<MenuManager>();
         SceneManager.LoadScene(0);
     }
 
