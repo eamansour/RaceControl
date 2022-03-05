@@ -392,6 +392,9 @@ MonoBehaviour:
   _fuelText: {fileID: 0}
   _positionText: {fileID: 0}
   _lapText: {fileID: 0}
+  _currentLapTimeText: {fileID: 0}
+  _bestLapTimeText: {fileID: 0}
+  _wrongWayText: {fileID: 0}
   _checkpointParticles: {fileID: 0}
   _initialiseIndexText: 0
 --- !u!1001 &310124990260359148
@@ -1142,11 +1145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3194387753987294441, guid: b22eff73ddc9252429562bb396946648, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 144.1716
+      value: 176.6598
       objectReference: {fileID: 0}
     - target: {fileID: 3194387753987294441, guid: b22eff73ddc9252429562bb396946648, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 71.8639
+      value: 83.5944
       objectReference: {fileID: 0}
     - target: {fileID: 3194387753987294441, guid: b22eff73ddc9252429562bb396946648, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1178,11 +1181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3194387753987294441, guid: b22eff73ddc9252429562bb396946648, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 129.53851
+      value: 88.329956
       objectReference: {fileID: 0}
     - target: {fileID: 3194387753987294441, guid: b22eff73ddc9252429562bb396946648, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 64.57001
+      value: 41.794067
       objectReference: {fileID: 0}
     - target: {fileID: 3194387753987294441, guid: b22eff73ddc9252429562bb396946648, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

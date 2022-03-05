@@ -15,12 +15,11 @@ public class EngineSound : MonoBehaviour
     {
         _car = GetComponent<Car>();
         _source = SoundManager.GetSource(EngineSoundName);
-        SoundManager.PlaySound(EngineSoundName);
     }
 
     private void OnDestroy()
     {
-        if (SoundManager.GetSource(EngineSoundName))
+        if (_source)
         {
             SoundManager.StopSound(EngineSoundName);
         }
@@ -30,6 +29,11 @@ public class EngineSound : MonoBehaviour
     {
         // In case of multiple players, only change the sound of the player being followed
         if (Time.timeScale == 0f || GameManager.CurrentPlayer.AttachedGameObject != _car.gameObject) return;
+
+        if (!_source.isPlaying)
+        {
+            SoundManager.PlaySound(EngineSoundName);
+        }
 
         float pitchFraction = _gearPitch[0];
         for (int i = 0; i < _gearSpeed.Count; i++)

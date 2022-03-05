@@ -65,7 +65,7 @@ public class RaceFlag : MonoBehaviour, IRaceFlag
         if (Flag == FlagType.RedFlag)
         {
             _avoidCheckpointObjective.UpdateCompletion();
-            if (_avoidCheckpointObjective.Failed)
+            if (_avoidCheckpointObjective.Failed && !GameManager.LevelEnded)
             {
                 GameManager.LevelFail();
             }
@@ -81,7 +81,7 @@ public class RaceFlag : MonoBehaviour, IRaceFlag
         if (Flag == FlagType.YellowFlag)
         {
             _maxSpeedObjective.UpdateCompletion();
-            if (_maxSpeedObjective.Failed)
+            if (_maxSpeedObjective.Failed && !GameManager.LevelEnded)
             {
                 GameManager.LevelFail();
             }

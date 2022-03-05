@@ -3,16 +3,19 @@ using NUnit.Framework;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.TestTools;
+using System.Collections;
 
 [Category("VPLTests")]
 [Category("ExpressionTests")]
 public class BooleanExpressionTests
 {
     private GameObject _testObject;
-    private BooleanExpression _booleanExpression;
+    private BooleanExpression _boolExpression;
     private TMP_InputField _leftOperand;
     private TMP_InputField _rightOperand;
     private TMP_Dropdown _operatorDropdown;
+    private TMP_Dropdown _logicalDropdown;
 
     [SetUp]
     public void SetUp()
@@ -20,24 +23,32 @@ public class BooleanExpressionTests
         _testObject = new GameObject();
         _testObject.AddComponent<Image>();
 
-        _booleanExpression = _testObject.AddComponent<BooleanExpression>();
-        _operatorDropdown = _testObject.AddComponent<TMP_Dropdown>();
+        _boolExpression = _testObject.AddComponent<BooleanExpression>();
+        
+        _operatorDropdown = new GameObject().AddComponent<TMP_Dropdown>();
+        _logicalDropdown = new GameObject().AddComponent<TMP_Dropdown>();
 
         _leftOperand = new GameObject().AddComponent<TMP_InputField>();
         _rightOperand = new GameObject().AddComponent<TMP_InputField>();
 
-        List<string> options = new List<string> { "==", "!=", "<", ">", "<=", ">=" };
-        _operatorDropdown.AddOptions(options);
+        BooleanExpression prefab =
+            Resources.Load<BooleanExpression>("Prefabs/VPL/Expressions/BooleanExpression");
 
-        _booleanExpression.Construct(_leftOperand, _rightOperand, _operatorDropdown);
+        _operatorDropdown.AddOptions(new List<string> { "==", "!=", "<", ">", "<=", ">=" });
+        _logicalDropdown.AddOptions(new List<string> { "...", "and", "or" });
+
+        _boolExpression.Construct(_leftOperand, _rightOperand, _operatorDropdown);
+        _boolExpression.Construct(_logicalDropdown, prefab);
     }
 
     [TearDown]
     public void TearDown()
     {
-        Object.Destroy(_testObject);
-        Object.Destroy(_leftOperand.gameObject);
-        Object.Destroy(_rightOperand.gameObject);
+        foreach (GameObject go in GameObject.FindObjectsOfType<GameObject>())
+        {
+            go.SetActive(true);
+            Object.Destroy(go);
+        }
     }
 
     [Test]
@@ -46,15 +57,13 @@ public class BooleanExpressionTests
         [Values("5", "-5", "30")] string right
     )
     {
-        // Arrange
         _operatorDropdown.value = 0;
+        _logicalDropdown.value = 0;
         _leftOperand.text = left;
         _rightOperand.text = right;
 
-        // Act
-        bool result = _booleanExpression.EvaluateExpression();
+        bool result = _boolExpression.EvaluateExpression();
 
-        // Assert
         Assert.AreEqual(float.Parse(left) == float.Parse(right), result);
     }
 
@@ -64,15 +73,13 @@ public class BooleanExpressionTests
         [Values("5", "-5", "30")] string right
     )
     {
-        // Arrange
         _operatorDropdown.value = 1;
+        _logicalDropdown.value = 0;
         _leftOperand.text = left;
         _rightOperand.text = right;
 
-        // Act
-        bool result = _booleanExpression.EvaluateExpression();
+        bool result = _boolExpression.EvaluateExpression();
 
-        // Assert
         Assert.AreEqual(float.Parse(left) != float.Parse(right), result);
     }
 
@@ -82,15 +89,13 @@ public class BooleanExpressionTests
         [Values("5", "-5", "30")] string right
     )
     {
-        // Arrange
         _operatorDropdown.value = 2;
+        _logicalDropdown.value = 0;
         _leftOperand.text = left;
         _rightOperand.text = right;
 
-        // Act
-        bool result = _booleanExpression.EvaluateExpression();
+        bool result = _boolExpression.EvaluateExpression();
 
-        // Assert
         Assert.AreEqual(float.Parse(left) < float.Parse(right), result);
     }
 
@@ -100,15 +105,13 @@ public class BooleanExpressionTests
         [Values("5", "-5", "30")] string right
     )
     {
-        // Arrange
         _operatorDropdown.value = 3;
+        _logicalDropdown.value = 0;
         _leftOperand.text = left;
         _rightOperand.text = right;
 
-        // Act
-        bool result = _booleanExpression.EvaluateExpression();
+        bool result = _boolExpression.EvaluateExpression();
 
-        // Assert
         Assert.AreEqual(float.Parse(left) > float.Parse(right), result);
     }
 
@@ -118,15 +121,13 @@ public class BooleanExpressionTests
         [Values("5", "-5", "30")] string right
     )
     {
-        // Arrange
         _operatorDropdown.value = 4;
+        _logicalDropdown.value = 0;
         _leftOperand.text = left;
         _rightOperand.text = right;
 
-        // Act
-        bool result = _booleanExpression.EvaluateExpression();
+        bool result = _boolExpression.EvaluateExpression();
 
-        // Assert
         Assert.AreEqual(float.Parse(left) <= float.Parse(right), result);
     }
 
@@ -136,15 +137,13 @@ public class BooleanExpressionTests
         [Values("5", "-5", "30")] string right
     )
     {
-        // Arrange
         _operatorDropdown.value = 5;
+        _logicalDropdown.value = 0;
         _leftOperand.text = left;
         _rightOperand.text = right;
 
-        // Act
-        bool result = _booleanExpression.EvaluateExpression();
+        bool result = _boolExpression.EvaluateExpression();
 
-        // Assert
         Assert.AreEqual(float.Parse(left) >= float.Parse(right), result);
     }
 
@@ -153,15 +152,13 @@ public class BooleanExpressionTests
         [Values("2", "-5", "-20", "0")] string right
     )
     {
-        // Arrange
         _operatorDropdown.value = 0;
+        _logicalDropdown.value = 0;
         _leftOperand.text = "BAD INPUT";
         _rightOperand.text = right;
 
-        // Act
-        bool result = _booleanExpression.EvaluateExpression();
+        bool result = _boolExpression.EvaluateExpression();
 
-        // Assert
         Assert.AreEqual(0f == float.Parse(right), result);
     }
 
@@ -171,15 +168,33 @@ public class BooleanExpressionTests
         [Values("BAD", "xyzABC")] string right
     )
     {
-        // Arrange
         _operatorDropdown.value = 0;
+        _logicalDropdown.value = 0;
         _leftOperand.text = left;
         _rightOperand.text = right;
 
-        // Act
-        bool result = _booleanExpression.EvaluateExpression();
+        bool result = _boolExpression.EvaluateExpression();
 
-        // Assert
         Assert.AreEqual(true, result);
+    }
+
+    [UnityTest]
+    public IEnumerator LogicalAnd_ShouldReturnTrueIfBothExpressionsAreTrue(
+        [Values("5")] string left,
+        [Values("5")] string right
+    )
+    {
+        _operatorDropdown.value = 0;
+        _logicalDropdown.value = 1;
+        _leftOperand.text = left;
+        _rightOperand.text = right;
+
+        yield return new WaitForSeconds(0.1f);
+        BooleanExpression newExpression = GameObject.Find("BooleanExpression(Clone)").GetComponent<BooleanExpression>();
+        newExpression.Construct(_leftOperand, _rightOperand, _operatorDropdown);
+        
+        bool result = _boolExpression.EvaluateExpression();
+
+        Assert.IsTrue(result);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Droppable : MonoBehaviour, IDropHandler
 {
-    private static Action OnLayoutUpdated;
+    public static Action OnLayoutUpdated;
 
     [SerializeField]
     private RectTransform _targetRect;
@@ -21,6 +21,17 @@ public class Droppable : MonoBehaviour, IDropHandler
     private void OnDestroy()
     {
         OnLayoutUpdated -= RefreshLayout;
+    }
+
+    /// <summary>
+    /// Invokes the OnLayoutUpdated event.
+    /// </summary>
+    public static void UpdateLayout()
+    {
+        if (OnLayoutUpdated != null)
+        {
+            OnLayoutUpdated();
+        }        
     }
 
     /// <summary>
@@ -53,10 +64,7 @@ public class Droppable : MonoBehaviour, IDropHandler
                     }
                 }
             }
-            if (OnLayoutUpdated != null)
-            {
-                OnLayoutUpdated();
-            }
+            UpdateLayout();
         }
     }
 
