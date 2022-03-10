@@ -8,7 +8,7 @@
                 "<>",
                 "=!"
             ],
-            "correctIndex": 0
+            "correctAnswer": "=="
         },
         {
             "title": "How do you insert a comment in Python?",
@@ -18,7 +18,7 @@
                 "/* This is a comment */",
                 "?! This is a comment ?!"
             ],
-            "correctIndex": 1
+            "correctAnswer": "# This is a comment"
         },
         {
             "title": "How do you define a function in Python?",
@@ -28,7 +28,7 @@
                 "def function():",
                 "def function"
             ],
-            "correctIndex": 2
+            "correctAnswer": "def function():"
         },
         {
             "title": "How are class functions typically defined in Python?",
@@ -38,7 +38,7 @@
                 "private void function()",
                 "def function"
             ],
-            "correctIndex": 1
+            "correctAnswer": "def function(self):"
         },
         {
             "title": "Which of the following is a correct if statement in Python?",
@@ -48,7 +48,7 @@
                 "if x => y:",
                 "if x >= y:"
             ],
-            "correctIndex": 3
+            "correctAnswer": "if x >= y:"
         },
         {
             "title": "Which of the following is a correct while loop in Python?",
@@ -58,17 +58,17 @@
                 "while x != y:",
                 "while x > y {"
             ],
-            "correctIndex": 2
+            "correctAnswer": "while x != y:"
         },
         {
-            "title": "How do you write a for loop in Python?",
+            "title": "How do you write an indexed for loop in Python?",
             "options": [
                 "for i in range(5):",
                 "for car in cars:",
                 "for x > y:",
-                "Both top-left and top-right"
+                "for range(5) in i:"
             ],
-            "correctIndex": 3
+            "correctAnswer": "for i in range(5):"
         },
         {
             "title": "In Python, a control structure:",
@@ -78,7 +78,7 @@
                 "Defines a program's data structures",
                 "Stops a program"
             ],
-            "correctIndex": 0
+            "correctAnswer": "Determines the order of execution of the statements in a program"
         },
         {
             "title": "What signifies the end of a statement block in Python?",
@@ -88,7 +88,7 @@
                 "A comment",
                 ":"
             ],
-            "correctIndex": 0
+            "correctAnswer": "A line that is indented less than the previous line"
         },
         {
             "title": "In the statement x = a + 5 - b, what are a and b?",
@@ -98,7 +98,7 @@
                 "Expressions",
                 "Groups"
             ],
-            "correctIndex": 1
+            "correctAnswer": "Operands"
         },
         {
             "title": "What does the % operator do in Python?",
@@ -108,7 +108,7 @@
                 "Returns the multiplication of two operands",
                 "Returns the remainder of dividing two operands"
             ],
-            "correctIndex": 3
+            "correctAnswer": "Returns the remainder of dividing two operands"
         },
         {
             "title": "Which of the following statements about lists are true?",
@@ -118,7 +118,7 @@
                 "A list can have duplicate elements",
                 "The size of a list can't be changed"
             ],
-            "correctIndex": 2
+            "correctAnswer": "A list can have duplicate elements"
         },
         {
             "title": "How can you replace the first element in the tuple\nt = ('a', 'b')?",
@@ -128,7 +128,7 @@
                 "t[0] = 'c'",
                 "Tuples can't be modified"
             ],
-            "correctIndex": 3
+            "correctAnswer": "Tuples can't be modified"
         },
         {
             "title": "Which of the following is not a valid variable name in Python?",
@@ -138,7 +138,7 @@
                 "temp_var",
                 "tempvar"
             ],
-            "correctIndex": 0
+            "correctAnswer": "temp-var"
         },
         {
             "title": "What will the following code output?\n# print(10 % 2)",
@@ -148,7 +148,7 @@
                 "5",
                 "Nothing"
             ],
-            "correctIndex": 3
+            "correctAnswer": "Nothing"
         },
         {
             "title": "How many times will the following for loop run?\nfor x in range(10):",
@@ -158,7 +158,7 @@
                 "9 times",
                 "It will return an error"
             ],
-            "correctIndex": 2
+            "correctAnswer": "9 times"
         },
         {
             "title": "Assume a 'Car' class exists, how do you create a new 'Car' object in Python?",
@@ -168,17 +168,17 @@
                 "new car = car()",
                 "new car = Car()"
             ],
-            "correctIndex": 1
+            "correctAnswer": "car = Car()"
         },
         {
             "title": "Assume you have a class with an __init__() function.\nWhen will the __init__() function run?",
             "options": [
-                "Whenever a new object of that class is created",
+                "Whenever a new instance of that class is created",
                 "At the start of every program",
                 "Only when it is called",
                 "At the end of every program"
             ],
-            "correctIndex": 0
+            "correctAnswer": "Whenever a new instance of that class is created"
         },
         {
             "title": "When does an 'else' statement execute?",
@@ -188,7 +188,7 @@
                 "After an 'if' statement is true",
                 "When all preceding conditions before it are true"
             ],
-            "correctIndex": 1
+            "correctAnswer": "When all preceding conditions are false"
         },
         {
             "title": "What is the correct way to call the following function in Python?\ndef isEven(n):",
@@ -198,7 +198,7 @@
                 "isEven(4)",
                 "isEven()"
             ],
-            "correctIndex": 2
+            "correctAnswer": "isEven(4)"
         }
     ]
 }

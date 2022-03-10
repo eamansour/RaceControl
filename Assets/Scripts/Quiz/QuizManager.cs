@@ -3,6 +3,8 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using System;
+using UnityEngine.UI;
+using Random = System.Random;
 
 public class QuizManager : MonoBehaviour
 {
@@ -57,7 +59,10 @@ public class QuizManager : MonoBehaviour
             if (questions.Count == 0) return;
 
             int randomIndex = UnityEngine.Random.Range(0, questions.Count);
-            _sampledQuestions.Add(questions[randomIndex]);
+            Question sampledQuestion = questions[randomIndex];
+
+            sampledQuestion.options = ShuffleOptions(sampledQuestion.options);
+            _sampledQuestions.Add(sampledQuestion);
 
             questions.RemoveAt(randomIndex);
             sampleSize--;
@@ -65,11 +70,31 @@ public class QuizManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Randomly shuffles a given array and returns the shuffled array.
+    /// Uses the Knuth shuffle algorithm - Knuth, 1969. "The art of computer programming. Volume 2, Seminumerical algorithms".
+    /// </summary>
+    private string[] ShuffleOptions(string[] options)
+    {
+        Random random = new Random();
+        for (int i = options.Length - 1; i > 0; i--)
+        {
+            int j = random.Next(0, i);
+            
+            // Swap elements
+            string temp = options[i];
+            options[i] = options[j];
+            options[j] = temp;
+        }
+        return options;
+    }
+
+    /// <summary>
     /// Selects an option with a given index and updates the quiz progress.
     /// </summary>
-    public void SelectOption(int optionIndex)
+    public void SelectOption(Button button)
     {
-        if (_currentQuestion.correctIndex == optionIndex)
+        string optionText = button.GetComponentInChildren<TMP_Text>().text;
+        if (_currentQuestion.correctAnswer == optionText)
         {
             _animator.SetTrigger("Correct");
             _score++;
