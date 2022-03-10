@@ -4,7 +4,7 @@ public class Question
     // Case sensitive: Must match JSON attributes
     public string title;
     public string[] options;
-    public int correctIndex;
+    public string correctAnswer;
 }
 
 [System.Serializable]

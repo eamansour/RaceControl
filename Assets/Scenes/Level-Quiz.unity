@@ -553,10 +553,10 @@ MonoBehaviour:
       - m_Target: {fileID: 2075996225}
         m_TargetAssemblyTypeName: QuizManager, GameAssembly
         m_MethodName: SelectOption
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 107590209}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2073,10 +2073,10 @@ MonoBehaviour:
       - m_Target: {fileID: 2075996225}
         m_TargetAssemblyTypeName: QuizManager, GameAssembly
         m_MethodName: SelectOption
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 904263065}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3354,10 +3354,10 @@ MonoBehaviour:
       - m_Target: {fileID: 2075996225}
         m_TargetAssemblyTypeName: QuizManager, GameAssembly
         m_MethodName: SelectOption
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1627887368}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4133,10 +4133,10 @@ MonoBehaviour:
       - m_Target: {fileID: 2075996225}
         m_TargetAssemblyTypeName: QuizManager, GameAssembly
         m_MethodName: SelectOption
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1986489213}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
