@@ -97,7 +97,7 @@ public class CarStatementTests
     {
         Wait wait = _testObject.AddComponent<Wait>();
         _testDropdown.transform.SetParent(wait.transform);
-        wait.Construct(_car, _player, _testDropdown);
+        wait.Construct(_testDropdown);
 
         _testHelper.RunCoroutine(wait.Run());
 

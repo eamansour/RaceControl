@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 4861872870200602086}
   - component: {fileID: 4861872870200602080}
   - component: {fileID: 4861872870200602081}
+  - component: {fileID: 4295319828820028596}
   m_Layer: 5
   m_Name: FuelPanel
   m_TagString: Untagged
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+  m_Color: {r: 0.09803922, g: 0.16470589, b: 0.3372549, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -211,6 +212,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4295319828820028596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861872870200602087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9dd2b5cc5f0e2045bb6288b28979332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HudText: {fileID: 4861872869470957305}
 --- !u!1 &4861872871261934730
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,8 +292,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'fuel:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5fccfa7403161214e8fb67ae2441c0aa, type: 2}
-  m_sharedMaterial: {fileID: 3044192252730137272, guid: 5fccfa7403161214e8fb67ae2441c0aa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 06d85110192bbb44b8023c98bc04706a, type: 2}
+  m_sharedMaterial: {fileID: -1939966202331384227, guid: 06d85110192bbb44b8023c98bc04706a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

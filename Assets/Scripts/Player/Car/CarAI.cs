@@ -4,7 +4,7 @@ using UnityEngine;
 public class CarAI : MonoBehaviour, ICarAI
 {
     private const float MaxSteerAngle = 45f;
-    private const float DistanceThreshold = 3f;
+    private const float DistanceThreshold = 1f;
     private const float FuelThreshold = 40f;
     private const float ReverseAcceleration = -0.5f;
 
@@ -105,7 +105,6 @@ public class CarAI : MonoBehaviour, ICarAI
     private float GetAcceleration(float steerAmount)
     {
         Vector3 directionToTarget = (_targetPosition - transform.position).normalized;
-        float targetDistance = Vector3.Distance(transform.position, _targetPosition);
         float dotProduct = Vector3.Dot(-transform.forward, directionToTarget);
 
         float acceleration = 0f;
@@ -116,7 +115,7 @@ public class CarAI : MonoBehaviour, ICarAI
             return -1f;
         }
 
-        // Accelerate or reverse depending on whether the target is in front or behind the car
+        // If the target is in front of the car, accelerate - Otherwise, reverse
         if (Math.Round(dotProduct, 2) >= 0f)
         {
             float absoluteSteer = Mathf.Abs(steerAmount);
@@ -210,7 +209,7 @@ public class CarAI : MonoBehaviour, ICarAI
 
         // Make the AI desire to either avoid opponents or continue travelling to the target position
         float targetDistance = Vector3.Distance(transform.position, _targetPosition);
-        float desireToStay = Mathf.Clamp(DistanceThreshold / targetDistance, 0.25f, 1f);
+        float desireToStay = Mathf.Clamp(DistanceThreshold / targetDistance, 0.25f, 0.75f);
         float desireToAvoid = 1f - desireToStay;
 
         Vector3 avoidVector = Vector3.Reflect((detectedCar.position - transform.position).normalized, -detectedCar.right);

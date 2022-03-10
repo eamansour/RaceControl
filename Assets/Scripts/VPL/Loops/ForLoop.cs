@@ -33,11 +33,11 @@ public class ForLoop : CompoundStatement
     public override IEnumerator Run()
     {
         string indexVariable = _indexVariableInput.text;
-        string selectedRangeStart = GetSelectedDropdownText(_rangeStartDropdown);
-        string selectedRangeEnd = GetSelectedDropdownText(_rangeEndDropdown);
+        string selectedRangeStart = GetSelectedToString(_rangeStartDropdown);
+        string selectedRangeEnd = GetSelectedToString(_rangeEndDropdown);
 
         // Retrieve and parse selected inputs
-        int increment = Int32.Parse(GetSelectedDropdownText(_incrementDropdown));
+        int increment = Int32.Parse(GetSelectedToString(_incrementDropdown));
         int startIndex = ParseSelectedRange(selectedRangeStart);
         int endIndex = ParseSelectedRange(selectedRangeEnd);
         int originalIndex = Int32.MaxValue;

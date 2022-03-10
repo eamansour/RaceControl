@@ -8,7 +8,7 @@ public class ArithmeticExpression : Expression<float>
         float right = GetOperandValue(RightOperandInput);
 
         // Perform appropriate arithmetic operation
-        switch (GetSelectedDropdownText(DropdownInput))
+        switch (GetSelectedToString(DropdownInput))
         {
             case "+":
                 result = left + right;

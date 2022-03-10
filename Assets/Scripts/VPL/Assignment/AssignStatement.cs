@@ -6,12 +6,12 @@ using TMPro;
 public abstract class AssignStatement<T> : Statement
 {
     [SerializeField]
-    private TMP_InputField _variableInput;
-
-    [SerializeField]
     protected TMP_Dropdown _variableDropdown;
 
     protected IExpression<T> _expression;
+
+    [SerializeField]
+    private TMP_InputField _variableInput;
 
     private ICar _car;
     private IObstacleSpawn _spawner;

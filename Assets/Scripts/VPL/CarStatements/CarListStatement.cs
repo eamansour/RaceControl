@@ -17,7 +17,7 @@ public class CarListStatement : CarStatement
         List<IPlayerManager> players = GameManager.Players;
         IPlayerManager player = players[0];
 
-        string selected = GetSelectedDropdownText(DropdownInput);
+        string selected = GetSelectedToString(DropdownInput);
 
         if (Environment.ContainsKey(selected))
         {

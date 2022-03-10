@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.25, g: 0.9545877, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.65882355, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -492,50 +492,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 619260918229515639, guid: 1db20ff10c9092d4b901949031678dd2, type: 3}
   m_PrefabInstance: {fileID: 189197262}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &189197264 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1731189068085727477, guid: 1db20ff10c9092d4b901949031678dd2, type: 3}
-  m_PrefabInstance: {fileID: 189197262}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &189197265 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5467608660390016234, guid: 1db20ff10c9092d4b901949031678dd2, type: 3}
-  m_PrefabInstance: {fileID: 189197262}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &189197266 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 619260918018002971, guid: 1db20ff10c9092d4b901949031678dd2, type: 3}
-  m_PrefabInstance: {fileID: 189197262}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &189197267 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 619260917535549900, guid: 1db20ff10c9092d4b901949031678dd2, type: 3}
-  m_PrefabInstance: {fileID: 189197262}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &208400028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -840,6 +796,7 @@ GameObject:
   - component: {fileID: 227780499}
   - component: {fileID: 227780498}
   - component: {fileID: 227780501}
+  - component: {fileID: 227780502}
   m_Layer: 5
   m_Name: PlayerHUD
   m_TagString: Untagged
@@ -950,15 +907,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3406f2f57574447920fec93940905c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mphText: {fileID: 189197264}
-  _fuelText: {fileID: 189197266}
-  _positionText: {fileID: 189197267}
-  _lapText: {fileID: 189197265}
-  _currentLapTimeText: {fileID: 1669589233}
-  _bestLapTimeText: {fileID: 1033727663}
-  _wrongWayText: {fileID: 376439416}
   _checkpointParticles: {fileID: 2091797197}
   _initialiseIndexText: 0
+--- !u!114 &227780502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227780496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c12173837e10643857fcf88db1b9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HudText: {fileID: 376439416}
 --- !u!1001 &255766007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2273,17 +2236,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997113019}
   m_CullTransparentMesh: 1
---- !u!114 &1033727663 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9149847308166821030, guid: fbb6d8ff546052e4bb44c4b981d90500, type: 3}
-  m_PrefabInstance: {fileID: 255766007}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1117757859
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,7 +2745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 17931653352699507, guid: 5bc31605d39d0e7448157b052a2ee991, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 17931653352699507, guid: 5bc31605d39d0e7448157b052a2ee991, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2801,11 +2753,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 17931653352699507, guid: 5bc31605d39d0e7448157b052a2ee991, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 17931653352699507, guid: 5bc31605d39d0e7448157b052a2ee991, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 338.89
       objectReference: {fileID: 0}
     - target: {fileID: 17931653352699507, guid: 5bc31605d39d0e7448157b052a2ee991, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2841,11 +2793,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 17931653352699507, guid: 5bc31605d39d0e7448157b052a2ee991, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 169.445
       objectReference: {fileID: 0}
     - target: {fileID: 17931653352699507, guid: 5bc31605d39d0e7448157b052a2ee991, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -41.532
       objectReference: {fileID: 0}
     - target: {fileID: 17931653352699507, guid: 5bc31605d39d0e7448157b052a2ee991, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3083,7 +3035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.037748944, b: 0.254717, a: 0.98039216}
+  m_Color: {r: 0.09803922, g: 0.16470589, b: 0.3372549, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3378,17 +3330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1669589233 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9149847309215073853, guid: fbb6d8ff546052e4bb44c4b981d90500, type: 3}
-  m_PrefabInstance: {fileID: 255766007}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1697917736
 GameObject:
   m_ObjectHideFlags: 0
@@ -3515,48 +3456,6 @@ PrefabInstance:
     - target: {fileID: 2381565028343603246, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
       propertyPath: m_Name
       value: TutorialButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
-      propertyPath: messages.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
-      propertyPath: messages.Array.data[0]
-      value: Time to look at some variables.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
-      propertyPath: messages.Array.data[1]
-      value: Variables are storage locations used to store values in a program, like
-        integers, strings, and object references.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
-      propertyPath: messages.Array.data[2]
-      value: Once defined, you can reference a variable and change the value that
-        it holds.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
-      propertyPath: messages.Array.data[3]
-      value: A constant is another type of storage location, but unlike variables,
-        constants can't be changed.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
-      propertyPath: messages.Array.data[4]
-      value: We've filled up your car with fuel and defined a "fuel" variable for
-        you.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
-      propertyPath: messages.Array.data[5]
-      value: Problem is, we've given you far too much fuel, so you're going to have
-        to throw some out.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
-      propertyPath: messages.Array.data[6]
-      value: We're going to be measuring your speed over two straights, so hit the
-        throttle and get to the second corner as fast as you can!
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
-      propertyPath: messages.Array.data[7]
-      value: Good luck!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
@@ -5172,8 +5071,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00d8d02de228b746b58e7bef7ec682c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _variableInput: {fileID: 5029618154649673566}
   _variableDropdown: {fileID: 0}
+  _variableInput: {fileID: 5029618154649673566}
 --- !u!224 &5941129094514390048
 RectTransform:
   m_ObjectHideFlags: 0

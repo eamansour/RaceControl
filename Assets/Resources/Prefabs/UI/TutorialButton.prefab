@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 2381565028343603245}
   - component: {fileID: 2381565028343603250}
   - component: {fileID: 2381565028343603251}
-  - component: {fileID: 2381565028343603244}
+  - component: {fileID: 4926478671524222191}
   - component: {fileID: 2381565028343603249}
   - component: {fileID: 2381565028343603248}
   m_Layer: 5
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.09803922, g: 0.16470589, b: 0.3372549, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2381565028343603244
+--- !u!114 &4926478671524222191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 0
+    m_Mode: 3
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -234,10 +234,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 0.23877971, b: 0.5377358, a: 1}
-    m_HighlightedColor: {r: 0, g: 0.2392157, b: 0.5372549, a: 1}
-    m_PressedColor: {r: 0, g: 0.21002619, b: 0.4716981, a: 1}
-    m_SelectedColor: {r: 0, g: 0.21176472, b: 0.47058827, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -282,18 +282,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Welcome to Race Control!
-  - Before we begin programming, let's first learn what a program is.
-  - A program is essentially a list of instructions.
-  - When a program runs, it reads these instructions and runs them.
-  - On the right, we have our program console and some useful instructions!
-  - For this level, we want to reach the finish line, shown by the objective on the
-    top left of your screen.
-  - You can pan the camera using the movement keys, or by moving your mouse to any
-    edge of your screen.
-  - Try dragging and dropping some instructions onto the console. Whenever you're
-    ready, hit the green "Start" button on the console.
-  - I'll see you in the next level!
+  - Time to look at some variables.
+  - Variables are storage locations used to store values in a program, like integers,
+    strings, and object references.
+  - Once defined, you can reference a variable and change the value that it holds.
+  - A constant is another type of storage location, but unlike variables, constants
+    can't be changed.
+  - We've filled up your car with fuel and defined a "fuel" variable for you.
+  - Problem is, we've given you far too much fuel, so you're going to have to throw
+    some out.
+  - We're going to be measuring your speed over two straights, so hit the throttle
+    and get to the second corner as fast as you can!
+  - Good luck!
 --- !u!95 &2381565028343603248
 Animator:
   serializedVersion: 3

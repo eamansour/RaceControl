@@ -35,6 +35,7 @@ public class Droppable : MonoBehaviour, IDropHandler
     }
 
     /// <summary>
+    /// Event method that handles behaviours when another object has been dropped on this object.
     /// Sets a dropped object to be a child of a target transform, and sorts it into an appropriate child index.
     /// </summary>
     public void OnDrop(PointerEventData eventData)

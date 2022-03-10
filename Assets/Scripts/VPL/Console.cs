@@ -25,7 +25,7 @@ public class Console : MonoBehaviour
 
             _currentStatement = child.GetComponent<Statement>();
 
-            _currentStatement.SetRunningColour();
+            _currentStatement.SetColor(Color.green);
             yield return StartCoroutine(_currentStatement.Run());
             _currentStatement.ResetColour();
         }

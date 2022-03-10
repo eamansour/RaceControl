@@ -6,15 +6,11 @@ public class BooleanExpression : Expression<bool>
     [SerializeField]
     private TMP_Dropdown _logicalDropdown;
 
-    [SerializeField]
-    private BooleanExpression _boolExpressionPrefab;
-
     private BooleanExpression _spawnedExpression;
 
-    public void Construct(TMP_Dropdown logicalDropdown, BooleanExpression boolExpressionPrefab)
+    public void Construct(TMP_Dropdown logicalDropdown)
     {
         _logicalDropdown = logicalDropdown;
-        _boolExpressionPrefab = boolExpressionPrefab;
     }
 
     private void Start()
@@ -30,7 +26,7 @@ public class BooleanExpression : Expression<bool>
         float right = GetOperandValue(RightOperandInput);
 
         // Perform appropriate Boolean comparison
-        switch (GetSelectedDropdownText(DropdownInput))
+        switch (GetSelectedToString(DropdownInput))
         {
             case "==":
                 result = left == right;
@@ -57,7 +53,7 @@ public class BooleanExpression : Expression<bool>
         // Evaluation with a logical operator (i.e. and, or)
         if (_spawnedExpression)
         {
-            switch (GetSelectedDropdownText(_logicalDropdown))
+            switch (GetSelectedToString(_logicalDropdown))
             {
                 case "and":
                     result = result && _spawnedExpression.EvaluateExpression();
@@ -106,16 +102,23 @@ public class BooleanExpression : Expression<bool>
     }
 
     /// <summary>
-    /// Spawns a new Boolean expression using this expression's given prefab.
+    /// Spawns a new Boolean expression.
     /// </summary>
     private void SpawnExpression()
     {
         _logicalDropdown.enabled = false;
+        string leftOperand = LeftOperandInput.text;
+        string rightOperand = RightOperandInput.text;
 
-        GameObject newExpression = GameObject.Instantiate(_boolExpressionPrefab.gameObject);
+        LeftOperandInput.text = "";
+        RightOperandInput.text = "";
+
+        GameObject newExpression = GameObject.Instantiate(gameObject);
         newExpression.transform.SetParent(transform.parent, false);
 
         _logicalDropdown.enabled = true;
+        LeftOperandInput.text = leftOperand;
+        RightOperandInput.text = rightOperand;
 
         foreach (TMP_Dropdown dropdown in newExpression.GetComponentsInChildren<TMP_Dropdown>())
         {

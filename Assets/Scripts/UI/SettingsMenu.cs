@@ -25,7 +25,6 @@ public class SettingsMenu : MonoBehaviour
 
     private Resolution[] _resolutions;
 
-    // Constructor-like method to initialise serialized fields
     public void Construct(AudioMixer mixer, TMP_Dropdown resolutionDropdown, Toggle fullscreenToggle, Slider soundSlider)
     {
         _mixer = mixer;

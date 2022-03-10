@@ -31,6 +31,16 @@
             "correctIndex": 2
         },
         {
+            "title": "How are class functions typically defined in Python?",
+            "options": [
+                "def function():",
+                "def function(self):",
+                "private void function()",
+                "def function"
+            ],
+            "correctIndex": 1
+        },
+        {
             "title": "Which of the following is a correct if statement in Python?",
             "options": [
                 "if x = y:",
@@ -91,6 +101,16 @@
             "correctIndex": 1
         },
         {
+            "title": "What does the % operator do in Python?",
+            "options": [
+                "Returns the floating-point division of two operands",
+                "Returns the integer division of two operands",
+                "Returns the multiplication of two operands",
+                "Returns the remainder of dividing two operands"
+            ],
+            "correctIndex": 3
+        },
+        {
             "title": "Which of the following statements about lists are true?",
             "options": [
                 "A list can contain any type of object except another list",
@@ -119,6 +139,66 @@
                 "tempvar"
             ],
             "correctIndex": 0
+        },
+        {
+            "title": "What will the following code output?\n# print(10 % 2)",
+            "options": [
+                "20",
+                "0",
+                "5",
+                "Nothing"
+            ],
+            "correctIndex": 3
+        },
+        {
+            "title": "How many times will the following for loop run?\nfor x in range(10):",
+            "options": [
+                "11 times",
+                "10 times",
+                "9 times",
+                "It will return an error"
+            ],
+            "correctIndex": 2
+        },
+        {
+            "title": "Assume a 'Car' class exists, how do you create a new 'Car' object in Python?",
+            "options": [
+                "car = new Car()",
+                "car = Car()",
+                "new car = car()",
+                "new car = Car()"
+            ],
+            "correctIndex": 1
+        },
+        {
+            "title": "Assume you have a class with an __init__() function.\nWhen will the __init__() function run?",
+            "options": [
+                "Whenever a new object of that class is created",
+                "At the start of every program",
+                "Only when it is called",
+                "At the end of every program"
+            ],
+            "correctIndex": 0
+        },
+        {
+            "title": "When does an 'else' statement execute?",
+            "options": [
+                "Before an 'if' statement",
+                "When all preceding conditions are false",
+                "After an 'if' statement is true",
+                "When all preceding conditions before it are true"
+            ],
+            "correctIndex": 1
+        },
+        {
+            "title": "What is the correct way to call the following function in Python?\ndef isEven(n):",
+            "options": [
+                "call isEven(2)",
+                "def isEven(5)",
+                "isEven(4)",
+                "isEven()"
+            ],
+            "correctIndex": 2
         }
     ]
 }

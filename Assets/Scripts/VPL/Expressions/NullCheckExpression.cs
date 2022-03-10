@@ -21,7 +21,7 @@ public class NullCheckExpression : Expression<bool>
 
     public override bool EvaluateExpression()
     {
-        string operandText = GetSelectedDropdownText(DropdownInput);
+        string operandText = GetSelectedToString(DropdownInput);
         bool result = (Environment.ContainsKey(operandText) && Environment[operandText] != null);
 
         if (operandText == "YellowFlag")

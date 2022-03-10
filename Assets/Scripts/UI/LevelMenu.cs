@@ -35,7 +35,6 @@ public class LevelMenu : MonoBehaviour, ILevelMenu
         }
     }
 
-    /// <inheritdoc />
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -71,11 +70,6 @@ public class LevelMenu : MonoBehaviour, ILevelMenu
         IsPaused = false;
         _pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-
-        if (SoundManager.GetSource(EngineSoundName))
-        {
-            SoundManager.PlaySound(EngineSoundName);
-        }
     }
 
     /// <inheritdoc />

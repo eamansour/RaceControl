@@ -30,7 +30,7 @@ public class EngineSound : MonoBehaviour
         // In case of multiple players, only change the sound of the player being followed
         if (Time.timeScale == 0f || GameManager.CurrentPlayer.AttachedGameObject != _car.gameObject) return;
 
-        if (!_source.isPlaying)
+        if (!_source.isPlaying && Time.timeScale == 1f)
         {
             SoundManager.PlaySound(EngineSoundName);
         }

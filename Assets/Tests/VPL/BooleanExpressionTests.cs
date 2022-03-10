@@ -47,7 +47,7 @@ public class BooleanExpressionTests
         _rightOperandNew = CreateTestInputField();
 
         _boolExpression.Construct(_leftOperand, _rightOperand, _operatorDropdown);
-        _boolExpression.Construct(_logicalDropdown, _boolExpression);
+        _boolExpression.Construct(_logicalDropdown);
     }
 
     [TearDown]
@@ -217,7 +217,7 @@ public class BooleanExpressionTests
 
         BooleanExpression newExpression = GameObject.Find("TestExpression(Clone)").GetComponent<BooleanExpression>();
         newExpression.Construct(_leftOperandNew, _rightOperandNew, _operatorDropdownNew);
-        newExpression.Construct(_logicalDropdownNew, _boolExpression);
+        newExpression.Construct(_logicalDropdownNew);
 
         bool result = _boolExpression.EvaluateExpression();
         Assert.IsTrue(result);
@@ -242,7 +242,7 @@ public class BooleanExpressionTests
 
         BooleanExpression newExpression = GameObject.Find("TestExpression(Clone)").GetComponent<BooleanExpression>();
         newExpression.Construct(_leftOperandNew, _rightOperandNew, _operatorDropdownNew);
-        newExpression.Construct(_logicalDropdownNew, _boolExpression);
+        newExpression.Construct(_logicalDropdownNew);
 
         bool result = _boolExpression.EvaluateExpression();
         Assert.IsFalse(result);
@@ -267,7 +267,7 @@ public class BooleanExpressionTests
 
         BooleanExpression newExpression = GameObject.Find("TestExpression(Clone)").GetComponent<BooleanExpression>();
         newExpression.Construct(_leftOperandNew, _rightOperandNew, _operatorDropdownNew);
-        newExpression.Construct(_logicalDropdownNew, _boolExpression);
+        newExpression.Construct(_logicalDropdownNew);
 
         bool result = _boolExpression.EvaluateExpression();
         Assert.IsTrue(result);
@@ -292,7 +292,7 @@ public class BooleanExpressionTests
 
         BooleanExpression newExpression = GameObject.Find("TestExpression(Clone)").GetComponent<BooleanExpression>();
         newExpression.Construct(_leftOperandNew, _rightOperandNew, _operatorDropdownNew);
-        newExpression.Construct(_logicalDropdownNew, _boolExpression);
+        newExpression.Construct(_logicalDropdownNew);
 
         bool result = _boolExpression.EvaluateExpression();
         Assert.IsFalse(result);

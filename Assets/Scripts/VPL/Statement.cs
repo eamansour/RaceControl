@@ -27,11 +27,11 @@ public abstract class Statement : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the background panel's colour to indicate the statement is running.
+    /// Updates the background panel's colour to a given colour.
     /// </summary>
-    public void SetRunningColour()
+    public void SetColor(Color colour)
     {
-        _background.color = Color.green;
+        _background.color = colour;
     }
 
     /// <summary>
@@ -50,7 +50,7 @@ public abstract class Statement : MonoBehaviour
     /// <summary>
     /// Helper method to get a given dropdown's selected option text.
     /// </summary>
-    protected string GetSelectedDropdownText(TMP_Dropdown dropdown)
+    protected string GetSelectedToString(TMP_Dropdown dropdown)
     {
         return dropdown.options[dropdown.value].text;
     }
@@ -60,6 +60,6 @@ public abstract class Statement : MonoBehaviour
     /// </summary>
     protected float GetSelectedToFloat(TMP_Dropdown dropdown)
     {
-        return float.TryParse(GetSelectedDropdownText(dropdown), out float value) ? value : 0f;
+        return float.TryParse(GetSelectedToString(dropdown), out float value) ? value : 0f;
     }
 }

@@ -7,7 +7,7 @@ public abstract class LiteralExpression<T> : Expression<T>
     public override T EvaluateExpression()
     {
         string literal = DropdownInput != null
-            ? GetSelectedDropdownText(DropdownInput)
+            ? GetSelectedToString(DropdownInput)
             : LeftOperandInput.text;
         if (Environment.ContainsKey(literal) && Environment[literal] is T)
         {

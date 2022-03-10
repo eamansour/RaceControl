@@ -15,7 +15,7 @@ public class NodeLiteral : LiteralExpression<Node<IPlayerManager>>
     public override Node<IPlayerManager> EvaluateExpression()
     {
         // If the literal is of the form "node.next", return the next node in the linked list
-        string literal = GetSelectedDropdownText(DropdownInput);
+        string literal = GetSelectedToString(DropdownInput);
         if (_getNextNode)
         {
             if (Environment.ContainsKey(literal) && Environment[literal] is Node<IPlayerManager>)

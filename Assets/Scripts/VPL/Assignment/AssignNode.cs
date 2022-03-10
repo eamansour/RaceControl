@@ -14,7 +14,7 @@ public class AssignNode : AssignStatement<Node<IPlayerManager>>
     public override IEnumerator Run()
     {
         // If the assignment is of the form "node.next = ...", update the linked list
-        string selected = GetSelectedDropdownText(_variableDropdown);
+        string selected = GetSelectedToString(_variableDropdown);
         if (_updateNextNode)
         {
             if (Environment.ContainsKey(selected) && Environment[selected] is Node<IPlayerManager>)

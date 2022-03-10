@@ -75,7 +75,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278243071
-  m_fontColor: {r: 1, g: 0.80784315, b: 0, a: 1}
+  m_fontColor: {r: 0.9843137, g: 0.77254903, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -208,8 +208,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278243071
-  m_fontColor: {r: 1, g: 0.8094107, b: 0, a: 1}
+    rgba: 4281452027
+  m_fontColor: {r: 0.9843137, g: 0.77254903, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -278,6 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9149847309726399033}
   - component: {fileID: 9149847309726399034}
+  - component: {fileID: 6900633372713796167}
   m_Layer: 5
   m_Name: TimePanel
   m_TagString: Untagged
@@ -314,3 +315,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9149847309726399032}
   m_CullTransparentMesh: 1
+--- !u!114 &6900633372713796167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9149847309726399032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272788b1523dec94ab4a2a7904ab0baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HudText: {fileID: 9149847309215073853}
+  _bestLapTimeText: {fileID: 9149847308166821030}

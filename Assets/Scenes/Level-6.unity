@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.25, g: 0.9545877, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.65882355, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -543,17 +543,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5395334132715918155, guid: f8f7e39066e98584c9b688fa7623c92e, type: 3}
   m_PrefabInstance: {fileID: 1857591377}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &199519686 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 278960531996791646, guid: bcdf0fc2f89e989498bd990c7c9937fb, type: 3}
-  m_PrefabInstance: {fileID: 8829461176466543528}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &208400028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -830,6 +819,7 @@ GameObject:
   - component: {fileID: 227780499}
   - component: {fileID: 227780498}
   - component: {fileID: 227780501}
+  - component: {fileID: 227780502}
   m_Layer: 5
   m_Name: PlayerHUD
   m_TagString: Untagged
@@ -941,15 +931,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3406f2f57574447920fec93940905c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mphText: {fileID: 1837717195}
-  _fuelText: {fileID: 1508817236}
-  _positionText: {fileID: 0}
-  _lapText: {fileID: 199519686}
-  _currentLapTimeText: {fileID: 0}
-  _bestLapTimeText: {fileID: 0}
-  _wrongWayText: {fileID: 1361875249}
   _checkpointParticles: {fileID: 965383362}
   _initialiseIndexText: 1
+--- !u!114 &227780502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227780496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c12173837e10643857fcf88db1b9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HudText: {fileID: 1361875249}
 --- !u!1 &320072696
 GameObject:
   m_ObjectHideFlags: 0
@@ -3772,7 +3768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.04677793, b: 0.254717, a: 0.98039216}
+  m_Color: {r: 0.09803922, g: 0.16470589, b: 0.3372549, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4213,17 +4209,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4908670849508134592, guid: 3e4e7bc2215628d458252f6641fb8970, type: 3}
   m_PrefabInstance: {fileID: 1479903872}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1508817236 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4861872869470957305, guid: 0db31c562a7a45e4d975fd45bdcbdfa0, type: 3}
-  m_PrefabInstance: {fileID: 8743629863112837886}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1697917736
 GameObject:
   m_ObjectHideFlags: 0
@@ -4421,17 +4406,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2381565028343603245, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
   m_PrefabInstance: {fileID: 1721490651}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1837717195 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3194387754387894258, guid: b22eff73ddc9252429562bb396946648, type: 3}
-  m_PrefabInstance: {fileID: 496963753698085659}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1857591377
 PrefabInstance:
   m_ObjectHideFlags: 0

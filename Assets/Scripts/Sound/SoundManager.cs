@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        // Persist a single instance (singleton) throughout the game
+        // Persist a single instance throughout the game
         if (s_instance != null)
         {
             if (s_instance != this)
