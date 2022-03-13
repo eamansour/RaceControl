@@ -7,14 +7,12 @@ public class Console : MonoBehaviour
 
     private const float FailDelay = 10f;
 
-    private bool _waitAndFail = true;
-
     private Statement _currentStatement;
 
     /// <summary>
     /// Runs the player's inputted program.
     /// </summary>
-    private IEnumerator RunProgram()
+    private IEnumerator RunProgram(bool failAfterDelay)
     {
         foreach (Transform child in transform)
         {
@@ -31,7 +29,7 @@ public class Console : MonoBehaviour
         }
 
         // Wait before declaring level failure in case the car is still moving
-        if (_waitAndFail)
+        if (failAfterDelay)
         {
             yield return new WaitForSeconds(FailDelay);
             if (!GameManager.LevelEnded)
@@ -46,10 +44,9 @@ public class Console : MonoBehaviour
     /// </summary>
     public void StartProgram(bool failAfterDelay)
     {
-        _waitAndFail = failAfterDelay;
         Statement.SetUpEnvironment();
         GameManager.StartLevel();
-        StartCoroutine(RunProgram());
+        StartCoroutine(RunProgram(failAfterDelay));
     }
 
     /// <summary>

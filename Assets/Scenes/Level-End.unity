@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ObjectiveText>k__BackingField: {fileID: 1358797249}
-  <RequiredLapCounter>k__BackingField: 5
+  <RequiredLapCounter>k__BackingField: 4
   _mustWin: 0
   _mustChangePlayer: 0
 --- !u!114 &217377923
@@ -660,6 +660,26 @@ PrefabInstance:
     - target: {fileID: 6323098883878155438, guid: d0e550d4baed33945b9dd6c15e8aa74d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323098884248004934, guid: d0e550d4baed33945b9dd6c15e8aa74d, type: 3}
+      propertyPath: m_text
+      value: THANKS FOR PLAYING!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323098884248004934, guid: d0e550d4baed33945b9dd6c15e8aa74d, type: 3}
+      propertyPath: m_fontSize
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323098884248004934, guid: d0e550d4baed33945b9dd6c15e8aa74d, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323098884248004935, guid: d0e550d4baed33945b9dd6c15e8aa74d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1484.5039
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323098884248004935, guid: d0e550d4baed33945b9dd6c15e8aa74d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 112.4308
       objectReference: {fileID: 0}
     - target: {fileID: 6323098884506350848, guid: d0e550d4baed33945b9dd6c15e8aa74d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

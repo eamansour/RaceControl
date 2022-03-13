@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerManager : MonoBehaviour, IPlayerManager
 {
-    public GameObject AttachedGameObject { get; private set; }
+    public GameObject AttachedGameObject { get => gameObject; }
     public Checkpoint TargetCheckpoint { get; private set; }
     public Checkpoint LastCheckpoint { get; private set; }
     public Checkpoint RecentCheckpoint { get; private set; }
@@ -38,8 +38,6 @@ public class PlayerManager : MonoBehaviour, IPlayerManager
 
     private void Awake()
     {
-        AttachedGameObject = gameObject;
-
         PlayerCar = GetComponent<ICar>();
         CurrentControl = _levelControl;
 

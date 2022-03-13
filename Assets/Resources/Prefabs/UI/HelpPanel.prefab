@@ -2135,8 +2135,13 @@ MonoBehaviour:
             expressions involve performing mathematical calculations. A simple example
             is "1 + 1", which evaluates to the integer 2.\n\nBoolean expressions
             involve performing Boolean comparisons, which evaluate to either true
-            or false. For example: "5 > 3" evaluates to true.\n\nExpressions are
-            typically used alongside variables to store a calculated value, function
+            or false. For example: "5 > 3" evaluates to true. You can also connect
+            Boolean expressions using logical operators.\n\nTwo Boolean expressions
+            connected by the AND operator evaluate to true only if both are true,
+            otherwise evaluating to false.\n\nTwo Boolean expressions connected by
+            the OR operator evaluate to true if at least one of the expressions is
+            true, otherwise evaluating to false if both are false.\n\nExpressions
+            are typically used alongside variables to store a calculated value, function
             calls, and control structures (conditions and loops).\n\nLiterals are
             values that are written directly in code, without performing calculations.
             These are usually seen when defining constants, or initial/default values
@@ -2545,14 +2550,14 @@ MonoBehaviour:
           m_StringArgument: Car statements make up the main method of controlling
             your car. These statements visualise the effects of your programs on
             your car, so if anything goes wrong, you'll see it happen.\n\nCar control:\nThe
-            accelerate, brake, turn, and wait statements control your car through
-            parameters, you can control your car by selecting options from their
-            dropdowns. The dropdown options represent method arguments. Arguments
-            are the values that are passed into functions, while parameters are the
-            names of the required information. For example, "accelerate(time)" has
-            a "time" parameter, whereas "accelerate(1)" passes an argument 1.\n\nThe
-            manual statement lets you take control of your car through the movement
-            keys, whereas the autopilot statement gives the AI control of your car.\n\nIndexing:\nWith
+            accelerate, brake, turn, and wait statements allow you to control your
+            car by selecting values (in seconds) from their dropdowns.\n\nThe dropdown
+            values represent method arguments. Arguments are the values that are
+            passed into functions, while parameters are the names of the required
+            information. For example, "accelerate(time)" has a "time" parameter,
+            whereas "accelerate(1)" passes an argument 1.\n\nThe manual statement
+            lets you take control of your car through the movement keys, whereas
+            the autopilot statement gives the AI control of your car.\n\nIndexing:\nWith
             list statements, you can control a different car by accessing it through
             its index. For example, "cars[0]" retrieves the car from the cars list
             at index 0.\n\nWhen you use a for loop with a variable "i", you can retrieve
