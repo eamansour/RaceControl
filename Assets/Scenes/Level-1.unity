@@ -8626,17 +8626,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3194387753987294441, guid: b22eff73ddc9252429562bb396946648, type: 3}
   m_PrefabInstance: {fileID: 6105736478274944148}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6105736478274944150 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3194387754387894258, guid: b22eff73ddc9252429562bb396946648, type: 3}
-  m_PrefabInstance: {fileID: 6105736478274944148}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &6137932812893173966
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8890,6 +8879,15 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
+      propertyPath: messages.Array.data[0]
+      value: Welcome to Race Control!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
+      propertyPath: messages.Array.data[1]
+      value: We've just started our journey to fully automate our races, but we need
+        your help to build our programs.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
       propertyPath: messages.Array.data[2]
       value: A program is essentially a list of instructions, called statements.
       objectReference: {fileID: 0}
@@ -8902,14 +8900,25 @@ PrefabInstance:
       value: On the right, we have our program console and some useful statements!
       objectReference: {fileID: 0}
     - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
+      propertyPath: messages.Array.data[5]
+      value: Our car stopped working earlier, so we'll need you to get it to the
+        finish line using the available statements.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
+      propertyPath: messages.Array.data[6]
+      value: Try dragging and dropping some statements onto the console, then select
+        how long each statement should run for in seconds.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
       propertyPath: messages.Array.data[7]
-      value: Try dragging and dropping some statements onto the console. Whenever
-        you're ready, hit the green "Start" button on the console.
+      value: Whenever you're ready, hit the green "Start" button on the console to
+        start the program.
       objectReference: {fileID: 0}
     - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
       propertyPath: messages.Array.data[8]
-      value: When running your program, hit the "C" key to switch between camera
-        follow modes.
+      value: When running your program, you can hit the "C" key to switch between
+        camera follow modes. You can also stop the program at any time using the
+        "Stop" button.
       objectReference: {fileID: 0}
     - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
       propertyPath: messages.Array.data[9]
@@ -9451,13 +9460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3406f2f57574447920fec93940905c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mphText: {fileID: 6105736478274944150}
-  _fuelText: {fileID: 0}
-  _positionText: {fileID: 0}
-  _lapText: {fileID: 0}
-  _currentLapTimeText: {fileID: 0}
-  _bestLapTimeText: {fileID: 0}
-  _wrongWayText: {fileID: 1121045490}
   _checkpointParticles: {fileID: 1138673643}
   _initialiseIndexText: 0
 --- !u!114 &8714272068407023310 stripped
