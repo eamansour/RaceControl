@@ -28,11 +28,13 @@ public class GameManager : MonoBehaviour
     private float _updateTimer = 0.5f;
 
     public void Construct(
+        IPlayerManager currentPlayer = null,
         IObjective[] objectives = null,
         IPlayerManager[] startPlayers = null,
         ILevelMenu levelMenu = null
     )
     {
+        CurrentPlayer = currentPlayer;
         s_objectives = objectives ?? new IObjective[0];
         s_startPlayers = startPlayers ?? new IPlayerManager[0];
         s_levelMenu = levelMenu;

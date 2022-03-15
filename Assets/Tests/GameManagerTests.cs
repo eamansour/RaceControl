@@ -92,7 +92,7 @@ public class GameManagerTests
             Substitute.For<IObjective>()
         };
 
-        _gameManager.Construct(objectives);
+        _gameManager.Construct(objectives: objectives);
         GameManager.ResetLevel();
 
         objectives[0].Received(1).Reset();

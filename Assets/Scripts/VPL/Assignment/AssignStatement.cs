@@ -13,8 +13,8 @@ public abstract class AssignStatement<T> : Statement
     [SerializeField]
     private TMP_InputField _variableInput;
 
-    private ICar _car;
-    private IObstacleSpawn _spawner;
+    private static ICar s_car;
+    private static IObstacleSpawn s_spawner;
 
     public void Construct(
         ICar car,
@@ -24,20 +24,20 @@ public abstract class AssignStatement<T> : Statement
         TMP_Dropdown variableDropdown = null
     )
     {
-        _car = car;
+        s_car = car;
         _expression = expression;
         _variableInput = variableInput;
         _variableDropdown = variableDropdown;
-        _spawner = spawner;
+        s_spawner = spawner;
     }
 
     private void Start()
     {
-        if (_car == null || _car.Equals(null))
+        if (s_car == null || s_car.Equals(null))
         {
-            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-            _car = playerObject.GetComponent<ICar>();
-            _spawner = playerObject.GetComponentInChildren<IObstacleSpawn>();
+            IPlayerManager currentPlayer = GameManager.CurrentPlayer;
+            s_car = currentPlayer.PlayerCar;
+            s_spawner = currentPlayer.AttachedGameObject.GetComponentInChildren<IObstacleSpawn>();
         }
 
         if (_expression == null || _expression.Equals(null))
@@ -84,12 +84,19 @@ public abstract class AssignStatement<T> : Statement
     /// </summary>
     private void UpdatePlayerFuel(T result)
     {
+        IPlayerManager currentPlayer = GameManager.CurrentPlayer;
+        if (s_car != currentPlayer.PlayerCar)
+        {
+            s_car = currentPlayer.PlayerCar;
+            s_spawner = currentPlayer.AttachedGameObject.GetComponentInChildren<IObstacleSpawn>();
+        }
+        
         float fuelResult = Convert.ToSingle(result);
 
-        if (fuelResult < _car.Fuel)
+        if (fuelResult < s_car.Fuel)
         {
-            _car.Fuel = fuelResult;
-            _spawner.SpawnObstacle();
+            s_car.Fuel = fuelResult;
+            s_spawner.SpawnObstacle();
             Environment["fuel"] = result;
         }
     }

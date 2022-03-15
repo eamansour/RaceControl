@@ -1298,7 +1298,7 @@ PrefabInstance:
     - target: {fileID: 367918779801775574, guid: ae034a41a5bd65744b0a8b18d5b31038, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 322b2dd89bcf440478d29813cae47cbb, type: 2}
+      objectReference: {fileID: 2100000, guid: f07bd7c5a237e72449e9010216f13767, type: 2}
     - target: {fileID: 1535781293107205817, guid: ae034a41a5bd65744b0a8b18d5b31038, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1665,7 +1665,7 @@ PrefabInstance:
     - target: {fileID: 367918779801775574, guid: ae034a41a5bd65744b0a8b18d5b31038, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1c453a2fe97a4744da09e30f8596fd3e, type: 2}
+      objectReference: {fileID: 2100000, guid: b904b21bd4840064383bdf72d3c6a9d4, type: 2}
     - target: {fileID: 1535781293107205817, guid: ae034a41a5bd65744b0a8b18d5b31038, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -2392,7 +2392,7 @@ PrefabInstance:
     - target: {fileID: 367918779801775574, guid: ae034a41a5bd65744b0a8b18d5b31038, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1c45dd9418987824085b9b26c728eedd, type: 2}
+      objectReference: {fileID: 2100000, guid: 322b2dd89bcf440478d29813cae47cbb, type: 2}
     - target: {fileID: 1535781293107205817, guid: ae034a41a5bd65744b0a8b18d5b31038, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -2465,7 +2465,7 @@ PrefabInstance:
     - target: {fileID: 367918779801775574, guid: ae034a41a5bd65744b0a8b18d5b31038, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 322b2dd89bcf440478d29813cae47cbb, type: 2}
+      objectReference: {fileID: 2100000, guid: 836cdec80ffb588419eeb266c82b2882, type: 2}
     - target: {fileID: 1535781293107205817, guid: ae034a41a5bd65744b0a8b18d5b31038, type: 3}
       propertyPath: m_RootOrder
       value: 9

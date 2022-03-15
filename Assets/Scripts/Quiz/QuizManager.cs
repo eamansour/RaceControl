@@ -116,7 +116,7 @@ public class QuizManager : MonoBehaviour
 
         if (_score > (_questionSampleSize * 0.75f))
         {
-            _titleText.text = "Wow! You're a Python pro!";
+            _titleText.text = "Well done! You've got a great understanding of Python!";
         }
         else if (_score > (_questionSampleSize * 0.5f))
         {
@@ -128,7 +128,7 @@ public class QuizManager : MonoBehaviour
         }
         else
         {
-            _titleText.text = "Seems you had a rough time, feel free to try again whenever you're ready!";
+            _titleText.text = "Seems you struggled a bit, feel free to try again whenever you're ready!";
         }
     }
 
