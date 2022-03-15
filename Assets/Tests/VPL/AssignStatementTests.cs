@@ -15,6 +15,7 @@ public class AssignStatementTests
     private TMP_Dropdown _variableDropdown;
     private IExpression<float> _floatExpression;
     private IExpression<Node<IPlayerManager>> _nodeExpression;
+    private IPlayerManager _player;
     private ICar _car;
     private IObstacleSpawn _spawner;
     private GameObject _testObject;
@@ -24,6 +25,12 @@ public class AssignStatementTests
     {
         _testObject = new GameObject();
         _testObject.AddComponent<Image>();
+
+        GameManager gameManager = _testObject.AddComponent<GameManager>();
+        _player = Substitute.For<IPlayerManager>();
+        _car = Substitute.For<ICar>();
+        _player.PlayerCar.Returns(_car);
+        gameManager.Construct(_player);
 
         _assignFloat = _testObject.AddComponent<AssignFloat>();
         _assignNode = _testObject.AddComponent<AssignNode>();
@@ -35,7 +42,6 @@ public class AssignStatementTests
         _floatExpression = Substitute.For<IExpression<float>>();
         _nodeExpression = Substitute.For<IExpression<Node<IPlayerManager>>>();
 
-        _car = Substitute.For<ICar>();
         _spawner = Substitute.For<IObstacleSpawn>();
 
         _assignFloat.Construct(_car, _floatExpression, _spawner, _variableInput);
