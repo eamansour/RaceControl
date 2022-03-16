@@ -210,7 +210,6 @@ public class GameManager : MonoBehaviour
     {
         Players.Sort((left, right) =>
         {
-
             // Players with more completed laps are ahead of those with fewer completed laps
             if (left.CurrentLap != right.CurrentLap)
             {
