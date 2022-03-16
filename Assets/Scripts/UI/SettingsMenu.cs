@@ -111,7 +111,7 @@ public class SettingsMenu : MonoBehaviour
     private void LoadSettings()
     {
         float volume = PlayerPrefs.GetFloat(s_volumePrefKey, 0f);
-        int resolutionIndex = PlayerPrefs.GetInt(s_resolutionPrefKey, 0);
+        int resolutionIndex = PlayerPrefs.GetInt(s_resolutionPrefKey, _resolutions.Length - 1);
         bool fullscreen = Convert.ToBoolean(PlayerPrefs.GetInt(s_fullscreenPrefKey, 1));
 
         SetVolume(volume);

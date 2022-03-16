@@ -755,7 +755,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 313387816}
+      - m_Target: {fileID: 1850175773}
         m_TargetAssemblyTypeName: SettingsMenu, GameAssembly
         m_MethodName: ClearData
         m_Mode: 1
@@ -899,7 +899,6 @@ GameObject:
   - component: {fileID: 313387813}
   - component: {fileID: 313387814}
   - component: {fileID: 313387815}
-  - component: {fileID: 313387816}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -973,22 +972,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &313387816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313387812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7be16900a50498d4687c94c54239181b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mixer: {fileID: 24100000, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
-  _resolutionDropdown: {fileID: 2075777889}
-  _fullscreenToggle: {fileID: 1081790009}
-  _soundSlider: {fileID: 1394719205}
 --- !u!1 &322034347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,7 +1983,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 313387816}
+      - m_Target: {fileID: 1850175773}
         m_TargetAssemblyTypeName: SettingsMenu, GameAssembly
         m_MethodName: SaveSettings
         m_Mode: 1
@@ -3465,7 +3448,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 313387816}
+      - m_Target: {fileID: 1850175773}
         m_TargetAssemblyTypeName: SettingsMenu, GameAssembly
         m_MethodName: SetFullScreen
         m_Mode: 0
@@ -4369,7 +4352,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 313387816}
+      - m_Target: {fileID: 1850175773}
         m_TargetAssemblyTypeName: SettingsMenu, GameAssembly
         m_MethodName: SetVolume
         m_Mode: 0
@@ -5220,6 +5203,7 @@ GameObject:
   - component: {fileID: 1850175767}
   - component: {fileID: 1850175772}
   - component: {fileID: 1850175771}
+  - component: {fileID: 1850175773}
   m_Layer: 5
   m_Name: MenuUI
   m_TagString: Untagged
@@ -5347,6 +5331,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850175766}
   m_CullTransparentMesh: 1
+--- !u!114 &1850175773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850175766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be16900a50498d4687c94c54239181b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mixer: {fileID: 24100000, guid: fc08dbf36964237459762dfe5773d0ed, type: 2}
+  _resolutionDropdown: {fileID: 2075777889}
+  _fullscreenToggle: {fileID: 1081790009}
+  _soundSlider: {fileID: 1394719205}
 --- !u!1 &1857341852
 GameObject:
   m_ObjectHideFlags: 0
@@ -6424,7 +6424,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 313387816}
+      - m_Target: {fileID: 1850175773}
         m_TargetAssemblyTypeName: SettingsMenu, GameAssembly
         m_MethodName: SetResolution
         m_Mode: 0
