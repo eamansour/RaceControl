@@ -19,14 +19,14 @@ public class RaceFlag : MonoBehaviour, IRaceFlag
     [SerializeField]
     private bool _randomize = false;
 
-    private MaxSpeedObjective _maxSpeedObjective;
-    private AvoidCheckpointObjective _avoidCheckpointObjective;
+    private SpeedObjective _maxSpeedObjective;
+    private CheckpointObjective _avoidCheckpointObjective;
 
     private void Start()
     {
         _flagRenderer = GetComponent<Renderer>();
-        _maxSpeedObjective = GetComponent<MaxSpeedObjective>();
-        _avoidCheckpointObjective = GetComponent<AvoidCheckpointObjective>();
+        _maxSpeedObjective = GetComponent<SpeedObjective>();
+        _avoidCheckpointObjective = GetComponent<CheckpointObjective>();
 
         if (Flag == FlagType.YellowFlag)
         {

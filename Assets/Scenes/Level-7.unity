@@ -3198,7 +3198,7 @@ GameObject:
   - component: {fileID: 1415084703}
   - component: {fileID: 1415084702}
   - component: {fileID: 1415084701}
-  - component: {fileID: 1415084700}
+  - component: {fileID: 1415084699}
   m_Layer: 0
   m_Name: SpeedLimit
   m_TagString: Untagged
@@ -3206,7 +3206,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1415084700
+--- !u!114 &1415084699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3215,11 +3215,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1415084698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ff020cfc29cdc4b97166fc61cf667c, type: 3}
+  m_Script: {fileID: 11500000, guid: 27300532e1c589b47bc2a345ca8f67a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <ObjectiveText>k__BackingField: {fileID: 0}
-  _maxSpeed: 20
+  _speed: 20
+  _speedIsLimit: 1
 --- !u!114 &1415084701
 MonoBehaviour:
   m_ObjectHideFlags: 0

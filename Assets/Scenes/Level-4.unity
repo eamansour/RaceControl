@@ -2264,7 +2264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8794074964372099040, guid: 7292b022f25a63a44b7737ad0da56028, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8794074964372099040, guid: 7292b022f25a63a44b7737ad0da56028, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3774,7 +3774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2381565028343603245, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2381565028343603245, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4413,8 +4413,8 @@ GameObject:
   - component: {fileID: 1964199865}
   - component: {fileID: 1964199864}
   - component: {fileID: 1964199868}
-  - component: {fileID: 1964199869}
   - component: {fileID: 1964199870}
+  - component: {fileID: 1964199869}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -4523,11 +4523,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1964199863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ff020cfc29cdc4b97166fc61cf667c, type: 3}
+  m_Script: {fileID: 11500000, guid: 27300532e1c589b47bc2a345ca8f67a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <ObjectiveText>k__BackingField: {fileID: 0}
-  _maxSpeed: 30
+  _speed: 30
+  _speedIsLimit: 1
 --- !u!114 &1964199870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4537,11 +4538,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1964199863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1441d2f62250b31439bb967368a0d93f, type: 3}
+  m_Script: {fileID: 11500000, guid: c403e4642ab067f48a4b8f65c306e1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <ObjectiveText>k__BackingField: {fileID: 0}
-  _checkpointToAvoid: {fileID: 4496160963510022114}
+  _requiredCheckpoint: {fileID: 4496160963510022114}
+  _avoidCheckpoint: 1
 --- !u!1 &1966183324
 GameObject:
   m_ObjectHideFlags: 0
@@ -5069,7 +5071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4861872870200602086, guid: 0db31c562a7a45e4d975fd45bdcbdfa0, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4861872870200602086, guid: 0db31c562a7a45e4d975fd45bdcbdfa0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6487,7 +6489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3194387753987294441, guid: b22eff73ddc9252429562bb396946648, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3194387753987294441, guid: b22eff73ddc9252429562bb396946648, type: 3}
       propertyPath: m_AnchorMax.x

@@ -48,4 +48,28 @@ public class CheckpointObjectiveTests
         Assert.IsFalse(_checkpointObjective.Passed);
         Object.Destroy(otherCheckpoint);
     }
+
+    [Test]
+    public void UpdateCompletion_FailsObjectiveIfPlayerPassedCheckpointToAvoid()
+    {
+        _checkpointObjective.Construct(_requiredCheckpoint, true);
+        _player.LastCheckpoint.Returns(_requiredCheckpoint);
+
+        _checkpointObjective.UpdateCompletion();
+
+        Assert.IsTrue(_checkpointObjective.Failed);
+    }
+
+    [Test]
+    public void UpdateCompletion_DoesNotFailObjectiveIfPlayerHasNotPassedRequiredCheckpoint()
+    {
+        _checkpointObjective.Construct(_requiredCheckpoint, true);
+        Checkpoint otherCheckpoint = new GameObject().AddComponent<Checkpoint>();
+        _player.LastCheckpoint.Returns(otherCheckpoint);
+
+        _checkpointObjective.UpdateCompletion();
+
+        Assert.IsFalse(_checkpointObjective.Failed);
+        Object.Destroy(otherCheckpoint);
+    }
 }
