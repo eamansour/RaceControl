@@ -67,7 +67,7 @@ public abstract class AssignStatement<T> : Statement
         // Update the player's fuel level, assign a new variable, or update an existing variable
         if (variable.ToLower() == "fuel" && Environment.ContainsKey("fuel"))
         {
-            UpdatePlayerFuel(result);
+            ReducePlayerFuel(result);
         }
         else if (Environment.ContainsKey(variable))
         {
@@ -80,9 +80,10 @@ public abstract class AssignStatement<T> : Statement
     }
 
     /// <summary>
-    /// Handles assignment to update player fuel, only allowing it to be decreased.
+    /// Handles assignment to reduce player fuel and spawns a barrel to
+    /// represent fuel being ejected.
     /// </summary>
-    private void UpdatePlayerFuel(T result)
+    private void ReducePlayerFuel(T amount)
     {
         IPlayerManager currentPlayer = GameManager.CurrentPlayer;
         if (s_car != currentPlayer.PlayerCar)
@@ -91,13 +92,13 @@ public abstract class AssignStatement<T> : Statement
             s_spawner = currentPlayer.AttachedGameObject.GetComponentInChildren<IObstacleSpawn>();
         }
         
-        float fuelResult = Convert.ToSingle(result);
+        float fuelResult = Convert.ToSingle(amount);
 
         if (fuelResult < s_car.Fuel)
         {
             s_car.Fuel = fuelResult;
             s_spawner.SpawnObstacle();
-            Environment["fuel"] = result;
+            Environment["fuel"] = amount;
         }
     }
 }
