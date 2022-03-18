@@ -4013,8 +4013,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
       propertyPath: messages.Array.data[6]
-      value: Use the available statements to retire your car and start a new one
-        up to win the race!
+      value: Use the available statements to retire your car when its fuel goes below
+        50% and start a new one up to win the race!
       objectReference: {fileID: 0}
     - target: {fileID: 2381565028343603249, guid: 85ed42f177f49754b98378d9bb49cec5, type: 3}
       propertyPath: messages.Array.data[7]

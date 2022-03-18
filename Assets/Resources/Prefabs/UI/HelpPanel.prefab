@@ -594,10 +594,10 @@ MonoBehaviour:
           m_StringArgument: 'Loops, also known as iteration statements, are statements
             that can repeat a block of code multiple times. Using loops means you
             don''t need to re-write code multiple times, which reduces the overall
-            amount of code.\n\nThere two main categories of loops: bounded and unbounded
-            loops. Bounded loops are loops that run for a known number of times.
-            Unbounded loops are loops that can run forever or once an exit condition
-            is met. When loops run forever, they are called "infinite loops".\n\nTwo
+            amount of code.\n\nThere are two main categories of loops: bounded and
+            unbounded loops. Bounded loops are loops that run for a known number
+            of times. Unbounded loops are loops that can run forever or once an exit
+            condition is met. When loops run forever, they are called "infinite loops".\n\nTwo
             of the most commonly used loops are "while" loops and "for" loops.\n\nA
             "while" loop is an unbounded loop that executes as long as a Boolean
             expression is true. For example: "while 5 != 0" will run as long as integer
