@@ -3,7 +3,7 @@ using TMPro;
 
 public abstract class Objective : MonoBehaviour, IObjective
 {
-    public bool Passed { get; set; } = false;
+    public bool Passed { get; protected set; } = false;
     public bool Failed { get; protected set; } = false;
 
     [field: SerializeField]

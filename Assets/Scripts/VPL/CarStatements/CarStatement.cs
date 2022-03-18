@@ -3,8 +3,8 @@ using TMPro;
 
 public abstract class CarStatement : Statement
 {
-    protected static ICar PlayerCar;
-    protected static IPlayerManager Player;
+    protected static ICar PlayerCar { get; private set; }
+    protected static IPlayerManager Player { get; private set; }
 
     protected TMP_Dropdown DropdownInput { get; private set; }
 

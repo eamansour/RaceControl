@@ -1,6 +1,6 @@
 public interface IObjective
 {
-    bool Passed { get; set; }
+    bool Passed { get; }
     bool Failed { get; }
 
     void Construct(IPlayerManager player);

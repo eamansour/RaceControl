@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Camera property configurations
     private float _speed = 40f;
     private float _xLimit = 50f;
     private float _zLimit = 70f;

@@ -6,7 +6,7 @@ public class LevelMenu : MonoBehaviour, ILevelMenu
     private const string EngineSoundName = "Engine";
     private const string PauseSoundName = "Pause";
 
-    public static bool IsPaused = false;
+    public static bool IsPaused { get; private set; } = false;
 
     [SerializeField]
     private GameObject _pauseMenuUI;

@@ -2,8 +2,8 @@ using System.Collections;
 
 public abstract class Condition : CompoundStatement
 {
-    protected static bool LastConditionResult = true;
-    protected static int LastConditionIndex = -1;
+    protected static bool LastConditionResult { get; private set; } = true;
+    protected static int LastConditionIndex { get; private set; } = -1;
 
     private IExpression<bool> _expression;
 
