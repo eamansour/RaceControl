@@ -187,14 +187,10 @@ public class CarAI : MonoBehaviour, ICarAI
 
         _collider.enabled = true;
 
-        Debug.DrawRay(transform.position - transform.forward * rayDistance, transform.up, Color.blue);
         if (hits.Length > 0 && hits[0].collider)
         {
-            Debug.DrawRay(transform.position, -transform.forward * rayDistance, Color.red);
             return hits[0].collider.transform;
         }
-
-        Debug.DrawRay(transform.position, -transform.forward * rayDistance, Color.black);
         return null;
     }
 
@@ -214,9 +210,6 @@ public class CarAI : MonoBehaviour, ICarAI
 
         Vector3 avoidVector = Vector3.Reflect((detectedCar.position - transform.position).normalized, -detectedCar.right);
         Vector3 newDirection = ((avoidVector.normalized * desireToAvoid) + (direction * desireToStay)).normalized;
-
-        Debug.DrawRay(transform.position, avoidVector * 5, Color.cyan);
-        Debug.DrawRay(transform.position, newDirection * 5, Color.green);
 
         return newDirection;
     }
