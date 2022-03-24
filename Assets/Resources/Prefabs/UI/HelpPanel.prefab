@@ -265,13 +265,14 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Welcome to the help menu!\n\nClick on any of the buttons
-            to the left to read more about different programming concepts.\n\nUse
-            the movement keys (arrow keys or the "WASD" keys) to pan the camera before
-            starting your program. The movement keys can also be used to control
-            your car when in "manual" mode.\n\nWhenever you're ready to run your
-            program, hit the green "Start" button. You can stop your program at any
-            time by hitting the red "Stop" button once you have started your program.\n\nHit
-            the "C" key to switch camera modes when running your program.
+            to the left to read more about different programming concepts. You can
+            pause the game at any time using the "Esc" key.\n\nUse the movement keys
+            (arrow keys or the "WASD" keys) to pan the camera before starting your
+            program. The movement keys can also be used to control your car when
+            in "manual" mode.\n\nWhenever you're ready to run your program, hit the
+            green "Start" button. You can stop your program at any time by hitting
+            the red "Stop" button once you have started your program.\n\nHit the
+            "C" key to switch camera modes when running your program.\n\n
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8794074963233542559
@@ -957,22 +958,25 @@ MonoBehaviour:
 
 
     Click on any of the buttons to the left
-    to read more about different programming concepts.
+    to read more about different programming concepts. You can pause the game at
+    any time using the "Esc" key.
 
 
-    Use the movement keys
-    (arrow keys or the "WASD" keys) to pan the camera before starting your program.
-    The movement keys can also be used to control your car when in "manual" mode.
+    Use the movement keys (arrow keys or the
+    "WASD" keys) to pan the camera before starting your program. The movement keys
+    can also be used to control your car when in "manual" mode.
 
 
-    Whenever
-    you''re ready to run your program, hit the green "Start" button. You can stop
-    your program at any time by hitting the red "Stop" button once you have started
-    your program.
+    Whenever you''re
+    ready to run your program, hit the green "Start" button. You can stop your program
+    at any time by hitting the red "Stop" button once you have started your program.
 
 
-    Hit the "C" key to switch camera modes when running your
-    program.'
+    Hit
+    the "C" key to switch camera modes when running your program.
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
