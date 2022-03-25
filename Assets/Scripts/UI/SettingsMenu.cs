@@ -43,7 +43,7 @@ public class SettingsMenu : MonoBehaviour
         int currentResolutionIndex = _resolutions.Length - 1;
         for (int i = 0; i < _resolutions.Length; i++)
         {
-            options.Add($"{_resolutions[i].width} x {_resolutions[i].height}@{_resolutions[i].refreshRate}hz");
+            options.Add($"{_resolutions[i].width} x {_resolutions[i].height} @ {_resolutions[i].refreshRate}Hz");
 
             if (Mathf.Approximately(_resolutions[i].width, Screen.width)
                 && Mathf.Approximately(_resolutions[i].height, Screen.height))
