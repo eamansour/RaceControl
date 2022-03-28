@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private float _speed = 40f;
-    private float _xLimit = 50f;
-    private float _zLimit = 70f;
+    private const float Speed = 40f;
+    private const float XLimit = 50f;
+    private const float ZLimit = 70f;
+    private const int BoundaryOffset = 5;
 
     private Vector3 _initialPosition;
     private Quaternion _initialRotation;
@@ -37,30 +38,30 @@ public class CameraController : MonoBehaviour
         // Keyboard panning
         float zInput = -_inputController.HorizontalInput;
         float xInput = _inputController.VerticalInput;
-        currentPosition.z += zInput * _speed * Time.deltaTime;
-        currentPosition.x += xInput * _speed * Time.deltaTime;
+        currentPosition.z += zInput * Speed * Time.deltaTime;
+        currentPosition.x += xInput * Speed * Time.deltaTime;
 
         // Mouse panning
-        if (mousePosition.y >= Screen.height)
+        if (mousePosition.y >= Screen.height - BoundaryOffset)
         {
-            currentPosition.x += _speed * Time.deltaTime;
+            currentPosition.x += Speed * Time.deltaTime;
         }
-        if (mousePosition.y <= 0)
+        if (mousePosition.y <= 0 + BoundaryOffset)
         {
-            currentPosition.x -= _speed * Time.deltaTime;
+            currentPosition.x -= Speed * Time.deltaTime;
         }
-        if (mousePosition.x >= Screen.width)
+        if (mousePosition.x >= Screen.width - BoundaryOffset)
         {
-            currentPosition.z -= _speed * Time.deltaTime;
+            currentPosition.z -= Speed * Time.deltaTime;
         }
-        if (mousePosition.x <= 0)
+        if (mousePosition.x <= 0 + BoundaryOffset)
         {
-            currentPosition.z += _speed * Time.deltaTime;
+            currentPosition.z += Speed * Time.deltaTime;
         }
 
         // Restrict camera movement to map
-        currentPosition.x = Mathf.Clamp(currentPosition.x, -_xLimit, _xLimit);
-        currentPosition.z = Mathf.Clamp(currentPosition.z, -_zLimit, _zLimit);
+        currentPosition.x = Mathf.Clamp(currentPosition.x, -XLimit, XLimit);
+        currentPosition.z = Mathf.Clamp(currentPosition.z, -ZLimit, ZLimit);
 
         transform.position = currentPosition;
     }
