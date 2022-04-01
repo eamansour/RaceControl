@@ -90,7 +90,7 @@ public class CarAI : MonoBehaviour, ICarAI
 
         // Invert steering when reversing
         float dotProduct = Vector3.Dot(-transform.forward, directionToTarget);
-        if (dotProduct < 0f)
+        if (dotProduct < 0f && _car.Acceleration < 0f)
         {
             steering = -steering;
         }
