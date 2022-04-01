@@ -14,6 +14,7 @@ public class Console : MonoBehaviour
     /// </summary>
     private IEnumerator RunProgram(bool failAfterDelay)
     {
+        Color runningColour = new Color32(0, 225, 0, 255);
         foreach (Transform child in transform)
         {
             while (Paused)
@@ -23,7 +24,7 @@ public class Console : MonoBehaviour
 
             _currentStatement = child.GetComponent<Statement>();
 
-            _currentStatement.SetColor(Color.green);
+            _currentStatement.SetColor(runningColour);
             yield return StartCoroutine(_currentStatement.Run());
             _currentStatement.ResetColour();
         }
