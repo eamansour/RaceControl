@@ -1,5 +1,5 @@
 # RaceControl
-Race Control is a 3D game created in Unity using C# that aims to support introductory Python programming education through the application of game-based learning.
+Race Control is a 3D game created in Unity using C# that aims to support introductory Python programming education through the application of game-based learning. The source code is located in the "Scripts" directory (Assets > Scripts).
 
 ## Setup
 Before opening this project, you must [download and install Unity](https://unity.com/download). When installing your Unity version, install the [LTS 2020.3.30f1](https://unity3d.com/unity/qa/lts-releases) release.
